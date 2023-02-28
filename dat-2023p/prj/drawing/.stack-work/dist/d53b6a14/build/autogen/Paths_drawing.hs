@@ -30,12 +30,12 @@ version :: Version
 version = Version [0,2,2,0] []
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 
-bindir     = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\dat-2023p\\prj\\.stack-work\\install\\874fd731\\bin"
-libdir     = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\dat-2023p\\prj\\.stack-work\\install\\874fd731\\lib\\x86_64-windows-ghc-9.0.2\\drawing-0.2.2.0-2SLlrKbUgLP4IfD3r1VUQK"
-dynlibdir  = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\dat-2023p\\prj\\.stack-work\\install\\874fd731\\lib\\x86_64-windows-ghc-9.0.2"
-datadir    = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\dat-2023p\\prj\\.stack-work\\install\\874fd731\\share\\x86_64-windows-ghc-9.0.2\\drawing-0.2.2.0"
-libexecdir = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\dat-2023p\\prj\\.stack-work\\install\\874fd731\\libexec\\x86_64-windows-ghc-9.0.2\\drawing-0.2.2.0"
-sysconfdir = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\dat-2023p\\prj\\.stack-work\\install\\874fd731\\etc"
+bindir     = "C:\\Users\\Gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\dat-2023p\\prj\\.stack-work\\install\\7d2a49d5\\bin"
+libdir     = "C:\\Users\\Gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\dat-2023p\\prj\\.stack-work\\install\\7d2a49d5\\lib\\x86_64-windows-ghc-9.0.2\\drawing-0.2.2.0-2SLlrKbUgLP4IfD3r1VUQK"
+dynlibdir  = "C:\\Users\\Gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\dat-2023p\\prj\\.stack-work\\install\\7d2a49d5\\lib\\x86_64-windows-ghc-9.0.2"
+datadir    = "C:\\Users\\Gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\dat-2023p\\prj\\.stack-work\\install\\7d2a49d5\\share\\x86_64-windows-ghc-9.0.2\\drawing-0.2.2.0"
+libexecdir = "C:\\Users\\Gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\dat-2023p\\prj\\.stack-work\\install\\7d2a49d5\\libexec\\x86_64-windows-ghc-9.0.2\\drawing-0.2.2.0"
+sysconfdir = "C:\\Users\\Gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\dat-2023p\\prj\\.stack-work\\install\\7d2a49d5\\etc"
 
 getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: IO FilePath
 getBinDir = catchIO (getEnv "drawing_bindir") (\_ -> return bindir)
