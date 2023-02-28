@@ -6,4 +6,4 @@ myDrawing :: Drawing
 myDrawing = blank
 
 main :: IO ()
-main = writeSvgFile "example.svg" myDrawing
+main = writeSvgFile "example2.svg" myDrawing
