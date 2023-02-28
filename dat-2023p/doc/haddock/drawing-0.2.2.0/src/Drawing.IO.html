@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span>
+</span><span id="line-2"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Drawing.IO</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-3"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="Drawing.Internal.Types.html"><span class="hs-identifier">Drawing.Internal.Types</span></a></span><span>
+</span><span id="line-4"></span><span class="hs-keyword">import</span><span>           </span><span class="annot"><a href="Drawing.Internal.Render.html"><span class="hs-identifier">Drawing.Internal.Render</span></a></span><span>
+</span><span id="line-5"></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Text.Lazy.IO</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">TL</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">System.IO</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">IO</span></span><span>
+</span><span id="line-8"></span><span>
+</span><span id="line-9"></span><span class="hs-comment">-- | Write a 'Drawing' to a handle.</span><span>
+</span><span id="line-10"></span><span class="annot"><a href="Drawing.IO.html#hPutSvg"><span class="hs-identifier hs-type">hPutSvg</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO.Handle</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Drawing.Internal.Types.html#Drawing"><span class="hs-identifier hs-type">Drawing</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-11"></span><span id="hPutSvg"><span class="annot"><span class="annottext">hPutSvg :: Handle -&gt; Drawing -&gt; IO ()
+</span><a href="Drawing.IO.html#hPutSvg"><span class="hs-identifier hs-var hs-var">hPutSvg</span></a></span></span><span> </span><span id="local-6989586621679096805"><span class="annot"><span class="annottext">Handle
+</span><a href="#local-6989586621679096805"><span class="hs-identifier hs-var">h</span></a></span></span><span> </span><span id="local-6989586621679096804"><span class="annot"><span class="annottext">Drawing
+</span><a href="#local-6989586621679096804"><span class="hs-identifier hs-var">draw</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-12"></span><span>    </span><span class="annot"><span class="annottext">Handle -&gt; String -&gt; IO ()
+</span><span class="hs-identifier hs-var">IO.hPutStrLn</span></span><span> </span><span class="annot"><span class="annottext">Handle
+</span><a href="#local-6989586621679096805"><span class="hs-identifier hs-var">h</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&lt;?xml version='1.0' encoding='UTF-8' standalone='no'?&gt;&quot;</span></span><span>
+</span><span id="line-13"></span><span>    </span><span class="annot"><span class="annottext">Handle -&gt; String -&gt; IO ()
+</span><span class="hs-identifier hs-var">IO.hPutStrLn</span></span><span> </span><span class="annot"><span class="annottext">Handle
+</span><a href="#local-6989586621679096805"><span class="hs-identifier hs-var">h</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&lt;!DOCTYPE svg PUBLIC \&quot;-//W3C//DTD SVG 1.1//EN\&quot; \&quot;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\&quot;&gt;&quot;</span></span><span>
+</span><span id="line-14"></span><span>    </span><span class="annot"><span class="annottext">Handle -&gt; Text -&gt; IO ()
+</span><span class="hs-identifier hs-var">TL.hPutStr</span></span><span> </span><span class="annot"><span class="annottext">Handle
+</span><a href="#local-6989586621679096805"><span class="hs-identifier hs-var">h</span></a></span><span> </span><span class="annot"><span class="annottext">(Text -&gt; IO ()) -&gt; Text -&gt; IO ()
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">(Double, Text) -&gt; Text
+forall a b. (a, b) -&gt; b
+</span><span class="hs-identifier hs-var">snd</span></span><span> </span><span class="annot"><span class="annottext">((Double, Text) -&gt; Text) -&gt; (Double, Text) -&gt; Text
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Drawing -&gt; (Double, Text)
+</span><a href="Drawing.Internal.Render.html#renderSvgText"><span class="hs-identifier hs-var">renderSvgText</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">300</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">300</span></span><span> </span><span class="annot"><span class="annottext">Drawing
+</span><a href="#local-6989586621679096804"><span class="hs-identifier hs-var">draw</span></a></span><span>
+</span><span id="line-15"></span><span>
+</span><span id="line-16"></span><span class="hs-comment">-- | Write a 'Drawing' to 'stdout'.</span><span>
+</span><span id="line-17"></span><span class="annot"><a href="Drawing.IO.html#putSvg"><span class="hs-identifier hs-type">putSvg</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Drawing.Internal.Types.html#Drawing"><span class="hs-identifier hs-type">Drawing</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-18"></span><span id="putSvg"><span class="annot"><span class="annottext">putSvg :: Drawing -&gt; IO ()
+</span><a href="Drawing.IO.html#putSvg"><span class="hs-identifier hs-var hs-var">putSvg</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Handle -&gt; Drawing -&gt; IO ()
+</span><a href="Drawing.IO.html#hPutSvg"><span class="hs-identifier hs-var">hPutSvg</span></a></span><span> </span><span class="annot"><span class="annottext">Handle
+</span><span class="hs-identifier hs-var">IO.stdout</span></span><span>
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span class="hs-pragma">{-# DEPRECATED</span><span> </span><span class="hs-pragma">svgOf</span><span> </span><span class="hs-pragma">&quot;Use 'putSvg' instead&quot;</span><span> </span><span class="hs-pragma">#-}</span><span>
+</span><span id="line-21"></span><span class="annot"><a href="Drawing.IO.html#svgOf"><span class="hs-identifier hs-type">svgOf</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Drawing.Internal.Types.html#Drawing"><span class="hs-identifier hs-type">Drawing</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-22"></span><span id="svgOf"><span class="annot"><span class="annottext">svgOf :: Drawing -&gt; IO ()
+</span><a href="Drawing.IO.html#svgOf"><span class="hs-identifier hs-var hs-var">svgOf</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Drawing -&gt; IO ()
+</span><a href="Drawing.IO.html#putSvg"><span class="hs-identifier hs-var">putSvg</span></a></span><span>
+</span><span id="line-23"></span><span>
+</span><span id="line-24"></span><span>
+</span><span id="line-25"></span><span class="hs-comment">-- | Write a 'Drawing' to a file.</span><span>
+</span><span id="line-26"></span><span class="annot"><a href="Drawing.IO.html#writeSvgFile"><span class="hs-identifier hs-type">writeSvgFile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Drawing.Internal.Types.html#Drawing"><span class="hs-identifier hs-type">Drawing</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-27"></span><span id="writeSvgFile"><span class="annot"><span class="annottext">writeSvgFile :: String -&gt; Drawing -&gt; IO ()
+</span><a href="Drawing.IO.html#writeSvgFile"><span class="hs-identifier hs-var hs-var">writeSvgFile</span></a></span></span><span> </span><span id="local-6989586621679096795"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679096795"><span class="hs-identifier hs-var">p</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; IOMode -&gt; (Handle -&gt; IO ()) -&gt; IO ()
+forall r. String -&gt; IOMode -&gt; (Handle -&gt; IO r) -&gt; IO r
+</span><span class="hs-identifier hs-var">IO.withFile</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679096795"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">IOMode
+</span><span class="hs-identifier hs-var">IO.WriteMode</span></span><span> </span><span class="annot"><span class="annottext">((Handle -&gt; IO ()) -&gt; IO ())
+-&gt; (Drawing -&gt; Handle -&gt; IO ()) -&gt; Drawing -&gt; IO ()
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">(Handle -&gt; Drawing -&gt; IO ()) -&gt; Drawing -&gt; Handle -&gt; IO ()
+forall a b c. (a -&gt; b -&gt; c) -&gt; b -&gt; a -&gt; c
+</span><span class="hs-identifier hs-var">flip</span></span><span> </span><span class="annot"><span class="annottext">Handle -&gt; Drawing -&gt; IO ()
+</span><a href="Drawing.IO.html#hPutSvg"><span class="hs-identifier hs-var">hPutSvg</span></a></span><span>
+</span><span id="line-28"></span><span>
+</span><span id="line-29"></span><span>
+</span><span id="line-30"></span></pre></body></html>
