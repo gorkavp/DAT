@@ -1,0 +1,389 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width='600' height='600' viewBox='-300 -300 600 600' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
+<g font-size='14px' pointer-events='none'>
+<rect vector-effect='non-scaling-stroke' fill='none' stroke='gray' stroke-width='2' x='-300' y='-300' width='600' height='600'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M0.0 -0.0 L-5.910404133226791 -19.10672978251212'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M0.0 -0.0 L5.910404133226791 -19.10672978251212'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-5.910404133226791 -19.10672978251212 L-17.203253601127496 -35.61344208070568'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-5.910404133226791 -19.10672978251212 L-5.910404133226791 -39.10672978251212'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-17.203253601127496 -35.61344208070568 L-32.86979179367716 -48.045641446118964'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-17.203253601127496 -35.61344208070568 L-23.11365773435429 -54.7201718632178'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-32.86979179367716 -48.045641446118964 L-51.510573513021676 -55.292796535652435'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-32.86979179367716 -48.045641446118964 L-44.16264126157786 -64.55235374431253'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-51.510573513021676 -55.292796535652435 L-71.46047324510276 -56.70754056900649'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-51.510573513021676 -55.292796535652435 L-67.17711170557135 -67.72499590106572'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-71.46047324510276 -56.70754056900649 L-90.93742586266666 -52.16349867514475'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-71.46047324510276 -56.70754056900649 L-90.10125496444728 -63.95469565853996'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-90.93742586266666 -52.16349867514475 L-108.20161319564413 -42.06657658314761'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-90.93742586266666 -52.16349867514475 L-110.88732559474775 -53.57824270849881'/>
+<ellipse transform='matrix(-0.5048461045998571,-0.8632093666488735,0.8632093666488735,-0.5048461045998571,-108.20161319564413,-42.06657658314761)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(7.073720166770292e-2,-0.997494986604054,0.997494986604054,7.073720166770292e-2,-110.88732559474775,-53.57824270849881)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-90.10125496444728 -63.95469565853996 L-110.05115469652836 -65.36943969189402'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-90.10125496444728 -63.95469565853996 L-105.76779315699694 -76.38689502395324'/>
+<ellipse transform='matrix(7.073720166770292e-2,-0.997494986604054,0.997494986604054,7.073720166770292e-2,-110.05115469652836,-65.36943969189402)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.6216099682706642,-0.783326909627483,0.783326909627483,0.6216099682706642,-105.76779315699694,-76.38689502395324)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-67.17711170557135 -67.72499590106572 L-85.81789342491587 -74.97215099059919'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-67.17711170557135 -67.72499590106572 L-78.46996117347204 -84.23170819925929'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-85.81789342491587 -74.97215099059919 L-105.76779315699694 -76.38689502395324'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-85.81789342491587 -74.97215099059919 L-101.48443161746553 -87.40435035601249'/>
+<ellipse transform='matrix(7.073720166770292e-2,-0.997494986604054,0.997494986604054,7.073720166770292e-2,-105.76779315699694,-76.38689502395324)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.6216099682706642,-0.783326909627483,0.783326909627483,0.6216099682706642,-101.48443161746553,-87.40435035601249)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-78.46996117347204 -84.23170819925929 L-94.13649936602171 -96.66390756467257'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-78.46996117347204 -84.23170819925929 L-84.38036530669883 -103.3384379817714'/>
+<ellipse transform='matrix(0.6216099682706643,-0.7833269096274831,0.7833269096274831,0.6216099682706643,-94.13649936602171,-96.66390756467257)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256056,-0.29552020666133944,0.29552020666133944,0.9553364891256056,-84.38036530669883,-103.3384379817714)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-44.16264126157786 -64.55235374431253 L-59.82917945412753 -76.98455310972582'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-44.16264126157786 -64.55235374431253 L-50.07304539480465 -83.65908352682465'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-59.82917945412753 -76.98455310972582 L-78.46996117347204 -84.23170819925929'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-59.82917945412753 -76.98455310972582 L-71.12202892202824 -93.49126540791937'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-78.46996117347204 -84.23170819925929 L-98.41986090555312 -85.64645223261336'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-78.46996117347204 -84.23170819925929 L-94.13649936602171 -96.66390756467257'/>
+<ellipse transform='matrix(7.073720166770292e-2,-0.9974949866040541,0.9974949866040541,7.073720166770292e-2,-98.41986090555312,-85.64645223261336)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.6216099682706643,-0.7833269096274831,0.7833269096274831,0.6216099682706643,-94.13649936602171,-96.66390756467257)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-71.12202892202824 -93.49126540791937 L-86.7885671145779 -105.92346477333265'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-71.12202892202824 -93.49126540791937 L-77.03243305525503 -112.59799519043149'/>
+<ellipse transform='matrix(0.6216099682706644,-0.7833269096274832,0.7833269096274832,0.6216099682706644,-86.7885671145779,-105.92346477333265)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256058,-0.2955202066613395,0.2955202066613395,0.9553364891256058,-77.03243305525503,-112.59799519043149)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-50.07304539480465 -83.65908352682465 L-61.36589486270536 -100.1657958250182'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-50.07304539480465 -83.65908352682465 L-50.07304539480465 -103.65908352682465'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-61.36589486270536 -100.1657958250182 L-77.03243305525503 -112.59799519043149'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-61.36589486270536 -100.1657958250182 L-67.27629899593214 -119.27252560753031'/>
+<ellipse transform='matrix(0.6216099682706644,-0.7833269096274831,0.7833269096274831,0.6216099682706644,-77.03243305525503,-112.59799519043149)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256058,-0.2955202066613394,0.2955202066613394,0.9553364891256058,-67.27629899593214,-119.27252560753031)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-50.07304539480465 -103.65908352682465 L-55.98344952803144 -122.76581330933675'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-50.07304539480465 -103.65908352682465 L-44.16264126157786 -122.76581330933675'/>
+<ellipse transform='matrix(0.9553364891256056,-0.29552020666133944,0.29552020666133944,0.9553364891256056,-55.98344952803144,-122.76581330933675)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256056,0.29552020666133944,-0.29552020666133944,0.9553364891256056,-44.16264126157786,-122.76581330933675)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-23.11365773435429 -54.7201718632178 L-34.40650720225499 -71.22688416141136'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-23.11365773435429 -54.7201718632178 L-23.11365773435429 -74.7201718632178'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-34.40650720225499 -71.22688416141136 L-50.07304539480465 -83.65908352682466'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-34.40650720225499 -71.22688416141136 L-40.316911335481784 -90.33361394392347'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-50.07304539480465 -83.65908352682466 L-68.71382711414917 -90.90623861635812'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-50.07304539480465 -83.65908352682466 L-61.36589486270536 -100.16579582501821'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-68.71382711414917 -90.90623861635812 L-88.66372684623025 -92.32098264971219'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-68.71382711414917 -90.90623861635812 L-84.38036530669883 -103.33843798177142'/>
+<ellipse transform='matrix(7.073720166770298e-2,-0.9974949866040541,0.9974949866040541,7.073720166770298e-2,-88.66372684623025,-92.32098264971219)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.6216099682706644,-0.7833269096274831,0.7833269096274831,0.6216099682706644,-84.38036530669883,-103.33843798177142)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-61.36589486270536 -100.16579582501821 L-77.03243305525501 -112.59799519043149'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-61.36589486270536 -100.16579582501821 L-67.27629899593214 -119.27252560753033'/>
+<ellipse transform='matrix(0.6216099682706643,-0.7833269096274829,0.7833269096274829,0.6216099682706643,-77.03243305525501,-112.59799519043149)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256056,-0.2955202066613393,0.2955202066613393,0.9553364891256056,-67.27629899593214,-119.27252560753033)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-40.316911335481784 -90.33361394392347 L-51.60976080338248 -106.84032624211703'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-40.316911335481784 -90.33361394392347 L-40.316911335481784 -110.33361394392347'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-51.60976080338248 -106.84032624211703 L-67.27629899593214 -119.27252560753033'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-51.60976080338248 -106.84032624211703 L-57.52016493660926 -125.94705602462915'/>
+<ellipse transform='matrix(0.6216099682706644,-0.783326909627483,0.783326909627483,0.6216099682706644,-67.27629899593214,-119.27252560753033)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256058,-0.29552020666133927,0.29552020666133927,0.9553364891256058,-57.52016493660926,-125.94705602462915)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-40.316911335481784 -110.33361394392347 L-46.22731546870857 -129.4403437264356'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-40.316911335481784 -110.33361394392347 L-34.40650720225499 -129.4403437264356'/>
+<ellipse transform='matrix(0.9553364891256056,-0.2955202066613393,0.2955202066613393,0.9553364891256056,-46.22731546870857,-129.4403437264356)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256056,0.29552020666133955,-0.29552020666133955,0.9553364891256056,-34.40650720225499,-129.4403437264356)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-23.11365773435429 -74.7201718632178 L-29.024061867581075 -93.8269016457299'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-23.11365773435429 -74.7201718632178 L-17.2032536011275 -93.8269016457299'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-29.024061867581075 -93.8269016457299 L-40.31691133548178 -110.33361394392345'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-29.024061867581075 -93.8269016457299 L-29.024061867581075 -113.82690164572989'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-40.31691133548178 -110.33361394392345 L-55.98344952803143 -122.76581330933674'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-40.31691133548178 -110.33361394392345 L-46.22731546870856 -129.44034372643557'/>
+<ellipse transform='matrix(0.6216099682706643,-0.7833269096274829,0.7833269096274829,0.6216099682706643,-55.98344952803143,-122.76581330933674)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256056,-0.2955202066613393,0.2955202066613393,0.9553364891256056,-46.22731546870856,-129.44034372643557)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-29.024061867581075 -113.82690164572989 L-34.934466000807866 -132.933631428242'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-29.024061867581075 -113.82690164572989 L-23.11365773435429 -132.933631428242'/>
+<ellipse transform='matrix(0.9553364891256055,-0.29552020666133944,0.29552020666133944,0.9553364891256055,-34.934466000807866,-132.933631428242)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256055,0.29552020666133944,-0.29552020666133944,0.9553364891256055,-23.11365773435429,-132.933631428242)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-17.2032536011275 -93.8269016457299 L-17.2032536011275 -113.82690164572989'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-17.2032536011275 -93.8269016457299 L-5.910404133226801 -110.33361394392345'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-17.2032536011275 -113.82690164572989 L-23.11365773435429 -132.933631428242'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-17.2032536011275 -113.82690164572989 L-11.292849467900714 -132.933631428242'/>
+<ellipse transform='matrix(0.9553364891256055,-0.29552020666133944,0.29552020666133944,0.9553364891256055,-23.11365773435429,-132.933631428242)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256055,0.29552020666133944,-0.29552020666133944,0.9553364891256055,-11.292849467900714,-132.933631428242)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-5.910404133226801 -110.33361394392345 L-1.4432899320127035e-14 -129.44034372643557'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-5.910404133226801 -110.33361394392345 L9.756134059322857 -122.76581330933674'/>
+<ellipse transform='matrix(0.9553364891256056,0.2955202066613393,-0.2955202066613393,0.9553364891256056,-1.4432899320127035e-14,-129.44034372643557)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.6216099682706643,0.7833269096274829,-0.7833269096274829,0.6216099682706643,9.756134059322857,-122.76581330933674)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-5.910404133226791 -39.10672978251212 L-11.820808266453582 -58.21345956502424'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-5.910404133226791 -39.10672978251212 L0.0 -58.21345956502424'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-11.820808266453582 -58.21345956502424 L-23.11365773435429 -74.7201718632178'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-11.820808266453582 -58.21345956502424 L-11.820808266453582 -78.21345956502424'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-23.11365773435429 -74.7201718632178 L-38.78019592690396 -87.15237122863108'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-23.11365773435429 -74.7201718632178 L-29.024061867581075 -93.82690164572992'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-38.78019592690396 -87.15237122863108 L-57.42097764624848 -94.39952631816455'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-38.78019592690396 -87.15237122863108 L-50.07304539480466 -103.65908352682465'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-57.42097764624848 -94.39952631816455 L-77.37087737832957 -95.81427035151862'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-57.42097764624848 -94.39952631816455 L-73.08751583879814 -106.83172568357783'/>
+<ellipse transform='matrix(7.073720166770292e-2,-0.9974949866040541,0.9974949866040541,7.073720166770292e-2,-77.37087737832957,-95.81427035151862)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.6216099682706643,-0.7833269096274831,0.7833269096274831,0.6216099682706643,-73.08751583879814,-106.83172568357783)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-50.07304539480466 -103.65908352682465 L-65.73958358735433 -116.09128289223793'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-50.07304539480466 -103.65908352682465 L-55.98344952803145 -122.76581330933675'/>
+<ellipse transform='matrix(0.6216099682706644,-0.7833269096274832,0.7833269096274832,0.6216099682706644,-65.73958358735433,-116.09128289223793)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256058,-0.2955202066613395,0.2955202066613395,0.9553364891256058,-55.98344952803145,-122.76581330933675)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-29.024061867581075 -93.82690164572992 L-40.316911335481784 -110.33361394392347'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-29.024061867581075 -93.82690164572992 L-29.024061867581075 -113.82690164572992'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-40.316911335481784 -110.33361394392347 L-55.98344952803144 -122.76581330933678'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-40.316911335481784 -110.33361394392347 L-46.22731546870857 -129.4403437264356'/>
+<ellipse transform='matrix(0.6216099682706644,-0.7833269096274831,0.7833269096274831,0.6216099682706644,-55.98344952803144,-122.76581330933678)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256058,-0.2955202066613394,0.2955202066613394,0.9553364891256058,-46.22731546870857,-129.4403437264356)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-29.024061867581075 -113.82690164572992 L-34.934466000807866 -132.93363142824202'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-29.024061867581075 -113.82690164572992 L-23.11365773435429 -132.93363142824202'/>
+<ellipse transform='matrix(0.9553364891256056,-0.29552020666133944,0.29552020666133944,0.9553364891256056,-34.934466000807866,-132.93363142824202)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256056,0.29552020666133944,-0.29552020666133944,0.9553364891256056,-23.11365773435429,-132.93363142824202)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-11.820808266453582 -78.21345956502424 L-17.731212399680373 -97.32018934753637'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-11.820808266453582 -78.21345956502424 L-5.910404133226791 -97.32018934753637'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-17.731212399680373 -97.32018934753637 L-29.024061867581075 -113.82690164572992'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-17.731212399680373 -97.32018934753637 L-17.731212399680373 -117.32018934753637'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-29.024061867581075 -113.82690164572992 L-44.69060006013074 -126.25910101114322'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-29.024061867581075 -113.82690164572992 L-34.934466000807866 -132.93363142824202'/>
+<ellipse transform='matrix(0.6216099682706644,-0.7833269096274832,0.7833269096274832,0.6216099682706644,-44.69060006013074,-126.25910101114322)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256058,-0.2955202066613395,0.2955202066613395,0.9553364891256058,-34.934466000807866,-132.93363142824202)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-17.731212399680373 -117.32018934753637 L-23.641616532907165 -136.42691913004847'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-17.731212399680373 -117.32018934753637 L-11.820808266453579 -136.42691913004847'/>
+<ellipse transform='matrix(0.955336489125606,-0.29552020666133955,0.29552020666133955,0.955336489125606,-23.641616532907165,-136.42691913004847)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.955336489125606,0.29552020666133955,-0.29552020666133955,0.955336489125606,-11.820808266453579,-136.42691913004847)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-5.910404133226791 -97.32018934753637 L-5.910404133226791 -117.32018934753637'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-5.910404133226791 -97.32018934753637 L5.382445334673914 -113.82690164572992'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-5.910404133226791 -117.32018934753637 L-11.820808266453582 -136.42691913004847'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-5.910404133226791 -117.32018934753637 L0.0 -136.42691913004847'/>
+<ellipse transform='matrix(0.955336489125606,-0.29552020666133955,0.29552020666133955,0.955336489125606,-11.820808266453582,-136.42691913004847)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.955336489125606,0.29552020666133955,-0.29552020666133955,0.955336489125606,0.0,-136.42691913004847)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M5.382445334673914 -113.82690164572992 L11.292849467900705 -132.93363142824202'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M5.382445334673914 -113.82690164572992 L21.04898352722358 -126.25910101114322'/>
+<ellipse transform='matrix(0.9553364891256058,0.2955202066613395,-0.2955202066613395,0.9553364891256058,11.292849467900705,-132.93363142824202)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.6216099682706644,0.7833269096274832,-0.7833269096274832,0.6216099682706644,21.04898352722358,-126.25910101114322)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M0.0 -58.21345956502424 L0.0 -78.21345956502424'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M0.0 -58.21345956502424 L11.292849467900705 -74.7201718632178'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M0.0 -78.21345956502424 L-5.910404133226791 -97.32018934753637'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M0.0 -78.21345956502424 L5.910404133226791 -97.32018934753637'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-5.910404133226791 -97.32018934753637 L-17.203253601127496 -113.82690164572992'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-5.910404133226791 -97.32018934753637 L-5.910404133226791 -117.32018934753637'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-17.203253601127496 -113.82690164572992 L-32.86979179367716 -126.25910101114322'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-17.203253601127496 -113.82690164572992 L-23.11365773435429 -132.93363142824202'/>
+<ellipse transform='matrix(0.6216099682706644,-0.7833269096274832,0.7833269096274832,0.6216099682706644,-32.86979179367716,-126.25910101114322)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256058,-0.2955202066613395,0.2955202066613395,0.9553364891256058,-23.11365773435429,-132.93363142824202)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-5.910404133226791 -117.32018934753637 L-11.820808266453582 -136.42691913004847'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-5.910404133226791 -117.32018934753637 L0.0 -136.42691913004847'/>
+<ellipse transform='matrix(0.955336489125606,-0.29552020666133955,0.29552020666133955,0.955336489125606,-11.820808266453582,-136.42691913004847)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.955336489125606,0.29552020666133955,-0.29552020666133955,0.955336489125606,0.0,-136.42691913004847)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M5.910404133226791 -97.32018934753637 L5.910404133226791 -117.32018934753637'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M5.910404133226791 -97.32018934753637 L17.203253601127496 -113.82690164572992'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M5.910404133226791 -117.32018934753637 L0.0 -136.42691913004847'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M5.910404133226791 -117.32018934753637 L11.820808266453582 -136.42691913004847'/>
+<ellipse transform='matrix(0.955336489125606,-0.29552020666133955,0.29552020666133955,0.955336489125606,0.0,-136.42691913004847)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.955336489125606,0.29552020666133955,-0.29552020666133955,0.955336489125606,11.820808266453582,-136.42691913004847)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M17.203253601127496 -113.82690164572992 L23.11365773435429 -132.93363142824202'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M17.203253601127496 -113.82690164572992 L32.86979179367716 -126.25910101114322'/>
+<ellipse transform='matrix(0.9553364891256058,0.2955202066613395,-0.2955202066613395,0.9553364891256058,23.11365773435429,-132.93363142824202)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.6216099682706644,0.7833269096274832,-0.7833269096274832,0.6216099682706644,32.86979179367716,-126.25910101114322)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M11.292849467900705 -74.7201718632178 L17.203253601127496 -93.82690164572992'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M11.292849467900705 -74.7201718632178 L26.95938766045037 -87.15237122863108'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M17.203253601127496 -93.82690164572992 L17.203253601127496 -113.82690164572992'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M17.203253601127496 -93.82690164572992 L28.496103069028198 -110.33361394392347'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M17.203253601127496 -113.82690164572992 L11.292849467900705 -132.93363142824202'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M17.203253601127496 -113.82690164572992 L23.113657734354284 -132.93363142824202'/>
+<ellipse transform='matrix(0.9553364891256056,-0.29552020666133944,0.29552020666133944,0.9553364891256056,11.292849467900705,-132.93363142824202)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256056,0.29552020666133944,-0.29552020666133944,0.9553364891256056,23.113657734354284,-132.93363142824202)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M28.496103069028198 -110.33361394392347 L34.406507202254986 -129.4403437264356'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M28.496103069028198 -110.33361394392347 L44.16264126157786 -122.76581330933678'/>
+<ellipse transform='matrix(0.9553364891256058,0.2955202066613394,-0.2955202066613394,0.9553364891256058,34.406507202254986,-129.4403437264356)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.6216099682706644,0.7833269096274831,-0.7833269096274831,0.6216099682706644,44.16264126157786,-122.76581330933678)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M26.95938766045037 -87.15237122863108 L38.25223712835108 -103.65908352682465'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M26.95938766045037 -87.15237122863108 L45.60016937979489 -94.39952631816455'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M38.25223712835108 -103.65908352682465 L44.16264126157786 -122.76581330933675'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M38.25223712835108 -103.65908352682465 L53.91877532090074 -116.09128289223793'/>
+<ellipse transform='matrix(0.9553364891256058,0.2955202066613395,-0.2955202066613395,0.9553364891256058,44.16264126157786,-122.76581330933675)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.6216099682706644,0.7833269096274832,-0.7833269096274832,0.6216099682706644,53.91877532090074,-116.09128289223793)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M45.60016937979489 -94.39952631816455 L61.26670757234456 -106.83172568357783'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M45.60016937979489 -94.39952631816455 L65.55006911187597 -95.81427035151862'/>
+<ellipse transform='matrix(0.6216099682706643,0.7833269096274831,-0.7833269096274831,0.6216099682706643,61.26670757234456,-106.83172568357783)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(7.073720166770292e-2,0.9974949866040541,-0.9974949866040541,7.073720166770292e-2,65.55006911187597,-95.81427035151862)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M5.910404133226791 -19.10672978251212 L5.910404133226791 -39.10672978251212'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M5.910404133226791 -19.10672978251212 L17.203253601127496 -35.61344208070568'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M5.910404133226791 -39.10672978251212 L0.0 -58.21345956502424'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M5.910404133226791 -39.10672978251212 L11.820808266453582 -58.21345956502424'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M0.0 -58.21345956502424 L-11.292849467900705 -74.7201718632178'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M0.0 -58.21345956502424 L0.0 -78.21345956502424'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-11.292849467900705 -74.7201718632178 L-26.95938766045037 -87.15237122863108'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-11.292849467900705 -74.7201718632178 L-17.203253601127496 -93.82690164572992'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-26.95938766045037 -87.15237122863108 L-45.60016937979489 -94.39952631816455'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-26.95938766045037 -87.15237122863108 L-38.25223712835108 -103.65908352682465'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-45.60016937979489 -94.39952631816455 L-65.55006911187597 -95.81427035151862'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-45.60016937979489 -94.39952631816455 L-61.26670757234456 -106.83172568357783'/>
+<ellipse transform='matrix(7.073720166770292e-2,-0.9974949866040541,0.9974949866040541,7.073720166770292e-2,-65.55006911187597,-95.81427035151862)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.6216099682706643,-0.7833269096274831,0.7833269096274831,0.6216099682706643,-61.26670757234456,-106.83172568357783)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-38.25223712835108 -103.65908352682465 L-53.91877532090074 -116.09128289223793'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-38.25223712835108 -103.65908352682465 L-44.16264126157786 -122.76581330933675'/>
+<ellipse transform='matrix(0.6216099682706644,-0.7833269096274832,0.7833269096274832,0.6216099682706644,-53.91877532090074,-116.09128289223793)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256058,-0.2955202066613395,0.2955202066613395,0.9553364891256058,-44.16264126157786,-122.76581330933675)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-17.203253601127496 -93.82690164572992 L-28.496103069028198 -110.33361394392347'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-17.203253601127496 -93.82690164572992 L-17.203253601127496 -113.82690164572992'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-28.496103069028198 -110.33361394392347 L-44.16264126157786 -122.76581330933678'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-28.496103069028198 -110.33361394392347 L-34.406507202254986 -129.4403437264356'/>
+<ellipse transform='matrix(0.6216099682706644,-0.7833269096274831,0.7833269096274831,0.6216099682706644,-44.16264126157786,-122.76581330933678)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256058,-0.2955202066613394,0.2955202066613394,0.9553364891256058,-34.406507202254986,-129.4403437264356)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-17.203253601127496 -113.82690164572992 L-23.113657734354284 -132.93363142824202'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-17.203253601127496 -113.82690164572992 L-11.292849467900705 -132.93363142824202'/>
+<ellipse transform='matrix(0.9553364891256056,-0.29552020666133944,0.29552020666133944,0.9553364891256056,-23.113657734354284,-132.93363142824202)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256056,0.29552020666133944,-0.29552020666133944,0.9553364891256056,-11.292849467900705,-132.93363142824202)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M0.0 -78.21345956502424 L-5.910404133226791 -97.32018934753637'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M0.0 -78.21345956502424 L5.910404133226791 -97.32018934753637'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-5.910404133226791 -97.32018934753637 L-17.203253601127496 -113.82690164572992'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-5.910404133226791 -97.32018934753637 L-5.910404133226791 -117.32018934753637'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-17.203253601127496 -113.82690164572992 L-32.86979179367716 -126.25910101114322'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-17.203253601127496 -113.82690164572992 L-23.11365773435429 -132.93363142824202'/>
+<ellipse transform='matrix(0.6216099682706644,-0.7833269096274832,0.7833269096274832,0.6216099682706644,-32.86979179367716,-126.25910101114322)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256058,-0.2955202066613395,0.2955202066613395,0.9553364891256058,-23.11365773435429,-132.93363142824202)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-5.910404133226791 -117.32018934753637 L-11.820808266453582 -136.42691913004847'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-5.910404133226791 -117.32018934753637 L0.0 -136.42691913004847'/>
+<ellipse transform='matrix(0.955336489125606,-0.29552020666133955,0.29552020666133955,0.955336489125606,-11.820808266453582,-136.42691913004847)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.955336489125606,0.29552020666133955,-0.29552020666133955,0.955336489125606,0.0,-136.42691913004847)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M5.910404133226791 -97.32018934753637 L5.910404133226791 -117.32018934753637'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M5.910404133226791 -97.32018934753637 L17.203253601127496 -113.82690164572992'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M5.910404133226791 -117.32018934753637 L0.0 -136.42691913004847'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M5.910404133226791 -117.32018934753637 L11.820808266453582 -136.42691913004847'/>
+<ellipse transform='matrix(0.955336489125606,-0.29552020666133955,0.29552020666133955,0.955336489125606,0.0,-136.42691913004847)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.955336489125606,0.29552020666133955,-0.29552020666133955,0.955336489125606,11.820808266453582,-136.42691913004847)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M17.203253601127496 -113.82690164572992 L23.11365773435429 -132.93363142824202'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M17.203253601127496 -113.82690164572992 L32.86979179367716 -126.25910101114322'/>
+<ellipse transform='matrix(0.9553364891256058,0.2955202066613395,-0.2955202066613395,0.9553364891256058,23.11365773435429,-132.93363142824202)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.6216099682706644,0.7833269096274832,-0.7833269096274832,0.6216099682706644,32.86979179367716,-126.25910101114322)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M11.820808266453582 -58.21345956502424 L11.820808266453582 -78.21345956502424'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M11.820808266453582 -58.21345956502424 L23.11365773435429 -74.7201718632178'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M11.820808266453582 -78.21345956502424 L5.910404133226791 -97.32018934753637'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M11.820808266453582 -78.21345956502424 L17.731212399680373 -97.32018934753637'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M5.910404133226791 -97.32018934753637 L-5.382445334673914 -113.82690164572992'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M5.910404133226791 -97.32018934753637 L5.910404133226791 -117.32018934753637'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-5.382445334673914 -113.82690164572992 L-21.04898352722358 -126.25910101114322'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M-5.382445334673914 -113.82690164572992 L-11.292849467900705 -132.93363142824202'/>
+<ellipse transform='matrix(0.6216099682706644,-0.7833269096274832,0.7833269096274832,0.6216099682706644,-21.04898352722358,-126.25910101114322)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256058,-0.2955202066613395,0.2955202066613395,0.9553364891256058,-11.292849467900705,-132.93363142824202)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M5.910404133226791 -117.32018934753637 L0.0 -136.42691913004847'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M5.910404133226791 -117.32018934753637 L11.820808266453582 -136.42691913004847'/>
+<ellipse transform='matrix(0.955336489125606,-0.29552020666133955,0.29552020666133955,0.955336489125606,0.0,-136.42691913004847)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.955336489125606,0.29552020666133955,-0.29552020666133955,0.955336489125606,11.820808266453582,-136.42691913004847)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M17.731212399680373 -97.32018934753637 L17.731212399680373 -117.32018934753637'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M17.731212399680373 -97.32018934753637 L29.024061867581075 -113.82690164572992'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M17.731212399680373 -117.32018934753637 L11.820808266453579 -136.42691913004847'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M17.731212399680373 -117.32018934753637 L23.641616532907165 -136.42691913004847'/>
+<ellipse transform='matrix(0.955336489125606,-0.29552020666133955,0.29552020666133955,0.955336489125606,11.820808266453579,-136.42691913004847)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.955336489125606,0.29552020666133955,-0.29552020666133955,0.955336489125606,23.641616532907165,-136.42691913004847)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M29.024061867581075 -113.82690164572992 L34.934466000807866 -132.93363142824202'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M29.024061867581075 -113.82690164572992 L44.69060006013074 -126.25910101114322'/>
+<ellipse transform='matrix(0.9553364891256058,0.2955202066613395,-0.2955202066613395,0.9553364891256058,34.934466000807866,-132.93363142824202)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.6216099682706644,0.7833269096274832,-0.7833269096274832,0.6216099682706644,44.69060006013074,-126.25910101114322)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M23.11365773435429 -74.7201718632178 L29.024061867581075 -93.82690164572992'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M23.11365773435429 -74.7201718632178 L38.78019592690396 -87.15237122863108'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M29.024061867581075 -93.82690164572992 L29.024061867581075 -113.82690164572992'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M29.024061867581075 -93.82690164572992 L40.316911335481784 -110.33361394392347'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M29.024061867581075 -113.82690164572992 L23.11365773435429 -132.93363142824202'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M29.024061867581075 -113.82690164572992 L34.934466000807866 -132.93363142824202'/>
+<ellipse transform='matrix(0.9553364891256056,-0.29552020666133944,0.29552020666133944,0.9553364891256056,23.11365773435429,-132.93363142824202)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256056,0.29552020666133944,-0.29552020666133944,0.9553364891256056,34.934466000807866,-132.93363142824202)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M40.316911335481784 -110.33361394392347 L46.22731546870857 -129.4403437264356'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M40.316911335481784 -110.33361394392347 L55.98344952803144 -122.76581330933678'/>
+<ellipse transform='matrix(0.9553364891256058,0.2955202066613394,-0.2955202066613394,0.9553364891256058,46.22731546870857,-129.4403437264356)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.6216099682706644,0.7833269096274831,-0.7833269096274831,0.6216099682706644,55.98344952803144,-122.76581330933678)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M38.78019592690396 -87.15237122863108 L50.07304539480466 -103.65908352682465'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M38.78019592690396 -87.15237122863108 L57.42097764624848 -94.39952631816455'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M50.07304539480466 -103.65908352682465 L55.98344952803145 -122.76581330933675'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M50.07304539480466 -103.65908352682465 L65.73958358735433 -116.09128289223793'/>
+<ellipse transform='matrix(0.9553364891256058,0.2955202066613395,-0.2955202066613395,0.9553364891256058,55.98344952803145,-122.76581330933675)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.6216099682706644,0.7833269096274832,-0.7833269096274832,0.6216099682706644,65.73958358735433,-116.09128289223793)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M57.42097764624848 -94.39952631816455 L73.08751583879814 -106.83172568357783'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M57.42097764624848 -94.39952631816455 L77.37087737832957 -95.81427035151862'/>
+<ellipse transform='matrix(0.6216099682706643,0.7833269096274831,-0.7833269096274831,0.6216099682706643,73.08751583879814,-106.83172568357783)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(7.073720166770292e-2,0.9974949866040541,-0.9974949866040541,7.073720166770292e-2,77.37087737832957,-95.81427035151862)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M17.203253601127496 -35.61344208070568 L23.11365773435429 -54.7201718632178'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M17.203253601127496 -35.61344208070568 L32.86979179367716 -48.045641446118964'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M23.11365773435429 -54.7201718632178 L23.11365773435429 -74.7201718632178'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M23.11365773435429 -54.7201718632178 L34.40650720225499 -71.22688416141136'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M23.11365773435429 -74.7201718632178 L17.2032536011275 -93.8269016457299'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M23.11365773435429 -74.7201718632178 L29.024061867581075 -93.8269016457299'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M17.2032536011275 -93.8269016457299 L5.910404133226801 -110.33361394392345'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M17.2032536011275 -93.8269016457299 L17.2032536011275 -113.82690164572989'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M5.910404133226801 -110.33361394392345 L-9.756134059322857 -122.76581330933674'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M5.910404133226801 -110.33361394392345 L1.4432899320127035e-14 -129.44034372643557'/>
+<ellipse transform='matrix(0.6216099682706643,-0.7833269096274829,0.7833269096274829,0.6216099682706643,-9.756134059322857,-122.76581330933674)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256056,-0.2955202066613393,0.2955202066613393,0.9553364891256056,1.4432899320127035e-14,-129.44034372643557)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M17.2032536011275 -113.82690164572989 L11.292849467900714 -132.933631428242'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M17.2032536011275 -113.82690164572989 L23.11365773435429 -132.933631428242'/>
+<ellipse transform='matrix(0.9553364891256055,-0.29552020666133944,0.29552020666133944,0.9553364891256055,11.292849467900714,-132.933631428242)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256055,0.29552020666133944,-0.29552020666133944,0.9553364891256055,23.11365773435429,-132.933631428242)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M29.024061867581075 -93.8269016457299 L29.024061867581075 -113.82690164572989'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M29.024061867581075 -93.8269016457299 L40.31691133548178 -110.33361394392345'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M29.024061867581075 -113.82690164572989 L23.11365773435429 -132.933631428242'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M29.024061867581075 -113.82690164572989 L34.934466000807866 -132.933631428242'/>
+<ellipse transform='matrix(0.9553364891256055,-0.29552020666133944,0.29552020666133944,0.9553364891256055,23.11365773435429,-132.933631428242)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256055,0.29552020666133944,-0.29552020666133944,0.9553364891256055,34.934466000807866,-132.933631428242)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M40.31691133548178 -110.33361394392345 L46.22731546870856 -129.44034372643557'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M40.31691133548178 -110.33361394392345 L55.98344952803143 -122.76581330933674'/>
+<ellipse transform='matrix(0.9553364891256056,0.2955202066613393,-0.2955202066613393,0.9553364891256056,46.22731546870856,-129.44034372643557)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.6216099682706643,0.7833269096274829,-0.7833269096274829,0.6216099682706643,55.98344952803143,-122.76581330933674)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M34.40650720225499 -71.22688416141136 L40.316911335481784 -90.33361394392347'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M34.40650720225499 -71.22688416141136 L50.07304539480465 -83.65908352682466'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M40.316911335481784 -90.33361394392347 L40.316911335481784 -110.33361394392347'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M40.316911335481784 -90.33361394392347 L51.60976080338248 -106.84032624211703'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M40.316911335481784 -110.33361394392347 L34.40650720225499 -129.4403437264356'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M40.316911335481784 -110.33361394392347 L46.22731546870857 -129.4403437264356'/>
+<ellipse transform='matrix(0.9553364891256056,-0.29552020666133955,0.29552020666133955,0.9553364891256056,34.40650720225499,-129.4403437264356)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256056,0.2955202066613393,-0.2955202066613393,0.9553364891256056,46.22731546870857,-129.4403437264356)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M51.60976080338248 -106.84032624211703 L57.52016493660926 -125.94705602462915'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M51.60976080338248 -106.84032624211703 L67.27629899593214 -119.27252560753033'/>
+<ellipse transform='matrix(0.9553364891256058,0.29552020666133927,-0.29552020666133927,0.9553364891256058,57.52016493660926,-125.94705602462915)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.6216099682706644,0.783326909627483,-0.783326909627483,0.6216099682706644,67.27629899593214,-119.27252560753033)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M50.07304539480465 -83.65908352682466 L61.36589486270536 -100.16579582501821'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M50.07304539480465 -83.65908352682466 L68.71382711414917 -90.90623861635812'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M61.36589486270536 -100.16579582501821 L67.27629899593214 -119.27252560753033'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M61.36589486270536 -100.16579582501821 L77.03243305525501 -112.59799519043149'/>
+<ellipse transform='matrix(0.9553364891256056,0.2955202066613393,-0.2955202066613393,0.9553364891256056,67.27629899593214,-119.27252560753033)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.6216099682706643,0.7833269096274829,-0.7833269096274829,0.6216099682706643,77.03243305525501,-112.59799519043149)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M68.71382711414917 -90.90623861635812 L84.38036530669883 -103.33843798177142'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M68.71382711414917 -90.90623861635812 L88.66372684623025 -92.32098264971219'/>
+<ellipse transform='matrix(0.6216099682706644,0.7833269096274831,-0.7833269096274831,0.6216099682706644,84.38036530669883,-103.33843798177142)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(7.073720166770298e-2,0.9974949866040541,-0.9974949866040541,7.073720166770298e-2,88.66372684623025,-92.32098264971219)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M32.86979179367716 -48.045641446118964 L44.16264126157786 -64.55235374431253'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M32.86979179367716 -48.045641446118964 L51.510573513021676 -55.292796535652435'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M44.16264126157786 -64.55235374431253 L50.07304539480465 -83.65908352682465'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M44.16264126157786 -64.55235374431253 L59.82917945412753 -76.98455310972582'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M50.07304539480465 -83.65908352682465 L50.07304539480465 -103.65908352682465'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M50.07304539480465 -83.65908352682465 L61.36589486270536 -100.1657958250182'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M50.07304539480465 -103.65908352682465 L44.16264126157786 -122.76581330933675'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M50.07304539480465 -103.65908352682465 L55.98344952803144 -122.76581330933675'/>
+<ellipse transform='matrix(0.9553364891256056,-0.29552020666133944,0.29552020666133944,0.9553364891256056,44.16264126157786,-122.76581330933675)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.9553364891256056,0.29552020666133944,-0.29552020666133944,0.9553364891256056,55.98344952803144,-122.76581330933675)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M61.36589486270536 -100.1657958250182 L67.27629899593214 -119.27252560753031'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M61.36589486270536 -100.1657958250182 L77.03243305525503 -112.59799519043149'/>
+<ellipse transform='matrix(0.9553364891256058,0.2955202066613394,-0.2955202066613394,0.9553364891256058,67.27629899593214,-119.27252560753031)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.6216099682706644,0.7833269096274831,-0.7833269096274831,0.6216099682706644,77.03243305525503,-112.59799519043149)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M59.82917945412753 -76.98455310972582 L71.12202892202824 -93.49126540791937'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M59.82917945412753 -76.98455310972582 L78.46996117347204 -84.23170819925929'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M71.12202892202824 -93.49126540791937 L77.03243305525503 -112.59799519043149'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M71.12202892202824 -93.49126540791937 L86.7885671145779 -105.92346477333265'/>
+<ellipse transform='matrix(0.9553364891256058,0.2955202066613395,-0.2955202066613395,0.9553364891256058,77.03243305525503,-112.59799519043149)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.6216099682706644,0.7833269096274832,-0.7833269096274832,0.6216099682706644,86.7885671145779,-105.92346477333265)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M78.46996117347204 -84.23170819925929 L94.13649936602171 -96.66390756467257'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M78.46996117347204 -84.23170819925929 L98.41986090555312 -85.64645223261336'/>
+<ellipse transform='matrix(0.6216099682706643,0.7833269096274831,-0.7833269096274831,0.6216099682706643,94.13649936602171,-96.66390756467257)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(7.073720166770292e-2,0.9974949866040541,-0.9974949866040541,7.073720166770292e-2,98.41986090555312,-85.64645223261336)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M51.510573513021676 -55.292796535652435 L67.17711170557135 -67.72499590106572'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M51.510573513021676 -55.292796535652435 L71.46047324510276 -56.70754056900649'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M67.17711170557135 -67.72499590106572 L78.46996117347204 -84.23170819925929'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M67.17711170557135 -67.72499590106572 L85.81789342491587 -74.97215099059919'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M78.46996117347204 -84.23170819925929 L84.38036530669883 -103.3384379817714'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M78.46996117347204 -84.23170819925929 L94.13649936602171 -96.66390756467257'/>
+<ellipse transform='matrix(0.9553364891256056,0.29552020666133944,-0.29552020666133944,0.9553364891256056,84.38036530669883,-103.3384379817714)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(0.6216099682706643,0.7833269096274831,-0.7833269096274831,0.6216099682706643,94.13649936602171,-96.66390756467257)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M85.81789342491587 -74.97215099059919 L101.48443161746553 -87.40435035601249'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M85.81789342491587 -74.97215099059919 L105.76779315699694 -76.38689502395324'/>
+<ellipse transform='matrix(0.6216099682706642,0.783326909627483,-0.783326909627483,0.6216099682706642,101.48443161746553,-87.40435035601249)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(7.073720166770292e-2,0.997494986604054,-0.997494986604054,7.073720166770292e-2,105.76779315699694,-76.38689502395324)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M71.46047324510276 -56.70754056900649 L90.10125496444728 -63.95469565853996'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M71.46047324510276 -56.70754056900649 L90.93742586266666 -52.16349867514475'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M90.10125496444728 -63.95469565853996 L105.76779315699694 -76.38689502395324'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M90.10125496444728 -63.95469565853996 L110.05115469652836 -65.36943969189402'/>
+<ellipse transform='matrix(0.6216099682706642,0.783326909627483,-0.783326909627483,0.6216099682706642,105.76779315699694,-76.38689502395324)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(7.073720166770292e-2,0.997494986604054,-0.997494986604054,7.073720166770292e-2,110.05115469652836,-65.36943969189402)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M90.93742586266666 -52.16349867514475 L110.88732559474775 -53.57824270849881'/>
+<path fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' d='M90.93742586266666 -52.16349867514475 L108.20161319564413 -42.06657658314761'/>
+<ellipse transform='matrix(7.073720166770292e-2,0.997494986604054,-0.997494986604054,7.073720166770292e-2,110.88732559474775,-53.57824270849881)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+<ellipse transform='matrix(-0.5048461045998571,0.8632093666488735,-0.8632093666488735,-0.5048461045998571,108.20161319564413,-42.06657658314761)' fill='rgb(255,255,0)' cx='0.0' cy='-0.0' rx='3.0' ry='3.0'/>
+</g>
+</svg>
