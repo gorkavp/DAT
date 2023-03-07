@@ -2,13 +2,14 @@ module Main where
 
 import Drawing
 
+-- myDrawing :: Drawing
 -- solidCircle :: Double -> Drawing
 -- circle :: Double -> Drawing
 -- rectangle :: Double -> Double -> Drawing
 -- colored :: Color -> Drawing -> Drawing
 -- (<>) :: Drawing -> Drawing -> Drawin
 -- translated :: Double -> Double -> Drawing -> Drawing
-myDrawing :: Drawing
+
 myDrawing = solidCircle 1
 
 myDrawing2 = rectangle 2 (3 + 4)
