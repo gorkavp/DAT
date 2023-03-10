@@ -6,39 +6,49 @@ import Drawing
 -- circle :: Double -> Drawing
 -- rectangle :: Double -> Double -> Drawing
 -- colored :: Color -> Drawing -> Drawing
--- (<>) :: Drawing -> Drawing -> Drawin
+-- (<>) :: Drawing -> Drawing -> Drawing
 -- translated :: Double -> Double -> Drawing -> Drawing
+
 myDrawing :: Drawing
 myDrawing = solidCircle 1
 
+myDrawing2 :: Drawing
 myDrawing2 = rectangle 2 (3 + 4)
 
+myDrawing3 :: Drawing
 myDrawing3 = colored green (solidCircle 1)
 
+myDrawing4 :: Drawing
 myDrawing4 = solidCircle 2 <> colored green (solidCircle 1)
 
+myDrawing5 :: Drawing
 myDrawing5 = colored red (translated 0 1.5 (solidCircle 1)) <> colored green (translated 0 (-1.5) (solidCircle 1))
 
+botCircle :: Color -> Drawing
 botCircle c = colored red (translated 0 1.5 (solidCircle 1))
 
+topCircle :: Color -> Drawing
 topCircle c = colored green (translated 0 (-1.5) (solidCircle 1))
 
 frame = rectangle 2.5 5.5
 
 trafficLight = frame <> topCircle red <> botCircle green
 
+myDrawing6 :: Drawing
 myDrawing6 = trafficLight
 
 lights :: Int -> Drawing
 lights 0 = blank
 lights n = trafficLight <> translated 3 0 (lights (n - 1))
 
+myDrawing8 :: Drawing
 myDrawing8 = translated (-3) 0 (lights 3)
 
 lights2 :: Int -> Drawing
 lights2 0 = blank
 lights2 n = translated (3 * fromIntegral n) 0 trafficLight <> lights2 (n - 1)
 
+myDrawing9 :: Drawing
 myDrawing9 = translated (-3) 0 (lights2 3)
 
 main :: IO ()
