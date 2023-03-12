@@ -43,24 +43,36 @@ initial =
     }
 
 -----------------------------------------------------
+-- Event processing
+
 handleEvent :: Event -> Game -> Game
-handleEvent (KeyDown "N") game =
-  -- Next generation
-  setGmBoard (nextGeneration (gmBoard game)) game
+-- Cuando se pulsa la tecla 'G', se cambia el modo de la cuadrícula del tablero
 handleEvent (KeyDown "G") game =
   -- Toggle grid mode
-  setGmGridMode (nextGeneration (gmGridMode game)) game
+  case gmGridMode game of
+    NoGrid -> setGmGridMode LivesGrid game -- Muestra la cuadrícula de las células vivas
+    LivesGrid -> setGmGridMode ViewGrid game -- Muestra la cuadrícula de la vista del tablero
+    ViewGrid -> setGmGridMode NoGrid game -- No muestra la cuadrícula
+
+-- Cuando se pulsa la tecla 'N', se pasa a la siguiente generación del tablero
+handleEvent (KeyDown "N") game =
+  setGmBoard (nextGeneration (gmBoard game)) game
+-- Cuando se pulsa el botón izquierdo del ratón, se cambia el estado de la célula en la posición del ratón
 handleEvent (MouseDown (x, y)) game =
-  -- Set live/dead cells
   let pos = (round x, round y)
       brd = gmBoard game
    in setGmBoard (setCell (not $ cellIsLive pos brd) pos brd) game
+-- Si no se ha pulsado ninguna tecla, no se hace nada
 handleEvent _ game =
-  -- Ignore other events
   game
 
 -----------------------------------------------------
 -- Drawing
 
 draw game =
-  drawBoard (gmBoard game)
+  case gmGridMode game of -- Dibuja la cuadrícula según el modo seleccionado por el usuario
+    NoGrid -> drawBoard (gmBoard game) -- No muestra la cuadrícula
+    -- Muestra la cuadrícula de las células vivas desde la posición de la célula más a la izquierda hasta la más a la derecha
+    LivesGrid -> drawGrid (minLiveCell $ gmBoard game) (maxLiveCell $ gmBoard game) <> drawBoard (gmBoard game)
+    -- Muestra la cuadrícula de la vista del tablero desde (-60,-30) hasta (60,30)
+    ViewGrid -> drawGrid (round (-viewWidth), round (-viewHeight)) (round viewWidth, round viewHeight) <> drawBoard (gmBoard game)

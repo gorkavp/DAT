@@ -2,6 +2,7 @@
 
 module Main where
 
+import Data.Text (pack)
 import Drawing
 import Drawing.Vector
 import Life.Board
@@ -37,6 +38,34 @@ setGmElapsedTime x g = g {gmElapsedTime = x}
 
 data GridMode = NoGrid | LivesGrid | ViewGrid
   deriving (Show, Read)
+
+-- Obtains the position of the cell in the board from the position of the mouse
+pointToPos :: Point -> Game -> Pos
+pointToPos p game =
+  let (gx, gy) = (1.0 / gmZoom game) *^ p ^-^ gmShift game
+   in (round gx, round gy)
+
+-- show :: Drawing -> String
+-- pack :: String -> Text
+
+-- Muestra infromación dependiendo de si está pausado o no
+drawSettings :: Game -> Drawing
+drawSettings game =
+  if gmPaused game
+    then
+      translated (-29.5) 14 (atext startAnchor "G: Show grid")
+        <> translated (-29.5) 13 (atext startAnchor "N: Next generation")
+        <> translated (-29.5) 12 (atext startAnchor "P: Pause")
+        <> translated (-29.5) 11 (atext startAnchor "O: Zoom out")
+        <> translated (-29.5) 10 (atext startAnchor "I: Zoom in")
+        <> translated (-29.5) 9 (atext startAnchor "ArrowsUP/DOWN: Move up/down")
+        <> translated (-29.5) 8 (atext startAnchor "ArrowsLEFT/RIGHT: Move left/right")
+        <> translated (-29.5) 7 (atext startAnchor "+/-: Increase/decrease interval")
+        <> translated (-29.5) 6 (atext startAnchor "Set live/dead cells with left mouse button")
+    else
+      translated 29 14 (atext endAnchor ("Steps: " <> pack (show (1 / gmInterval game))))
+        <> translated 29 13 (atext endAnchor ("Zoom: " <> pack (show $ gmZoom game)))
+        <> translated 29 12 (atext endAnchor ("Shift: " <> pack (show $ gmShift game)))
 
 -----------------------------------------------------
 -- Initialization
@@ -99,22 +128,27 @@ handleEvent (KeyDown "-") game =
   setGmInterval (gmInterval game * 2) game
 -- Cuando se pulsa la tecla 'O', se aleja la vista del tablero
 handleEvent (KeyDown "O") game =
-  if gmZoom game > 0.2 then setGmZoom (gmZoom game / 2.0) game else game
+  if gmZoom game > 0.125 then setGmZoom (gmZoom game / 2.0) game else game
 -- Cuando se pulsa la tecla 'I', se acerca la vista del tablero
 handleEvent (KeyDown "I") game =
   if gmZoom game < 2.0 then setGmZoom (gmZoom game * 2.0) game else game
 -- Cuando se pulsa la flecha arriba, se desplaza la vista del tablero hacia arriba
 handleEvent (KeyDown "ARROWUP") game =
+  -- case maxLiveCell (gmBoard game) of
+  --   (x, y) ->
+  --     if y + 5 <= round (viewHeight / 2)
+  --       then setGmShift (gmShift game ^+^ (1.0 / gmZoom game) *^ (0, 5)) game
+  --       else game
   setGmShift (gmShift game ^+^ (1.0 / gmZoom game) *^ (0, 5)) game
 -- Cuando se pulsa la flecha abajo, se desplaza la vista del tablero hacia abajo
 handleEvent (KeyDown "ARROWDOWN") game =
   setGmShift (gmShift game ^-^ (1.0 / gmZoom game) *^ (0, 5)) game
 -- Cuando se pulsa la flecha izquierda, se desplaza la vista del tablero hacia la izquierda
 handleEvent (KeyDown "ARROWLEFT") game =
-  setGmShift (gmShift game ^+^ (1.0 / gmZoom game) *^ (5, 0)) game
+  setGmShift (gmShift game ^-^ (1.0 / gmZoom game) *^ (5, 0)) game
 -- Cuando se pulsa la flecha derecha, se desplaza la vista del tablero hacia la derecha
 handleEvent (KeyDown "ARROWRIGHT") game =
-  setGmShift (gmShift game ^-^ (1.0 / gmZoom game) *^ (5, 0)) game
+  setGmShift (gmShift game ^+^ (1.0 / gmZoom game) *^ (5, 0)) game
 -- Cuando se pulsa el botón izquierdo del ratón, se cambia el estado de la célula en la posición del ratón
 handleEvent (MouseDown (x, y)) game =
   let pos = (round x, round y)
@@ -129,10 +163,12 @@ handleEvent _ game =
 -- transform :: Transformation -> Drawing -> Drawing
 -- translation :: (Double, Double) -> Transformation
 -- scaled :: Double -> Double -> Drawing -> Drawing
+-- dilated :: Double -> Drawing -> Drawing
+-- dilted s = scaled s s
 -- La función transform permite aplicar una transformación a un dibujo, la función trnaslation permite desplazar un dibujo y la función scaled permite escalarlo
 
 draw game =
   case gmGridMode game of -- Dibuja la cuadrícula según el modo seleccionado por el usuario
-    NoGrid -> transform (translation (gmShift game)) (scaled (gmZoom game) (gmZoom game) $ drawBoard (gmBoard game))
-    LivesGrid -> transform (translation (gmShift game)) (scaled (gmZoom game) (gmZoom game) $ drawBoard (gmBoard game) <> drawGrid (minLiveCell $ gmBoard game) (maxLiveCell $ gmBoard game))
-    ViewGrid -> transform (translation (gmShift game)) (scaled (gmZoom game) (gmZoom game) $ drawBoard (gmBoard game) <> drawGrid (round (-viewWidth), round (-viewHeight)) (round viewWidth, round viewHeight))
+    NoGrid -> transform (translation (gmShift game)) (dilated (gmZoom game) $ drawBoard (gmBoard game)) <> drawSettings game
+    LivesGrid -> transform (translation (gmShift game)) (dilated (gmZoom game) $ drawBoard (gmBoard game) <> drawGrid (minLiveCell $ gmBoard game) (maxLiveCell $ gmBoard game)) <> drawSettings game
+    ViewGrid -> transform (translation (gmShift game)) (dilated (gmZoom game) $ drawBoard (gmBoard game) <> drawGrid (round (-viewWidth), round (-viewHeight)) (round viewWidth, round viewHeight)) <> drawSettings game

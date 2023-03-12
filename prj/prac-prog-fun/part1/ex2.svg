@@ -4,6 +4,7 @@
 <g font-size='14px' pointer-events='none'>
 <rect vector-effect='non-scaling-stroke' fill='none' stroke='gray' stroke-width='2' x='-300' y='-300' width='600' height='600'/>
 <rect fill='rgb(128,128,128)' x='-21.0' y='-65.0' width='42.0' height='130.0'/>
+<rect fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' x='-21.0' y='-65.0' width='42.0' height='130.0'/>
 <ellipse fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' cx='0.0' cy='-44.0' rx='20.0' ry='20.0'/>
 <ellipse fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' cx='0.0' cy='-0.0' rx='20.0' ry='20.0'/>
 <ellipse fill='none' vector-effect='non-scaling-stroke' stroke='rgb(0,0,0)' stroke-width='1' cx='0.0' cy='44.0' rx='20.0' ry='20.0'/>

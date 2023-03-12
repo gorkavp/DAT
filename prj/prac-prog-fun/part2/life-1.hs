@@ -39,16 +39,16 @@ initial =
 -- Event processing
 
 handleEvent :: Event -> Game -> Game
+-- Cuando se pulsa la tecla 'N', se pasa a la siguiente generación del tablero
 handleEvent (KeyDown "N") game =
-  -- Next generation
   setGmBoard (nextGeneration (gmBoard game)) game
+-- Cuando se pulsa el botón izquierdo del ratón, se cambia el estado de la célula en la posición del ratón
 handleEvent (MouseDown (x, y)) game =
-  -- Set live/dead cells
   let pos = (round x, round y)
       brd = gmBoard game
    in setGmBoard (setCell (not $ cellIsLive pos brd) pos brd) game
+-- Si no se ha pulsado ninguna tecla, no se hace nada
 handleEvent _ game =
-  -- Ignore other events
   game
 
 -----------------------------------------------------
