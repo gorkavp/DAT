@@ -1,0 +1,383 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="../style-4.css">
+
+  <title>DAT. Pràctica 2</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+  <a class="navbar-brand" href="../index.html">DAT</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-collapse collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"><a class="nav-link" href="../prac-prog-fun/index.html">Pràctica 1</a></li>
+      <li class="nav-item active"><a class="nav-link" href="../prac-intro-web/index.html">Pràctica 2</a></li>
+      <!--li class="nav-item"><a class="nav-link" href="../prac-forums/index.html">Pràctica 3</a></li>
+      <li class="nav-item"><a class="nav-link" href="../practica4/index.html">Pràctica 4</a></li-->
+    </ul>
+  </div><!-- .navbar-collapse -->
+  </div>
+</nav>
+
+<div class="container">
+<div class="row">
+
+<div class="col-md-2">
+<nav class="nav sticky-top navbar-light bg-light">
+  <!--li class="nav-item"><a class="nav-link" href="#srv-config">Configuració del servidor</a></li>
+  <li class="nav-item"><a class="nav-link" href="#intro-html">Primeres pàgines HTML</a></li>
+  <li class="nav-item"><a class="nav-link" href="#counter">Comptador de visites</a></li-->
+  <!--li class="nav-item"><a class="nav-link" href="#3part">Experimentant HTTP</a></li-->
+  <li class="nav-item"><a class="nav-link" href="#wai">Web Application Interface</a></li>
+  <li class="nav-item"><a class="nav-link" href="#handler">Realització d'un monad <em>Handler</em></a></li>
+  <!--li class="nav-item"><a class="nav-link" href="#resources">Recursos disponibles</a></li-->
+</nav>
+</div>
+
+<main class="col-md-10">
+
+<h1>DAT. Pràctica 2</h1>
+
+<!--p>En aquesta pràctica s'introdueixen alguns aspectes bàsics sobre la WEB que cal coneixer per al
+desenvolupament d'aplicacions. En la primera part es tractaran molt breument:</p>
+<ul>
+  <li>Els aspectes de configuració del servidor HTTP que cal coneixer per al desenvolupament i instal.lació
+   de les aplicacions.</li>
+  <li>Una breu introducció al llenguatge HTML, fent ènfasis sobre tot en quan als formularis i la interacció
+   amb el costat servidor de les aplicacions.</li>
+  <li>Una breu introducció al protocol HTTP.</li>
+  <li>Una breu introducció a la interfície CGI de les aplicacions amb el servidor.</li>
+</ul>
+
+<p>En la segona part s'introdueix l'API bàsic per a la programació amb <em>Haskell</em>
+de les aplicacions en el costat servidor.</p-->
+
+<!-- ================================================ -->
+<!--
+<h2 id="srv-config">Configuració del servidor.</h2>
+
+<p>El servidor HTTP instal.lat en la màquina <code>soft0.upc.edu</code>, i que farem servir per a les nostres aplicacions,
+és un servidor <em>Apache 2</em> convencional.</p>
+
+<p>Aspectes importants de configuració del servidor HTTP que cal coneixer són:</p>
+<ul>
+  <li>El port TCP d'aquest servidor és l'estàndar (el <code>80</code>) i per tant no caldrà indicar-lo explícitament en les URLs.</li>
+  <li>Quan el <em>primer segment del path de la URL</em> té la forma <code>~USER</code>
+   (i per tant, quan la URL tingui la forma <code class="code-url">http://soft0.upc.edu/~USER/...</code>),
+   on <code>USER</code> és el nom d'un usuari,
+   el servidor accedeix al subdirectori <code>public_html</code> del <em>home</em> del corresponent usuari.</li>
+  <li>Quan l'<em>últim segment del path de la URL</em> és buit
+   (i per tant, quan la URL tingui la forma <code class="code-url">http://soft0.upc.edu/.../</code>, acabada amb <code>/</code>),
+   fa referència a la pàgina índex. La pàgina índex és:
+   <ol><li>El fitxer <code>index.html</code> del directori, si existeix.</li>
+       <li>Un llistat generat pel servidor del contingut del directori, si no existeix el fitxer <code>index.html</code>.</li>
+   </ol>
+  </li>
+  <li>Continguts estàtics:
+    <ol>
+      <li>Al contingut d'un fitxer amb sufix <code>.html</code> li associa el tipus MIME <code>text/html</code></li>
+      <li>Al contingut d'un fitxer amb sufix <code>.txt</code> (i altres no definits) li associa el tipus MIME <code>text/plain</code></li>
+    </ol>
+  </li>
+  <li>Continguts dinàmics:
+      Un fitxer amb sufix <code>.cgi</code> el tracta com un programa CGI.
+      La seva execució serà la que generarà el contingut de la resposta.
+      Aquest programa ha de tenir permís d'execució per a l'usuari propietari del fitxer,
+      i NO pot tenir permís d'escriptura per als altres usuaris.
+  </li>
+
+</ul>
+-->
+
+<!-- ================================================ -->
+<!--
+<hr width="100%">
+<h2 id="intro-html">Primeres pàgines HTML</h2>
+
+<ol>
+  <li><p>Feu un pàgina simple amb URL <code class="code-url">http://soft0.upc.edu/~USER/</code>
+  &nbsp;&nbsp;(on <code>USER</code> és el vostre nom d'usuari).
+  Podeu copiar la <a href="intro.browse/plantilla.html">plantilla d'exemple</a> i modificar-la convenientment.</p>
+  </li>
+
+  <li><p>Afegiu un enllac a una nova pàgina amb URL <code class="code-url">http://soft0.upc.edu/~USER/practica2/</code>.</p>
+    <p>La pàgina anterior servirà d'índex per a les diferents pràctiques.</p>
+  </li>
+
+  <li>
+    <p>Afegiu un enllac des de la pàgina <code class="code-url">http://soft0.upc.edu/~USER/practica2/</code>
+     a una nova pàgina <code class="code-url">http://soft0.upc.edu/~USER/practica2/exemple.html</code>.</p>
+    <p>Renombreu temporalment el fitxer canviant el sufix <code>.html</code> per <code>.txt</code> i visiteu amb el navegador
+     la mateixa pàgina amb la nova URL (<code class="code-url">http://soft0.upc.edu/~USER/practica2/exemple.txt</code>).</p>
+    <p>Raoneu els efectes produits pel canvi en la presentació del contingut. Qui decideix el tipus de document,
+     que determina com s'ha de presentar, el client o el servidor ?</p>
+  </li>
+
+  <li> Canvieu temporalment el nom del directori <code>practica2</code> per un altre.
+Modifiqueu adequadament les pàgines per a que quedin correctament enllaçades (quines ?). Com han de ser les URLs dels enllaços en el HTML per
+permetre moure directoris c&ograve;modament ?
+  </li>
+
+  <li>
+    <p>Incorporeu un enllaç a una pàgina creada dinàmicament per un CGI que presenta
+      <a href="intro/dia-hora.cgi">el dia i la hora</a> actuals del servidor.Caldrà:
+      <ol>
+      <li>copiar el <a href="intro.browse/dia-hora.cgi">codi del CGI</a> en el directori de la <code>practica2</code>,
+       amb el sufix adeqüat. Aquest CGI és un <em>script de shell</em> que és directament interpretat
+        (per l'intèrpret de comandes, programa <code>/bin/sh</code>) i, per tant, no s'ha de compilar.</li>
+      <li>donar-li permisos d'execució amb el programa <B>chmod</B>.</li>
+      <li>modificar la pàgina <code class="code-url">http://soft0.upc.edu/~USER/practica2/</code> incorporant la referència al CGI.</li>
+      </ol>
+    </p>
+  </li>
+
+  <li>
+    <p>Modifiqueu el codi del CGI per tal de que indiqui el tipus MIME <code>text/plain</code>.</p>
+    <p>Raoneu els efectes produits.</p>
+  </li>
+</ol>
+-->
+
+<!-- ================================================ -->
+<!--
+<hr width="100%">
+<h2 id="counter">Comptador de visites simple</h2>
+
+<p>Farem un CGI que genera dinàmicament el document de
+resposta per&ograve; sense cap tractament de l'entrada. Un bon exemple
+pot ser el d'un simple comptador de visites.</p>
+
+<p>Cada cop que s'accedeix el CGI comptador, incrementa el valor del comptador
+i genera un contingut amb el nou valor.
+Caldrà mantenir el valor del comptador de forma persistent (en un fitxer).</p>
+
+<ol>
+<li><p>Realitzeu aquest CGI comptador, programant-lo en <em>Haskell</em>.
+Per això, descomprimiu l'<a href="prog-web.zip">arxiu de projecte</a>,
+completeu el fitxer <a href="prog-web.browse/counter.hs">counter.hs</a>
+i useu el <em>script</em> <code>bin/make-cgi</code> del projecte que compila i instal.la el CGI.</p>
+
+<p>Feu que el contingut sigui un simple text del valor  comptador (tipus MIME <code>text/plain</code>).
+Observeu que la sortida del CGI ha de tenir la forma:</p>
+      <table>
+        <tr><td>1a línia:</td><td><code>&nbsp;Content-Type: TIPUS_MIME</td></tr>
+        <tr><td>2a línia (en blanc):</td><td>&nbsp;</td></tr>
+        <tr><td>Següents línies:</td><td><code>&nbsp;CONTINGUT</td></tr>
+        <tr><td>&nbsp;</td><td><code>&nbsp;...</td></tr>
+      </table>
+
+<p>Si voleu conneixer més detalls podeu consultar l'especificaci&oacute; del 
+<a href="/web/cgi/spec/overview.html">CGI (Common Gateway Interface)</a>.</p>
+
+<p>Autodocumenteu el programa el millor que pogueu (introd&uuml;int els
+comentaris adeq&uuml;ats).
+</li>
+
+<li><p>Incrusteu el contingut generat pel comptador en l'índex de la pràctica 2
+<a href="intro.browse/counter-page.html">(veieu com incrustar el contingut amb JavaScript</a>).</p>
+</li>
+</ol>
+-->
+
+
+<!-- ================================================
+<hr width="100%">
+
+<a name="3part"></a>
+<h2>Experimentant el protocol HTTP</h2>
+
+
+<p> Utilitzant el programa <code>~WEBprofe/usr/bin/tcp-client</code> podrem realitzar peticions
+HTTP de forma interactiva i veure el contingut dels missatges. El client
+<code>tcp-client</code> s'haurà d'invocar amb 2 arguments:
+<pre><code>tcp-client <var>host</var> <var>port</var></code></pre>
+on <var>host</var> i <var>port</var> correspondran al nom (o IP) i port TCP
+del servidor HTTP. Normalment, el port de HTTP &eacute;s el 80.
+
+<p>El programa <code>tcp-client</code> &eacute;s interactiu de forma que tot
+el que s'introdueixi per la consola s'envia al servidor, i tot el que es
+rebi del servidor es mostra en la consola.
+
+<ol>
+<li><p>Usant el programa <code>tcp-client</code>, obteniu un document
+qualsevol amb el m&egrave;tode GET de HTTP.
+
+<p>Indiqueu i comenteu de forma detallada cadascuna de les cap&ccedil;aleres,
+tant de la petici&oacute; com de la resposta.
+
+<p>Quina forma ha de tenir la URL indicada en la petici&oacute;  ?
+</p></li>
+
+<li><p>Feu una petici&oacute; amb el m&egrave;tode POST al CGI
+<a href="/web/cgi/exemples/test-http.cgi">
+http://soft0.upc.edu/web/cgi/exemples/test-http.cgi</a>.
+Aquest CGI respon amb una pàgina que cont&eacute; informaci&oacute;
+sobre la petici&oacute; realitzada (veieu el final de la sortida).
+Aquest CGI tamb&eacute; el podeu provar des del navegador amb el formulari 
+<a href="/web/cgi/exemples/test-http.html">
+http://soft0.upc.edu/web/cgi/exemples/test-http.html</a>.
+<BR>
+<em>(Podeu veure el <a
+href="/web/cgi/totext.cgi/web/cgi/exemples/test-http.c">codi font del CGI</a>
+programat en llenguatge C.)</em>
+
+<p>Quines difer&egrave;ncies hi ha respecte al m&egrave;tode GET ?
+</p></li>
+
+</ol>
+
+================================================ -->
+
+<div class="alert alert-warning" role="alert">
+<p><b>IMPORTANT</b>: Tot el codi font d'aquesta pràctica es troba en el directori <code>prj/prac-intro-web</code>.</p>
+</div>
+
+<hr width="100%">
+<h2 id="wai">Web Application Interface</h2>
+
+<!--p>La interfície CGI és de molt baix nivell i a més molt específica de servidors HTTP
+convencionals.</p-->
+
+<p>En <em>Haskell</em> es disposa d'un API bàsic per a la programació d'aplicacions WEB
+que és independent del servidor.
+    Aquest API s'anomena <a href="http://hackage.haskell.org/package/wai"><em>Web Application Interface (WAI)</em></a>
+    i serà el suport per a frameworks més elaborats que facilitin el desenvolupament d'aplicacions complexes.</p>
+
+<p>Podeu llegir una <a href="https://www.yesodweb.com/book/web-application-interface">introducció al WAI</a>
+    on es descriu l'objectiu d'aquesta API i alguns senzills casos d'us.</p>
+
+<p>Com a primer exemple, veiem una simple aplicació en que es mostra un formulari
+a l'usuari per introduir el seu nom, i guarda durant la sessió (a través d'una <em>cookie</em>)
+el nom i el mostra en les successives interaccions.
+<!--Podeu <a href="hello-1.cgi">provar l'exemple</a>.--></p>
+
+<p>El <a href="../../prj/prac-intro-web/hello-1.hs">codi d'aquest exemple (hello-1.hs)</a> usa el WAI
+i a més usa també un paquet de generació d'HTML.</p>
+
+
+<!-- ================================================ -->
+<hr width="100%">
+<h2 id="handler">Realització d'un monad <em>Handler</em></h2>
+
+<p>L'objectiu d'aquest apartat és
+la realització d'un monad (que anomenarem <em>Handler</em>) que faciliti la programació d'aplicacions WEB.</p>
+
+<p>Un exemple d'us d'aquest monad el teniu en una segona versió de l'aplicació <em>hello</em> anterior
+(<a href="../../prj/prac-intro-web/hello-2.hs">hello-2.hs</a>).</p>
+
+<p>Una altra aplicació més elaborada és la d'una calculadora de números complexos, molt similar a la vista
+en classe de teoria, i amb una interfície WEB que permet introduir números i realitzar diverses operacions sobre la pila
+de la calculadora. Podeu provar una <a href="calc.cgi">implementació ja feta</a>.</p>
+
+<p>Descomprimiu l'<a href="prog-web.zip">arxiu de projecte</a> on teniu el codi que l'estudiant haurà de completar
+<!--i un script que compila i obté el CGI executable-->.</p>
+
+<h4>Codi a completar</h4>
+
+<p>El codi de l'aplicació (servidor WEB) es troba en el directori <code>prac-intro-web</code> del projecte
+i conté els mòduls <em>Haskell</em> que mostra el següent diagrama amb les seves dependències:</p>
+<object type="image/svg+xml" data="calc-deps.svg">
+  Your browser does not support SVG
+</object>
+
+<p>Cadascún d'aquests mòduls conté les següents funcionalitats:<p>
+<dl>
+<dt><a href="../../prj/prac-intro-web/calcMain.hs">Main</a></dt>
+  <dd>És el punt d'entrada del servidor i conté l'adaptació de l'aplicació (amb interface WAI) al servidor Warp.<br>
+  (Observació: <em>El fitxer <code>calcMain.hs</code> conté el mòdul <code>Main</code> i
+   és l'únic en que el nom del fitxer i del mòdul poden ser diferents</em>).</dd>
+<dt><a href="../../prj/prac-intro-web/CalcApp.hs">CalcApp</a></dt>
+  <dd>És pròpiament l'aplicació. Conté el codi corresponent al processat de les peticions i a la generació d'HTML.</dd>
+<dt><a href="../../prj/prac-intro-web/CalcInstr.hs">CalcInstr</a></dt>
+  <dd>És el nucli de la calculadora i és una petita extensió de la versió <code>Calc4_2</code> vista a classe de teoria.</dd>
+<dt><a href="../../prj/prac-intro-web/Handler.hs">Handler</a></dt>
+  <dd>Defineix un <em>monad</em> <code>Handler</code> usat en <code>CalcApp</code> que simplifica l'aplicació.
+  <b>Es l'unic mòdul que s'ha de completar</b>.<!--br>
+  <a href="funcions_usades.html">Aquí</a> s'indiquen algunes de les funcions que podeu usar en el vostre codi a completar.--></dd>
+</dl>
+
+<p>A més s'usen altres paquets preinstal.lats de la plataforma <em>Haskell</em>.
+ Alguns dels paquets usats en aquesta aplicació, específics per a la programació de la WEB, són:</p>
+<dl>
+<dt><a href="http://hackage.haskell.org/package/blaze-html">blaze-html</a></dt>
+  <dd>Defineix tipus, funcions i operadors per a la la generació d'<code>HTML</code>.</dd>
+<dt><a href="http://hackage.haskell.org/package/wai">wai</a></dt>
+  <dd>Definició del <code>WAI</code>. Defineix tipus i funcions per al processat de peticions i contrucció de respostes HTTP.</dd>
+</dl>
+
+<p>La documentació de tots els paquests la podeu trobar en <a href="https://hackage.haskell.org/">https://hackage.haskell.org/</a>,
+que és la base de dades centralitzada dels paquets disponibles de <em>Haskell</em> de codi obert.
+També podeu usar el <b>buscador de funcions <a href="https://hoogle.haskell.org/">https://hoogle.haskell.org/</a> (molt útil !)</b>.</p>
+
+<!--p>El programa <code>bin/make-cgi</code> del projecte és un <em>script</em> que compila aquests mòduls i els enllaça amb totes
+les biblioteques necessàries i ja instal.lades. Entre aquestes biblioteques hi ha la que ofereix el WAI.</p-->
+
+<p>Per executar l'aplicació caldrà que feu:</p>
+<pre class="bg-light">
+<samp>~/dat-2023p$ </samp><kbd>cd prj/prac-intro-web</kbd>
+<samp>~/dat-2023p/prj/prac-intro-web$ </samp><kbd>stack runghc nomxFitxer.hs</kbd>
+</pre>
+<p>on <code>nomFitxer.hs</code> és el nom del fitxer corresponent al mòdul <code>Main</code> de l'aplicació.</p>
+<!-- 
+IMPORTANT: Per realitzar aquesta pràctica cal que us situeu en el directori <code>prj/prac-intro-web</code>.
+Aquest serà el directori de treball en aquesta segona part de la pràctica
+i ens hi referirem com el \textbf{directori de la part2}..
+-->
+
+<p>Per completar el mòdul <code>Handler.hs</code> caldrà aplicar els coneixements adquirits a classe de teoria.
+Observeu que els efectes del monad <code>Handler</code> consistiran en una combinació dels efectes d'un monad <code>Reader</code>
+i d'un monad <code>State</code>, amb la diferència de que
+l'execució del monad consistirà en executar una accio <code>IO</code>. Observeu el tipus de <code>Handler</code>:</p>
+<pre>
+newtype Handler a = HandlerC (Request -> HandlerState -> IO (a, HandlerState))
+</pre>
+
+<p>Per facilitar el codi que s'ha de completar es donen ja fetes les definicions d'algunes funcions.
+Caldrà doncs entendre el codi ja donat en aquest mòdul i que servirà de guia per a la vostra sol.lució.</p>
+
+
+<!-- ================================================ --
+<hr width="100%">
+<a name="resources"></a>
+<h2>Recursos disponibles</h2>
+
+<dl>
+  <dt><a href="prog-web.zip">prog-web.zip</a></dt>
+    <dd><p>Directori de projecte de la segona part amb el codi font a completar per l'estudiant.</p></dd>
+  <dt><a href="https://www.yesodweb.com/book/web-application-interface">https://www.yesodweb.com/book/web-application-interface</a></dt>
+    <dd><p>Web Application Interface (WAI): Introducció.</p></dd>
+  <dt><a href="http://www.lambda-land.com/posts/2017-11-22-wai">http://www.lambda-land.com/posts/2017-11-22-wai</a></dt>
+    <dd><p>Web Application Interface (WAI): Una altra introducció.</p></dd>
+  <dt><a href="http://hackage.haskell.org/package/wai">http://hackage.haskell.org/package/wai</a></dt>
+    <dd><p>Web Application Interface (WAI): Documentació del API.</p></dd>
+  </ul>
+</dl-->
+
+</main>
+
+</div><!-- .row -->
+</div><!-- .container -->
+
+<footer class="footer">
+  <div class="container">
+    <span class="text-muted">Jordi Forga, Octubre 2020</span>
+  </div>
+</footer>
+
+<!-- Optional JavaScript -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
+

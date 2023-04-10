@@ -111,10 +111,10 @@ handleEvent (KeyDown "ARROWDOWN") game =
   setGmShift (gmShift game ^-^ (1.0 / gmZoom game) *^ (0, 5)) game
 -- Cuando se pulsa la flecha izquierda, se desplaza la vista del tablero hacia la izquierda
 handleEvent (KeyDown "ARROWLEFT") game =
-  setGmShift (gmShift game ^+^ (1.0 / gmZoom game) *^ (5, 0)) game
+  setGmShift (gmShift game ^-^ (1.0 / gmZoom game) *^ (5, 0)) game
 -- Cuando se pulsa la flecha derecha, se desplaza la vista del tablero hacia la derecha
 handleEvent (KeyDown "ARROWRIGHT") game =
-  setGmShift (gmShift game ^-^ (1.0 / gmZoom game) *^ (5, 0)) game
+  setGmShift (gmShift game ^+^ (1.0 / gmZoom game) *^ (5, 0)) game
 -- Cuando se pulsa el botón izquierdo del ratón, se cambia el estado de la célula en la posición del ratón
 handleEvent (MouseDown (x, y)) game =
   let pos = (round x, round y)
