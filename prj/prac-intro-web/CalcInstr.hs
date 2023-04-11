@@ -48,4 +48,3 @@ calcSolve1 CalcFlip (x1:x2:xs) =
     Right $ x2 : x1 : xs
 calcSolve1 CalcFlip _ =
     Left "The flip operator needs a stack with 2 operands"
-

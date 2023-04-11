@@ -19,12 +19,12 @@ import           CalcApp
 main :: IO ()
 main = do
     -- try :: Exception e => IO a -> IO (Either e a)
-    r <- E.try $ do
+    r <- E.try $ do E
         let port = 4050
         putStrLn $ "Port: " <> show port
         W.runEnv port $ dispatchHandler calcApp
     case r of
-        Right _ -> pure ()
+        Right _ -> pure () 
         Left exc -> do
             -- Exception on initialization
             putStrLn "Exception on initialization (while excution of 'calcApp'): "
