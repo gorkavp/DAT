@@ -1,7 +1,6 @@
-
 {-# LANGUAGE OverloadedStrings #-}
 
-module Handler
+module Handler_T1
     -- Exporta les seguents declaracions d'aquest modul
     ( Handler, dispatchHandler
     , HandlerResponse, respHtml, respRedirect, respError
@@ -26,9 +25,10 @@ import qualified Data.ByteString.Lazy as BL
 import           Data.Maybe
 import           Data.Monoid
 import           Control.Monad
-import           Control.Applicative
+import           Control.Monad.State
+import           Control.Monad.Reader
 import           Control.Monad.IO.Class
-import           Text.Read
+import           Text.Read (readMaybe)
 
 -- ****************************************************************
 
@@ -36,8 +36,15 @@ import           Text.Read
 -- El context d'un Handler compren:
 --      L'argument Request que permet obtenir informacio sobre la peticio.
 --      L'estat del Handler (argument i resultat de les operacions).
-newtype Handler a =
-    HandlerC { runHandler :: W.Request -> HandlerState -> IO (a, HandlerState) }
+type Handler =
+        -- (A completar per l'estudiant)
+        ...
+
+runHandler :: Handler a -> W.Request -> HandlerState -> IO (a, HandlerState)
+runHandler m r s0 =
+    -- (A completar per l'estudiant)
+    ...
+
 
 -- HandlerState compren:
 --      'Cache' dels parametres de la peticio.
@@ -52,59 +59,25 @@ hsSetQuery q (HandlerStateC _ s) = HandlerStateC q s
 hsSetSession :: [(Text, Text)] -> HandlerState -> HandlerState
 hsSetSession s (HandlerStateC q _) = HandlerStateC q s
 
-instance Functor Handler where
-    -- tipus en aquesta instancia:
-    --      fmap :: (a -> b) -> Handler a -> Handler b
-    fmap f (HandlerC h) = HandlerC $ \ req st0 -> do
-        -- Monad IO:
-        (x, st1) <- h req st0
-        pure (f x, st1)
-
-instance Applicative Handler where
-    -- tipus en aquesta instancia:
-    --      pure  :: a -> Handler a
-    --      (<*>) :: Handler (a -> b) -> Handler a -> Handler b
-    pure x =
-        -- (A completar per l'estudiant)
-        ...
-    HandlerC hf <*> HandlerC hx =
-        -- (A completar per l'estudiant)
-        ...
-
-instance Monad Handler where
-    -- tipus en aquesta instancia:
-    --      (>>=) :: Handler a -> (a -> Handler b) -> Handler b
-    HandlerC hx >>= f =
-        -- (A completar per l'estudiant)
-        ...
-
--- class MonadIO: Monads in which IO computations may be embedded.
--- The method 'liftIO' lifts a computation from the IO monad.
-instance MonadIO Handler where
-    -- tipus en aquesta instancia:
-    --      liftIO :: IO a -> Handler a
-    liftIO io = HandlerC $ \ _ st0 -> do
-        x <- io
-        pure (x, st0)
-
 -- ****************************************************************
 -- Aquestes funcions no s'exporten pero son utils en les implementacions
 -- de les funcions exportades.
 
 -- Obte informaciÃ³ de la peticio
 asksRequest :: (W.Request -> a) -> Handler a
-asksRequest f = HandlerC $ \ req st0 ->
-    pure (f req, st0)
+asksRequest =
+    -- (A completar per l'estudiant)
+    ...
 
 -- Obte informaciÃ³ de l'estat del handler
 getsHandlerState :: (HandlerState -> a) -> Handler a
-getsHandlerState f =
+getsHandlerState =
     -- (A completar per l'estudiant)
     ...
 
 -- Modifica l'estat del handler
 modifyHandlerState :: (HandlerState -> HandlerState) -> Handler ()
-modifyHandlerState f =
+modifyHandlerState =
     -- (A completar per l'estudiant)
     ...
 

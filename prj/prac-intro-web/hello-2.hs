@@ -62,4 +62,3 @@ htmlView mbnom mberr =
                         Just err -> H.div H.! A.style "color:red" $ H.text err
                         Nothing -> mempty
                 H.input H.! A.type_ "submit" H.! A.name "ok" H.! A.value "Ok"
-
