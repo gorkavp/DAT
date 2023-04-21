@@ -30,10 +30,20 @@ gameApp = onMethod
     ]
 
 doGet :: Handler HandlerResponse
-doGet = ...
+doGet = respHtml $ htmlView startState
 
 doPost :: Handler HandlerResponse
-doPost = ...
+doPost = do
+    mbvalue <- lookupPostParam "playText"
+    let egame = do -- Monad (Either T.Text)
+            value <- maybe (Left "Text obligatori") Right mbvalue
+            if T.null value then Left "Text obligatori"
+            else Right $ playText value startState
+    case egame of
+        Left err ->
+            respHtml $ htmlView startState
+        Right game -> do
+            respHtml $ htmlView game
 
 -- ****************************************************************
 -- View
@@ -62,10 +72,13 @@ startState :: GameState
 startState = (False, 0)
 
 playChar :: Char -> GameState -> GameState
-playChar ...
+playChar c (b, n) = (b', n')
+    where
+        b' = b || c == 'a'
+        n' = if b' then n + 1 else n
 
 playString :: String -> GameState -> GameState
-playString ...
+playString cs g = foldl (flip playChar) g cs
 
 playText :: Text -> GameState -> GameState
 playText t = playString (T.unpack t)
