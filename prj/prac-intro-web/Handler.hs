@@ -104,11 +104,13 @@ asksRequest f = HandlerC $ \ req st0 ->
 -- Obte informaciÃ³ de l'estat del handler
 getsHandlerState :: (HandlerState -> a) -> Handler a
 getsHandlerState f =
+    -- We ignore the first argument (the request) because we don't need it and then we apply the function f to the second argument (HandlerState) which gives us a result of type a. Finally we wrap the result of type a in the Handler monad unsing pure function, which is defined in the Applicative instance of Handler, along with the HandlerState.
     HandlerC $ \ _ st0 -> pure (f st0, st0)
 
 -- Modifica l'estat del handler
 modifyHandlerState :: (HandlerState -> HandlerState) -> Handler ()
 modifyHandlerState f =
+    -- Creates a HandlerC action that takes a state st0 and returns a new state st1. The action returns a tuple ((), st1) which means that the handler returns a value of type () (unit) and modifies the state st0 to st1. The state is modified by applying the function f to the state st0.
     HandlerC $ \ _ st0 -> pure ((), f st0)
 
 -- ****************************************************************
