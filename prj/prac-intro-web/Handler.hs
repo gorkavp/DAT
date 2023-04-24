@@ -56,6 +56,7 @@ hsSetSession s (HandlerStateC q _) = HandlerStateC q s
 instance Functor Handler where
     -- tipus en aquesta instancia:
     --      fmap :: (a -> b) -> Handler a -> Handler b
+    -- \ req st0 -> do: The function takes a request and a state and returns an IO action that takes a state and returns a tuple (a, HandlerState). The first element of the tuple is the result of the computation and the second element is the new state.
     fmap f (HandlerC h) = HandlerC $ \ req st0 -> do
         -- Monad IO:
         (x, st1) <- h req st0
@@ -65,23 +66,24 @@ instance Applicative Handler where
     -- tipus en aquesta instancia:
     --      pure  :: a -> Handler a
     --      (<*>) :: Handler (a -> b) -> Handler a -> Handler b
+    -- The pure function takes a value of type a and wrap it into a Handler. The <*> function takes two Handlers and returns a Handler that applies the function in the first Handler to the value in the second Handler. The result is wrapped in a Handler using the pure function.
     pure x =
-        HandlerC $ \ _ st0 -> pure (x, st0)
+        HandlerC $ \ _ st0 -> pure (x, st0) -- Monad IO: crea un IO action que retorna el valor x i l'estat st0
     HandlerC hf <*> HandlerC hx =
-        HandlerC $ \ req st0 -> do
+        HandlerC $ \ req st0 -> do -- Monad IO: crea un IO action que executa el handler hf sobre la peticio i l'estat inicial de hx i despres el handler hx sobre la peticio i l'estat final de hf. Els arguments req i st0 son els que s'han passat a la funcio (<*>).
             -- Monad IO:
-            (f, st1) <- hf req st0
-            (x, st2) <- hx req st1
-            pure (f x, st2)
+            (f, st1) <- hf req st0 -- es passa l'estat st0 al handler hf perque es pot haver modificat l'estat en el handler hx
+            (x, st2) <- hx req st1 -- es passa l'estat st1 al handler hx perque es pot haver modificat l'estat en el handler hf
+            pure (f x, st2) -- es retorna el resultat de aplicar la funcio f al valor x i l'estat final st2
 
 instance Monad Handler where
     -- tipus en aquesta instancia:
     --      (>>=) :: Handler a -> (a -> Handler b) -> Handler b
-    HandlerC hx >>= f =
-        HandlerC $ \ req st0 -> do
+    HandlerC hx >>= f = -- executa el handler hx i despres el handler f
+        HandlerC $ \ req st0 -> do -- Monad IO: crea un IO action que executa el handler hx i despres el handler f. Els arguments req i st0 son els que s'han passat a la funcio (>>=).
             -- Monad IO:
-            (x, st1) <- hx req st0
-            runHandler (f x) req st1
+            (x, st1) <- hx req st0 -- Executa el handler hx amb l'estat st0 i retorna el resultat x i l'estat st1 que es passa al seguent handler f. El seguent handler f es el que s'ha passat com a argument a la funcio (>>=).
+            runHandler (f x) req st1 -- Executa el handler f amb l'estat st1 i retorna el resultat i l'estat final.
 
 -- class MonadIO: Monads in which IO computations may be embedded.
 -- The method 'liftIO' lifts a computation from the IO monad.
