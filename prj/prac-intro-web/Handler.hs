@@ -224,7 +224,7 @@ lookupPostParams name = do
             --   map :: (a -> b) -> [a] -> [b]
             pure $ map snd $ filter ((name ==) . fst) params
             -- la funció pure retorna un monad Handler
-            -- la funció map aplica la funció snd a tots els elements de la llista que retorna la funció filter
+            -- la funció map aplica la funció snd a tots els elements de la llista que retorna la funció filter per tant retorna una llista amb els segons elements de les parelles (tupla) que tenen el nom indicat
             -- la funció filter elimina tots els elements de la llista on el primer element de la parella (tupla) no coincideixi amb el nom indicat
         Nothing ->
             -- El contingut de la peticio no es un formulari. No hi ha valors.
