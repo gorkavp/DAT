@@ -36,14 +36,12 @@ import           Text.Read (readMaybe)
 -- El context d'un Handler compren:
 --      L'argument Request que permet obtenir informacio sobre la peticio.
 --      L'estat del Handler (argument i resultat de les operacions).
-type Handler =
-        -- (A completar per l'estudiant)
-        ...
+type Handler = -- exercise 1
+    ReaderT W.Request (StateT HandlerState IO)
 
-runHandler :: Handler a -> W.Request -> HandlerState -> IO (a, HandlerState)
-runHandler m r s0 =
-    -- (A completar per l'estudiant)
-    ...
+runHandler :: Handler a -> W.Request -> HandlerState -> IO (a, HandlerState) -- exercise 1
+runHandler m r =
+    runStateT (runReaderT m r)
 
 
 -- HandlerState compren:
@@ -64,22 +62,20 @@ hsSetSession s (HandlerStateC q _) = HandlerStateC q s
 -- de les funcions exportades.
 
 -- Obte informaciÃ³ de la peticio
-asksRequest :: (W.Request -> a) -> Handler a
-asksRequest =
-    -- (A completar per l'estudiant)
-    ...
+asksRequest :: (W.Request -> a) -> Handler a -- exercise 1
+-- asksRequest f = ask >>= \req -> pure (f req)
+asksRequest f = ask >>= pure . f -- ask :: MonadReader r m => m r ; pure :: Applicative f => a -> f a ; (.) :: (b -> c) -> (a -> b) -> a -> c
+
 
 -- Obte informaciÃ³ de l'estat del handler
-getsHandlerState :: (HandlerState -> a) -> Handler a
-getsHandlerState =
-    -- (A completar per l'estudiant)
-    ...
+getsHandlerState :: (HandlerState -> a) -> Handler a -- exercise 1
+getsHandlerState = gets . (.) id -- gets :: MonadState s m => (s -> a) -> m a ; (.) :: (b -> c) -> (a -> b) -> a -> c ; id :: a -> a
+
 
 -- Modifica l'estat del handler
-modifyHandlerState :: (HandlerState -> HandlerState) -> Handler ()
-modifyHandlerState =
-    -- (A completar per l'estudiant)
-    ...
+modifyHandlerState :: (HandlerState -> HandlerState) -> Handler () -- exercise 1
+modifyHandlerState = modify . (.) id -- modify :: MonadState s m => (s -> s) -> m () ; (.) :: (b -> c) -> (a -> b) -> a -> c ; id :: a -> a
+
 
 -- ****************************************************************
 
@@ -191,8 +187,8 @@ lookupPostParams name = do
             --   fst :: (a, b) -> a
             --   snd :: (a, b) -> b
             --   filter :: (a -> Bool) -> [a] -> [a]
-            -- (A completar per l'estudiant)
-            ...
+            --   map :: (a -> b) -> [a] -> [b]
+            pure $ map snd $ filter ((name ==) . fst) params -- exercici 1
         Nothing ->
             -- El contingut de la peticio no es un formulari. No hi ha valors.
             pure []

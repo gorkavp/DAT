@@ -6,7 +6,7 @@ where
 import           Network.Wai
 import           Network.Wai.Handler.Warp (runEnv)
 
-import           Handler
+import           Handler_T2
 
 import qualified Text.Blaze.Html5 as H
 import           Text.Blaze.Html5.Attributes as A

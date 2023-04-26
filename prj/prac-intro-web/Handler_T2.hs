@@ -37,13 +37,12 @@ import           Text.Read (readMaybe)
 -- El context d'un Handler compren:
 --      L'argument Request que permet obtenir informacio sobre la peticio.
 --      L'estat del Handler (argument i resultat de les operacions).
-newtype Handler a = HandlerC (...) -- (A completar per l'estudiant)
+newtype Handler a = HandlerC (StateT HandlerState (ReaderT W.Request IO) a) -- exericici 2
     deriving (Functor, Applicative, Monad, MonadIO)
 
-runHandler :: Handler a -> W.Request -> HandlerState -> IO (a, HandlerState)
+runHandler :: Handler a -> W.Request -> HandlerState -> IO (a, HandlerState) -- exericici 2
 runHandler (HandlerC m) r s0 =
-    -- (A completar per l'estudiant)
-    ...
+    runReaderT (runStateT m s0) r
 
 
 -- HandlerState compren:
@@ -64,22 +63,16 @@ hsSetSession s (HandlerStateC q _) = HandlerStateC q s
 -- de les funcions exportades.
 
 -- Obte informaciÃ³ de la peticio
-asksRequest :: (W.Request -> a) -> Handler a
-asksRequest f =
-    -- (A completar per l'estudiant)
-    ...
+asksRequest :: (W.Request -> a) -> Handler a -- exericici 2
+asksRequest f = HandlerC $ asks f
 
 -- Obte informaciÃ³ de l'estat del handler
-getsHandlerState :: (HandlerState -> a) -> Handler a
-getsHandlerState f =
-    -- (A completar per l'estudiant)
-    ...
+getsHandlerState :: (HandlerState -> a) -> Handler a -- exericici 2
+getsHandlerState f = HandlerC $ gets f
 
 -- Modifica l'estat del handler
-modifyHandlerState :: (HandlerState -> HandlerState) -> Handler ()
-modifyHandlerState f =
-    -- (A completar per l'estudiant)
-    ...
+modifyHandlerState :: (HandlerState -> HandlerState) -> Handler () -- exericici 2
+modifyHandlerState f = HandlerC $ modify f
 
 -- ****************************************************************
 
@@ -192,7 +185,7 @@ lookupPostParams name = do
             --   snd :: (a, b) -> b
             --   filter :: (a -> Bool) -> [a] -> [a]
             -- (A completar per l'estudiant)
-            ...
+            pure $ map snd $ filter ((name ==) . fst) params -- exercici 2
         Nothing ->
             -- El contingut de la peticio no es un formulari. No hi ha valors.
             pure []
