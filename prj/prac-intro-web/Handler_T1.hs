@@ -74,7 +74,10 @@ getsHandlerState = gets . (.) id -- gets :: MonadState s m => (s -> a) -> m a ; 
 
 -- Modifica l'estat del handler
 modifyHandlerState :: (HandlerState -> HandlerState) -> Handler () -- exercise 1
-modifyHandlerState = modify . (.) id -- modify :: MonadState s m => (s -> s) -> m () ; (.) :: (b -> c) -> (a -> b) -> a -> c ; id :: a -> a
+-- modify :: MonadState s m => (s -> s) -> m ()
+-- (.) :: (b -> c) -> (a -> b) -> a -> c
+-- id :: a -> a
+modifyHandlerState = modify . (.) id
 
 
 -- ****************************************************************

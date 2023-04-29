@@ -135,20 +135,30 @@ a) Becasue Nothing doesn't take arguments -- correcte
 b) Because Nothing returns nothing
 c) Because Nothing is a constructor
 
+If we define data Boing = Frick String Boing (Int -> Bool), what is the type of Frick?
+a) Boing
+b) String -> Boing -> Int -> Bool -> Boing
+c) String -> Boing -> (Int -> Bool) -> Boing -- correcte perquè Frick és un constructor de Boing
 
+If we define data ThreeLists a b c = ThreeLists [a] [b] [c], what is the type of the constructor ThreeLists?
+a) [a] -> [b] -> [c] -> ThreeLists
+b) a -> b -> c -> ThreeLists a b c
+c) [a] -> [b] -> [c] -> ThreeLists a b c -- correcte perquè ThreeLists és un constructor de ThreeLists a b c
+d) [a] -> [b] -> [c] -> ThreeLists [a] [b] [c]
 
+If we define data TwoLists a b = TwoLists {aList :: [a], bList :: [b]}, what is the type of the function aList?
+a) aList is not a function, it is a field
+b) TwoLists a b -> [a] -- correcte perquè aList és un camp que retorna una llista de tipus a
+c) [a] -> TwoLists a b
+d) [a]
 
+La declaració class Num a => Fractional a diu que:
+a) Totes les instàncies de Fractional han de ser instàncies de Num -- correcte perquè Fractional és una subclasse de Num
+b) Totes les instàncies de Num han de ser instàncies de Fractional
+c) Si definexo una instància de Fractional, també obtinc una instància per a Num
+d) Si definexo una instància per a Num, també obtinc una instància per a Fractional
 
-
-
-
-
-
-
-
-
-
-de tipus IO (Maybe Int)
+Quines opcions retornen un valor de tipus IO (Maybe Int):
 -- readInt :: String -> Maybe Int
 -- getString :: IO String
 a) readInt getString -- incorrecte perquè getString no es de tipus String
@@ -167,26 +177,26 @@ f) getString >>= pure . readInt -- correcte perquè es l'equivalent de la soluci
 --do 
 --    v1 <- exp1 equivalent a exp1 >>= \v1 -> exp2
 
-definir la funció la funció factorial: fact :: Int -> Int
-a) de forma recursiva
-fact n = if n <= 0 then 1 else n * fact (n-1)
-b) amb foldl :: (b -> a -> b) -> b -> [a] -> b i una funció ascendent :: Int -> [Int]  que obte una llista de nombres de 1 a n
-fact n = foldl (*) 1 (ascendent n) -- fact = foldl (*) 1 . ascendent
-c) definir la funció ascendent :: Int -> [Int]
-acendent n = if n <= 0 then [] else acendent (n-1) <> [n] -- else n : acendent (n-1)
+Definir la funció la funció factorial: fact :: Int -> Int
+a)  De forma recursiva:
+    fact n = if n <= 0 then 1 else n * fact (n-1)
+b)  Amb foldl :: (b -> a -> b) -> b -> [a] -> b i una funció ascendent :: Int -> [Int]  que obte una llista de nombres de 1 a n
+    fact n = foldl (*) 1 (ascendent n) -- fact = foldl (*) 1 . ascendent
+c)  Definir la funció ascendent :: Int -> [Int]
+    acendent n = if n <= 0 then [] else acendent (n-1) <> [n] -- else n : acendent (n-1)
 
-completar les funcions següents:
+Completar les funcions següents:
 -- data StateM s m a = StateMC (s -> m (a, s))
 -- runStateM :: StateM s m a -> s -> m (a, s)
-instance Monad m => Monad (StateM s m) where
-    mx >>= K = StateMC $ \s0 -> do -- Monad m , mx :: StateM s m a, K :: a -> StateM s m b
-        (x, s1) <- runStateM mx s0 -- runStateM retorna m (a, s)
-        (y , s2) <- runStateM (K x) s1 -- K x :: StateM s m b
-        pure (y, s2)
-        -- les dos ultimes linies es poden substituir per: runStateM (K x) s1 
+a)  instance Monad m => Monad (StateM s m) where
+        mx >>= K = StateMC $ \s0 -> do -- Monad m , mx :: StateM s m a, K :: a -> StateM s m b
+            (x, s1) <- runStateM mx s0 -- runStateM retorna m (a, s)
+            (y , s2) <- runStateM (K x) s1 -- K x :: StateM s m b
+            pure (y, s2)
+            -- les dos ultimes linies es poden substituir per: runStateM (K x) s1 
 
-get :: Monad m => StateM s m s
-get = StateMC $ \s0 -> pure (s0, s0)
+b)  get :: Monad m => StateM s m s
+    get = StateMC $ \s0 -> pure (s0, s0)
 
-put :: Monad m => s -> StateM s m ()
-put new = StateMC $ \s0 -> pure ((), new)
+c)  put :: Monad m => s -> StateM s m ()
+    put new = StateMC $ \s0 -> pure ((), new)
