@@ -49,11 +49,11 @@ Which one of the following functions is correctly typed?
 a) f x y = not x; f :: (Bool -> Bool) -> Bool -- no es correcte perquè f x y = not x es de tipus Bool -> Bool -> Bool
 b) f x = x ++ "a"; f :: Char -> String -- es correcte perquè f x = x ++ "a" afegeix el caràcter 'a' al final del String x ja que ++ és l'operador de concatenació de cadenes de caràcters i per tant x ha de ser de tipus String
 -- es equivalent a f x = (++) x "a" o f x = (++) "a" x o f x = \x -> (++) x "a" o f x = \x -> (++) "a" x
-c) f x = 'a' : x; f :: String -> String -- incorrecte perquè f x = 'a' : x afegeix el caràcter 'a' al principi de la llista x i per tant x ha de ser de tipus [Char] i no de tipus String
+c) f x = 'a' : x; f :: String -> String -- correcte perquè f x = 'a' : x afegeix el caràcter 'a' al principi del String x ja que : és l'operador de concatenació de cadenes de caràcters i per tant x ha de ser de tipus String
 
 How many argument does drop 2 take?
 a) Zero
-b) One -- correcte perquè drop :: Int -> [a] -> [a] i per tant drop 2 :: [a] -> [a]
+b) One -- correcte perquè drop :: Int -> [a] -> [a]
 c) Two
 
 What does this function do? f (_:x:_) = x
@@ -166,8 +166,8 @@ b) do -- incorrecte perquè getString no es de tipus String
     let v1 = getString
     pure (readInt v1)
 c) do -- correcte
-    v1 <- getString -- v1 es de tipus String i getString es de tipus IO String
-    pure (readInt v1) -- readInt v1 es de tipus Maybe Int
+    v1 <- getString -- v1 es de tipus String
+    pure (readInt v1) -- pure (readInt v1) es de tipus IO (Maybe Int)
 d) do -- incorrecte perquè readInt v1 no es de tipus IO (Maybe Int) solament es de tipus Maybe Int
     v1 <- getString
     readInt v1
@@ -189,6 +189,7 @@ Completar les funcions següents:
 -- data StateM s m a = StateMC (s -> m (a, s))
 -- runStateM :: StateM s m a -> s -> m (a, s)
 a)  instance Monad m => Monad (StateM s m) where
+    -- >>= :: StateM s m a -> (a -> StateM s m b) -> StateM s m b
         mx >>= K = StateMC $ \s0 -> do -- Monad m , mx :: StateM s m a, K :: a -> StateM s m b
             (x, s1) <- runStateM mx s0 -- runStateM retorna m (a, s)
             (y , s2) <- runStateM (K x) s1 -- K x :: StateM s m b

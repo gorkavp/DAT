@@ -78,10 +78,12 @@ instance Monad Handler where
     -- tipus en aquesta instancia:
     --      (>>=) :: Handler a -> (a -> Handler b) -> Handler b
     HandlerC hx >>= f = -- executa el handler hx i el resultat x es passa al handler f
-        HandlerC $ \ req st0 -> do
+    -- HandlerC hx :: W.Request -> HandlerState -> IO (a, HandlerState)
+    -- f :: a -> Handler b
+        HandlerC $ \ req st0 -> do -- apliquem f al resultat de hx
             -- Monad IO:
-            (x, st1) <- hx req st0 -- Executa el handler hx sobre la petició req amb l'estat st0 i retorna el resultat x i l'estat st1 que es passa al seguent handler f. El seguent handler f es el que s'ha passat com a argument a la funcio (>>=).
-            runHandler (f x) req st1 -- Executa el handler f sobre la petició req amb l'estat st1 i retorna el resultat i l'estat final.
+            (x, st1) <- hx req st0 -- hx :: W.Request -> HandlerState -> IO (a, HandlerState)
+            runHandler (f x) req st1 -- runHandler :: Handler a -> W.Request -> HandlerState -> IO (a, HandlerState)
 
 -- class MonadIO: Monads in which IO computations may be embedded.
 -- The method 'liftIO' lifts a computation from the IO monad.
@@ -103,11 +105,13 @@ asksRequest f = HandlerC $ \ req st0 ->
 
 -- Obte informaciÃ³ de l'estat del handler
 getsHandlerState :: (HandlerState -> a) -> Handler a
+-- Handler a = HandlerC (W.Request -> HandlerState -> IO (a, HandlerState))
 getsHandlerState f = -- st0 es l'estat inicial del handler (HandlerStateC) i '_' es la peticio (W.Request)
     HandlerC $ \ _ st0 -> pure (f st0, st0) -- Monad IO: crea un IO action que retorna el resultat de aplicar la funcio f a l'estat st0 i l'estat st0
 
 -- Modifica l'estat del handler
 modifyHandlerState :: (HandlerState -> HandlerState) -> Handler ()
+-- Handler () = HandlerC (W.Request -> HandlerState -> IO ((), HandlerState))
 modifyHandlerState f = -- st0 es l'estat inicial del handler (HandlerStateC) i '_' es la peticio (W.Request)
     HandlerC $ \ _ st0 -> pure ((), f st0) -- Monad IO: crea un IO action que retorna el valor unitari () i l'estat resultant d'plicar la funcio f a l'estat st0
 
