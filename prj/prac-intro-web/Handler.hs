@@ -58,32 +58,32 @@ instance Functor Handler where
     --      fmap :: (a -> b) -> Handler a -> Handler b
     fmap f (HandlerC h) = HandlerC $ \ req st0 -> do
         -- Monad IO:
-        (x, st1) <- h req st0 -- Monad IO: crea un IO action que executa el handler h sobre la peticio req i l'estat inicial i retorna el resultat x i l'estat final st1.
-        pure (f x, st1)
+        -- f :: a -> b
+        (x, st1) <- h req st0 -- h :: W.Request -> HandlerState -> IO (x, st1) = IO (a, HandlerState) = Handler a
+        pure (f x, st1) -- pure :: (f x, st1) -> IO (b, HandlerState) = Handler b
 
 instance Applicative Handler where
     -- tipus en aquesta instancia:
     --      pure  :: a -> Handler a
     --      (<*>) :: Handler (a -> b) -> Handler a -> Handler b
     pure x =
-        HandlerC $ \ _ st0 -> pure (x, st0) -- Monad IO: crea un IO action que retorna el valor x i l'estat st0
+        HandlerC $ \ _ st0 -> pure (x, st0) -- HandlerC :: (W.Request -> HandlerState -> IO (a, HandlerState)) -> Handler a
     HandlerC hf <*> HandlerC hx =
         HandlerC $ \ req st0 -> do
             -- Monad IO
-            (f, st1) <- hf req st0 -- executa el handler hf sobre la peticio req i l'estat inicial st0 i retorna el resultat f i l'estat final st1
-            (x, st2) <- hx req st1 -- executa el handler hx sobre la peticio req i l'estat inicial st1 i retorna el resultat x i l'estat final st2
-            pure (f x, st2) -- es retorna el resultat de aplicar la funcio f al valor x i l'estat final st2
+            (f, st1) <- hf req st0 -- hf :: W.Request -> HandlerState -> IO (f, st1) = IO (a -> b, HandlerState) = Handler (a -> b) = Handler f
+            (x, st2) <- hx req st1 -- hx :: W.Request -> HandlerState -> IO (x, st2) = IO (a, HandlerState) = Handler a
+            pure (f x, st2) -- pure :: (f x, st2) -> IO (b, HandlerState) = Handler b
 
 instance Monad Handler where
     -- tipus en aquesta instancia:
     --      (>>=) :: Handler a -> (a -> Handler b) -> Handler b
-    HandlerC hx >>= f = -- executa el handler hx i el resultat x es passa al handler f
-    -- HandlerC hx :: W.Request -> HandlerState -> IO (a, HandlerState)
+    HandlerC hx >>= f =
     -- f :: a -> Handler b
         HandlerC $ \ req st0 -> do -- apliquem f al resultat de hx
             -- Monad IO:
-            (x, st1) <- hx req st0 -- hx :: W.Request -> HandlerState -> IO (a, HandlerState)
-            runHandler (f x) req st1 -- runHandler :: Handler a -> W.Request -> HandlerState -> IO (a, HandlerState)
+            (x, st1) <- hx req st0 -- hx :: W.Request -> HandlerState -> IO (a, HandlerState) = Handler a
+            runHandler (f x) req st1 -- runHandler :: Handler (f x) -> W.Request -> HandlerState -> IO (b, HandlerState) = Handler b
 
 -- class MonadIO: Monads in which IO computations may be embedded.
 -- The method 'liftIO' lifts a computation from the IO monad.
@@ -105,15 +105,17 @@ asksRequest f = HandlerC $ \ req st0 ->
 
 -- Obte informaciÃ³ de l'estat del handler
 getsHandlerState :: (HandlerState -> a) -> Handler a
--- Handler a = HandlerC (W.Request -> HandlerState -> IO (a, HandlerState))
-getsHandlerState f = -- st0 es l'estat inicial del handler (HandlerStateC) i '_' es la peticio (W.Request)
-    HandlerC $ \ _ st0 -> pure (f st0, st0) -- Monad IO: crea un IO action que retorna el resultat de aplicar la funcio f a l'estat st0 i l'estat st0
+-- f :: HandlerState -> a
+getsHandlerState f =
+    -- Monad IO:
+    HandlerC $ \ _ st0 -> pure (f st0, st0) -- pure :: (f st0, st0) -> IO (a, HandlerState) = Handler a
 
 -- Modifica l'estat del handler
 modifyHandlerState :: (HandlerState -> HandlerState) -> Handler ()
--- Handler () = HandlerC (W.Request -> HandlerState -> IO ((), HandlerState))
-modifyHandlerState f = -- st0 es l'estat inicial del handler (HandlerStateC) i '_' es la peticio (W.Request)
-    HandlerC $ \ _ st0 -> pure ((), f st0) -- Monad IO: crea un IO action que retorna el valor unitari () i l'estat resultant d'plicar la funcio f a l'estat st0
+-- f :: HandlerState -> HandlerState
+modifyHandlerState f =
+    -- Monad IO:
+    HandlerC $ \ _ st0 -> pure ((), f st0) -- pure :: ((), f st0) -> IO ((), HandlerState) = Handler ()
 
 -- ****************************************************************
 
@@ -227,7 +229,7 @@ lookupPostParams name = do
             --   filter :: (a -> Bool) -> [a] -> [a]
             --   map :: (a -> b) -> [a] -> [b]
             pure $ map snd $ filter ((name ==) . fst) params
-            -- la funció pure retorna un monad Handler
+            -- la composició de funcions (.) és associativa per la dretam es a dir que f (g h) = (f g) h 
             -- la funció map aplica la funció snd a tots els elements de la llista que retorna la funció filter per tant retorna una llista amb els segons elements de les parelles (tupla) que tenen el nom indicat
             -- la funció filter elimina tots els elements de la llista on el primer element de la parella (tupla) no coincideixi amb el nom indicat
         Nothing ->

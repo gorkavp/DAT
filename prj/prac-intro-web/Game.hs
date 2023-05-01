@@ -32,22 +32,36 @@ gameApp = onMethod
 -- funció que retorna l'estat de la sessió a la vista html o l'estat inicial si no hi ha cap valor a la sessió
 doGet :: Handler HandlerResponse
 doGet = do
-    mbSessionState <- getSession "playState" -- retorna el valor de l'atribut "playState" de la sessió
-    -- obtenim el valor de l'estat del joc a partir de la sessió de l'usuari
-    let game = maybe startState (read . T.unpack) mbSessionState -- si mbSessionState és Nothing retorna startState, si no aplicarà la funció read que converteix el String a l'estat del joc i la funció unpack que converteix el Text a String
+    -- getSession :: Text -> Handler (Maybe Text)
+    mbSessionState <- getSession "playState" -- retorna el valor de l'atribut "playState" de la sessió de l'usuari
+    -- unpack :: Text -> String
+    -- read :: Read a => String -> a
+    let game = maybe startState (read . T.unpack) mbSessionState -- si mbSessionState és Nothing retorna startState, si no aplicarà la funció unpack que converteix el Text a String i la funció read que converteix el String a l'estat del joc (game)
+    -- htmlView :: GameState -> H.Html
+    -- respHtml :: H.Html -> Handler HandlerResponse
     respHtml $ htmlView game -- retorna la vista amb l'estat de la sessió
 
 -- funció que actualitza l'estat de la sessió obtenint la cadena de caràcters del formulari introduïda per l'usuari usant la funció lookupPostParam amb el nom del paràmetre "playText" i manté l'estat de la sessió usant les funcions setSession i getSession amb el nom de l'atribut "playState"
 doPost :: Handler HandlerResponse
 doPost = do
-    mbvalue <- lookupPostParam "playText" -- retorna el valor del paràmetre "playText" del formulari
+    -- lookupPostParam :: Text -> Handler (Maybe Text)
+    mbvalue <- lookupPostParam "playText" -- retorna el valor del paràmetre "playText" del formulari de l'usuari
     case mbvalue of
         Nothing -> -- si no hi ha cap valor
+            -- respRedirect :: Text -> Handler HandlerResponse
             respRedirect "#" -- redirigeix a la mateixa pàgina
         Just value -> do -- si hi ha un valor
-            mbSessionState <- getSession "playState" -- retorna el valor de l'atribut "playState" de la sessió
-            let game = maybe startState (read . T.unpack) mbSessionState -- - si mbSessionState és Nothing retorna startState, si no aplicarà la funció read que converteix el String a l'estat del joc i la funció unpack que converteix el Text a String
-            setSession "playState" (T.pack $ show $ playText value game) -- actualitza l'estat de la sessió mitjançant la funció pack que converteix el String a Text i la funció show que converteix l'estat del joc a String
+            -- getSession :: Text -> Handler (Maybe Text)
+            mbSessionState <- getSession "playState" -- retorna el valor de l'atribut "playState" de la sessió de l'usuari
+            -- unpack :: Text -> String
+            -- read :: Read a => String -> a
+            let game = maybe startState (read . T.unpack) mbSessionState -- si mbSessionState és Nothing retorna startState, si no aplicarà la funció unpack que converteix el Text a String i la funció read que converteix el String a l'estat del joc (game)
+            -- setSession :: Text -> Text -> Handler ()
+            -- pack :: String -> Text
+            -- show :: Show a => a -> String
+            -- playText :: Text -> GameState -> GameState
+            setSession "playState" (T.pack $ show $ playText value game) -- actualitza l'estat de la sessió mitjançant la funció playText que retorna l'estat final del joc a partir del text introduït per l'usuari i l'estat inicial del joc, la funció show que converteix l'estat del joc a String, la funció pack que converteix el String a Text i la funció setSession que actualitza el valor de l'atribut "playState" de la sessió de l'usuari
+            -- respRedirect :: Text -> Handler HandlerResponse
             respRedirect "#" -- redirigeix a la mateixa pàgina
 
 -- ****************************************************************
@@ -92,9 +106,13 @@ playString :: String -> GameState -> GameState
 -- playString (x:xs) = do
     -- playChar x game
     -- playString xs
---playString xs game = foldl (flip playChar) game xs
+-- foldl :: (b -> a -> b) -> b -> [a] -> b
+-- playString xs game = foldl (flip playChar) game xs
+-- foldr :: (a -> b -> b) -> b -> [a] -> b
 playString xs game = foldr playChar game xs -- utilitzem foldr per a que vagi de dreta a esquerra aplicant playChar a cada un dels caràcters del String
 
 -- funció que a partir d'un text i un estat inicial retorna l'estat final
 playText :: Text -> GameState -> GameState
-playText t = playString (T.unpack t) -- converteix el text a String i aplica playString
+-- unpack :: Text -> String
+-- playString :: String -> GameState -> GameState
+playText t = playString (T.unpack t) -- aplica playString al String obtingut a partir del Text t que es passa com a paràmetre

@@ -1,7 +1,41 @@
+PARCIAL 2022-2023
+
+What is the Haskell equivalent of the C/Java/Python expression combine(prettify(lawn),construct(house,concrete))?
+a) combine prettify (lawn) construct (house concerete)
+b) combine (prettify lawn (counstruct house concrete))
+c) combine (prettify lawn) (construct house concrete) -- correcte
+
+What is the C/Java/Python equivalent of the Haskell expression send metric (double population + increase)?
+a) send(metric(double(population+increase)))
+b) send(metric(double(population)+increase))
+c) send(metric,double(population)+increase) -- correcte
+d) send(metric,double(population+increase))
+
+Which one of the following claims is true in Haskell?
+a) It’s impossible to reuse the name of a variable
+b) It’s possible to reassign a value to a variable
+c) An if always requires both then and else -- correcte
+
+What does the function f x = if even (x + 1) then x + 1 else f (x - 1) do?
+-- even :: Integral a => a -> Bool
+a) Maps every value x to the least even number greater than or equal to  -- correcte
+b) Maps every value x to the greatest even number less than or equal to x
+c) Maps every value to itself
+
+Why is 3 * "F00" not valid Haskell?
+a) 3 and "F00" have different types -- correcte perquè 3 és de tipus Num i "F00" és de tipus String
+b) All numeric values need a decimal point
+c) "F00" needs the prefix “0x”
+
+Why does 7.0 `div` 2 give an error?
+a) Because div is not defined for the type Double -- correcte perquè 7.0 és de tipus Fractional i div és de tipus Integral
+b) Because div is not defined for the type Int
+c) Because `...` is used for delimiting strings.
+
 How many values does f x = [x,x] return?
 a) Zero
-b) One
-c) Two -- correcte perquè retorna una llista amb dos elements
+b) One -- correcte perquè f :: a -> [a]
+c) Two
 
 Why does the expression Nothing 1 cause a type error?
 a) Because Nothing takes no arguments -- correcte perquè Nothing no té cap argument
@@ -22,7 +56,7 @@ What is the type of this function? justBoth a b = [Just a, Just b]
 a) a -> b -> [Maybe a, Maybe b]
 b) a -> a -> [Just a]
 c) a -> b -> [Maybe a]
-d) a -> b -> [Maybe a] -- correcte perquè Just a i Just b son de tipus Maybe a i Maybe b respectivament llavors la llista és de tipus [Maybe a]
+d) a -> a -> [Maybe a] -- correcte perquè a i b son de tipus a i per tant [Just a, Just b] és de tipus [Maybe a]
 
 What's the type of this function? both p q x = p x && q x -- p i q son funcions i x es un valor de tipus a
 -- both :: (a -> Bool) -> (a -> Bool) -> a -> Bool
@@ -47,13 +81,12 @@ c) f x = (\y -> x) x -- correcte perquè f 1 = (\y -> 1) 1 = 1 es equivalent a f
 
 Which one of the following functions is correctly typed?
 a) f x y = not x; f :: (Bool -> Bool) -> Bool -- no es correcte perquè f x y = not x es de tipus Bool -> Bool -> Bool
-b) f x = x ++ "a"; f :: Char -> String -- es correcte perquè f x = x ++ "a" afegeix el caràcter 'a' al final del String x ja que ++ és l'operador de concatenació de cadenes de caràcters i per tant x ha de ser de tipus String
--- es equivalent a f x = (++) x "a" o f x = (++) "a" x o f x = \x -> (++) x "a" o f x = \x -> (++) "a" x
+b) f x = x ++ "a"; f :: Char -> String -- no es correcte perquè f x = x ++ "a" és de tipus [Char] -> [Char]
 c) f x = 'a' : x; f :: String -> String -- correcte perquè f x = 'a' : x afegeix el caràcter 'a' al principi del String x ja que : és l'operador de concatenació de cadenes de caràcters i per tant x ha de ser de tipus String
 
 How many argument does drop 2 take?
 a) Zero
-b) One -- correcte perquè drop :: Int -> [a] -> [a]
+b) One -- correcte perquè drop :: Int -> [a] -> [a] i en aquest cas drop 2 :: [a] -> [a]
 c) Two
 
 What does this function do? f (_:x:_) = x
@@ -71,7 +104,7 @@ b) "set a"
 c) A type error
 
 If f :: a -> b, then what is the type of map (.f)?
-a) [b->c] -> [a->c] -- correcte
+a) [b->c] -> [a->c] -- correcte perquè map :: (a -> b) -> [a] -> [b] i per tant map (.f) :: [b->c] -> [a->c]
 b) [c->a] -> [c->b]
 c) [b->c] -> [a->c]
 d) [a] -> [b]
@@ -152,11 +185,32 @@ b) TwoLists a b -> [a] -- correcte perquè aList és un camp que retorna una lli
 c) [a] -> TwoLists a b
 d) [a]
 
-La declaració class Num a => Fractional a diu que:
-a) Totes les instàncies de Fractional han de ser instàncies de Num -- correcte perquè Fractional és una subclasse de Num
-b) Totes les instàncies de Num han de ser instàncies de Fractional
-c) Si definexo una instància de Fractional, també obtinc una instància per a Num
-d) Si definexo una instància per a Num, també obtinc una instància per a Fractional
+What are the functions in the Eq class?
+a) (==), (/=) -- correcte
+b) (==)
+c) (==), (<), (>)
+
+For which of the following classes can we get automatic instances with deriving?
+a) Num
+b) Ord -- correcte perquè Ord és una subclasse de Eq i per tant es pot obtenir una instància automàtica de Ord si es té una instància de Eq
+c) Size
+
+Which of the following instance declarations is legal?
+a) instance Eq Maybe
+b) instance Eq (a,a)
+c) instance Eq (Maybe Int)
+d) instance Eq (a,b)
+
+The declaration instance Num a => Eq (Pair a) tells me that
+a) All instances of Num are instances of Eq
+b) Pair a is an instance of Eq if a is an instance of Num -- correcte perquè Pair a és una instància de Eq si a és una instància de Num
+c) The instance Eq (Pair a) inherits the instance Num a
+
+The declaration class Num a => Fractional a tells me that
+a) All instances of Fractional must be instances of Num -- correcte perquè Fractional és una subclasse de Num
+b) All instances of Num must be instances of Fractional
+c) If I define an instance for Fractional, I also get an instance for Num
+d) If I define an instance for Num, I also get an instance for Fractional
 
 Quines opcions retornen un valor de tipus IO (Maybe Int):
 -- readInt :: String -> Maybe Int
@@ -190,11 +244,12 @@ Completar les funcions següents:
 -- runStateM :: StateM s m a -> s -> m (a, s)
 a)  instance Monad m => Monad (StateM s m) where
     -- >>= :: StateM s m a -> (a -> StateM s m b) -> StateM s m b
-        mx >>= K = StateMC $ \s0 -> do -- Monad m , mx :: StateM s m a, K :: a -> StateM s m b
-            (x, s1) <- runStateM mx s0 -- runStateM retorna m (a, s)
-            (y , s2) <- runStateM (K x) s1 -- K x :: StateM s m b
-            pure (y, s2)
-            -- les dos ultimes linies es poden substituir per: runStateM (K x) s1 
+        mx >>= K =
+            StateMC $ \s0 -> do -- Monad m , mx :: StateM s m a, K :: a -> StateM s m b
+                (x, s1) <- runStateM mx s0 -- runStateM retorna m (a, s)
+                (y , s2) <- runStateM (K x) s1 -- K x :: StateM s m b
+                pure (y, s2)
+                -- les dos ultimes linies es poden substituir per: runStateM (K x) s1 
 
 b)  get :: Monad m => StateM s m s
     get = StateMC $ \s0 -> pure (s0, s0)
