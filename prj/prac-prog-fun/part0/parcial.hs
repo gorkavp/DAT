@@ -192,7 +192,7 @@ c) (==), (<), (>)
 
 For which of the following classes can we get automatic instances with deriving?
 a) Num
-b) Ord -- correcte perquè Ord és una subclasse de Eq i per tant es pot obtenir una instància automàtica de Ord si es té una instància de Eq
+b) Ord -- correcte perquè Ord és una subclasse de Eq
 c) Size
 
 Which of the following instance declarations is legal?
@@ -227,9 +227,7 @@ d) do -- incorrecte perquè readInt v1 no es de tipus IO (Maybe Int) solament es
     readInt v1
 e) readInt <$> getString -- correcte perquè readInt s'applica a getString sense modificar el tipus de getString
 f) getString >>= pure . readInt -- correcte perquè es l'equivalent de la solució c)
--- pure . readInt es equivalent a \v1 -> pure (readInt v1)
---do 
---    v1 <- exp1 equivalent a exp1 >>= \v1 -> exp2
+-- v1 <- getString equivalent a getString >>= \v1 -> pure (readInt v1)
 
 Definir la funció la funció factorial: fact :: Int -> Int
 a)  De forma recursiva:
@@ -240,19 +238,34 @@ c)  Definir la funció ascendent :: Int -> [Int]
     acendent n = if n <= 0 then [] else acendent (n-1) <> [n] -- else n : acendent (n-1)
 
 Completar les funcions següents:
--- data StateM s m a = StateMC (s -> m (a, s))
--- runStateM :: StateM s m a -> s -> m (a, s)
+data StateM s m a = StateMC (s -> m (a, s))
+runStateM :: StateM s m a -> s -> m (a, s)
 a)  instance Monad m => Monad (StateM s m) where
     -- >>= :: StateM s m a -> (a -> StateM s m b) -> StateM s m b
         mx >>= K =
-            StateMC $ \s0 -> do -- Monad m , mx :: StateM s m a, K :: a -> StateM s m b
-                (x, s1) <- runStateM mx s0 -- runStateM retorna m (a, s)
-                (y , s2) <- runStateM (K x) s1 -- K x :: StateM s m b
-                pure (y, s2)
-                -- les dos ultimes linies es poden substituir per: runStateM (K x) s1 
+            State $ \s0 -> do -- Monad m
+                (x, s1) <- runStateM mx s0 -- runStateM mx s0 :: m (x, s1) = m (a, s1) = StateM s m a
+                runStateM (K x) s1 -- runStateM (K x) s1 :: m (b, s1)
 
-b)  get :: Monad m => StateM s m s
-    get = StateMC $ \s0 -> pure (s0, s0)
+b)  instance Monad m => Applicative (StateM s m) where
+    -- pure :: a -> StateM s m a
+    pure x = StateMC $ \s0 -> pure (x, s0)
+    -- (<*>) :: StateM s m (a -> b) -> StateM s m a -> StateM s m b
+    StateM mf <*> StateM mx =
+        StateMC $ \s0 -> do -- Monad m
+            (f, s1) <- runStateM mf s0 -- runStateM mf s0 :: m (f, s1) = m (a -> b, s1) = StateM s m (a -> b)
+            (x, s2) <- runStateM mx s1 -- runStateM mx s1 :: m (x, s2) = m (a, s2) = StateM s m a
+            pure (f x, s2) -- pure (f x, s2) :: m (f x, s2) = m (b, s2) = StateM s m b
 
-c)  put :: Monad m => s -> StateM s m ()
-    put new = StateMC $ \s0 -> pure ((), new)
+c)  instance Monad m => Functor (StateM s m) where
+    -- fmap :: (a -> b) -> StateM s m a -> StateM s m b
+    fmap f (StateMC mx) =
+        StateMC $ \s0 -> do -- Monad m
+            (x, s1) <- runStateM mx s0 -- runStateM mx s0 :: m (x, s1)
+            pure (f x, s1) -- pure (f x, s1) :: m (f x, s1) = m (b, s1) = StateM s m b
+
+d)  get :: Monad m => StateM s m s
+    get = StateMC $ \s0 -> pure (s0, s0) -- pure (s0, s0) :: m (s0, s0) = m (s, s) = StateM s m s
+
+e)  put :: Monad m => s -> StateM s m ()
+    put new = StateMC $ \s0 -> pure ((), new) -- pure ((), new) :: m ((), new) = m ((), s) = StateM s m ()
