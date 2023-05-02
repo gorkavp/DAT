@@ -18,7 +18,7 @@ c) An if always requires both then and else -- correcte
 
 What does the function f x = if even (x + 1) then x + 1 else f (x - 1) do?
 -- even :: Integral a => a -> Bool
-a) Maps every value x to the least even number greater than or equal to  -- correcte
+a) Maps every value x to the least even number greater than or equal to x  -- correcte
 b) Maps every value x to the greatest even number less than or equal to x
 c) Maps every value to itself
 
@@ -47,7 +47,7 @@ a) Bool -> Bool -> Either Bool String
 b) String -> String -> Either String String
 c) Bool -> Bool -> Either String Bool -- correcte
 
-Which of the following functions could have the type Bool -> Bool -> [Bool]?
+Which of the following functions could have the type Bool -> Int -> [Bool]?
 a) f x y = [0, y]
 b) f x y = [x, True] -- correcte perquè x i y son de tipus Bool i True és de tipus Bool també i per tant la llista és de tipus [Bool]
 c) f x y = [y, True]
@@ -199,7 +199,7 @@ Which of the following instance declarations is legal?
 a) instance Eq Maybe
 b) instance Eq (a,a)
 c) instance Eq (Maybe Int)
-d) instance Eq (a,b)
+d) instance Eq (a,b) -- correcte perquè (a,b) és una instància de Eq si a i b són instàncies de Eq
 
 The declaration instance Num a => Eq (Pair a) tells me that
 a) All instances of Num are instances of Eq
