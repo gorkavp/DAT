@@ -38,10 +38,21 @@ import           Text.Read (readMaybe)
 --      L'estat del Handler (argument i resultat de les operacions).
 type Handler = -- exercise 1
     ReaderT W.Request (StateT HandlerState IO)
+    -- ReaderT :: Monad m => r -> m a -> ReaderT r m a
+    -- StateT :: Monad m => (s -> m (a, s)) -> StateT s m a
+    -- IO :: * -> *
+    -- HandlerState :: *
+    -- W.Request :: *
+    -- ReaderT W.Request :: Monad m => m a -> ReaderT W.Request m a
+    -- StateT HandlerState :: Monad m => m (a, HandlerState) -> StateT HandlerState m a
 
 runHandler :: Handler a -> W.Request -> HandlerState -> IO (a, HandlerState) -- exercise 1
 runHandler m r =
     runStateT (runReaderT m r)
+    -- runReaderT :: Monad m => ReaderT r m a -> r -> m a
+    -- runStateT :: Monad m => StateT s m a -> s -> m (a, s)
+    -- m :: Handler a
+    -- r :: W.Request
 
 
 -- HandlerState compren:
@@ -64,7 +75,10 @@ hsSetSession s (HandlerStateC q _) = HandlerStateC q s
 -- Obte informaciÃ³ de la peticio
 asksRequest :: (W.Request -> a) -> Handler a -- exercise 1
 -- asksRequest f = ask >>= \req -> pure (f req)
-asksRequest f = ask >>= pure . f -- ask :: MonadReader r m => m r ; pure :: Applicative f => a -> f a ; (.) :: (b -> c) -> (a -> b) -> a -> c
+asksRequest f = ask >>= pure . f
+-- ask :: MonadReader r m => m r
+-- pure :: Applicative f => a -> f a
+-- (.) :: (b -> c) -> (a -> b) -> a -> c
 
 
 -- Obte informaciÃ³ de l'estat del handler
