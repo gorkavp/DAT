@@ -5,7 +5,7 @@ where
 import           Network.Wai
 import           Network.Wai.Handler.Warp (runEnv)
 
-import           Handler
+import           Handler_T2
 
 import           Data.Text (Text)
 import qualified Data.Text as T

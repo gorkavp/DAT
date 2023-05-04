@@ -36,23 +36,23 @@ import           Text.Read (readMaybe)
 -- El context d'un Handler compren:
 --      L'argument Request que permet obtenir informacio sobre la peticio.
 --      L'estat del Handler (argument i resultat de les operacions).
-type Handler = -- exercise 1
+type Handler =
+    -- Handler :: ReaderT r (StateT s m) a = Handler a
+    -- Handler :: ReaderT W.Request (StateT HandlerState IO) a = Handler a
+    -- ReaderT r m a :: ReaderT W.Request (StateT HandlerState IO) a
+    -- StateT s m a :: StateT HandlerState IO a
+    -- IO :: IO a
     ReaderT W.Request (StateT HandlerState IO)
-    -- ReaderT :: Monad m => r -> m a -> ReaderT r m a
-    -- StateT :: Monad m => (s -> m (a, s)) -> StateT s m a
-    -- IO :: * -> *
-    -- HandlerState :: *
-    -- W.Request :: *
-    -- ReaderT W.Request :: Monad m => m a -> ReaderT W.Request m a
-    -- StateT HandlerState :: Monad m => m (a, HandlerState) -> StateT HandlerState m a
 
-runHandler :: Handler a -> W.Request -> HandlerState -> IO (a, HandlerState) -- exercise 1
+runHandler :: Handler a -> W.Request -> HandlerState -> IO (a, HandlerState)
 runHandler m r =
-    runStateT (runReaderT m r)
-    -- runReaderT :: Monad m => ReaderT r m a -> r -> m a
-    -- runStateT :: Monad m => StateT s m a -> s -> m (a, s)
-    -- m :: Handler a
+    -- runStateT :: StateT s m a -> s -> m (a, s)
+    -- runStateT :: StateT HandlerState IO a -> HandlerState -> IO (a, HandlerState)
+    -- runReaderT :: ReaderT r m a -> r -> m a
+    -- runReaderT :: ReaderT W.Request (StateT HandlerState IO) a -> W.Request -> StateT HandlerState IO a
+    -- m :: Handler a = ReaderT W.Request (StateT HandlerState IO) a
     -- r :: W.Request
+    runStateT (runReaderT m r) -- equivalent a runHandler m r s = runStateT (runReaderT m r) s
 
 
 -- HandlerState compren:
@@ -73,25 +73,28 @@ hsSetSession s (HandlerStateC q _) = HandlerStateC q s
 -- de les funcions exportades.
 
 -- Obte informaciÃ³ de la peticio
-asksRequest :: (W.Request -> a) -> Handler a -- exercise 1
+asksRequest :: (W.Request -> a) -> Handler a
+-- asks :: MonadReader r m => (r -> a) -> m a retorna el resultat de aplicar la funcio f al contexte del monad (ReaderT r m), en aquest cas el contexte es W.Request
+-- f :: W.Request -> a
+asksRequest = asks -- equivalent a asksRequest f = asks f
+-- ask :: MonadReader r m => m r retorna el contexte del monad (ReaderT r m), en aquest cas el contexte es W.Request
+-- asksRequest f = ask >>= pure . f
 -- asksRequest f = ask >>= \req -> pure (f req)
-asksRequest f = ask >>= pure . f
--- ask :: MonadReader r m => m r
--- pure :: Applicative f => a -> f a
--- (.) :: (b -> c) -> (a -> b) -> a -> c
+
 
 
 -- Obte informaciÃ³ de l'estat del handler
-getsHandlerState :: (HandlerState -> a) -> Handler a -- exercise 1
-getsHandlerState = gets . (.) id -- gets :: MonadState s m => (s -> a) -> m a ; (.) :: (b -> c) -> (a -> b) -> a -> c ; id :: a -> a
+getsHandlerState :: (HandlerState -> a) -> Handler a
+-- gets :: MonadState s m => (s -> a) -> m a retorna el resultat de aplicar la funcio f a l'estat del monad (StateT s m), en aquest cas l'estat es HandlerState
+-- f :: HandlerState -> a
+getsHandlerState = gets -- equivalent a getsHandlerState f = gets f
 
 
 -- Modifica l'estat del handler
-modifyHandlerState :: (HandlerState -> HandlerState) -> Handler () -- exercise 1
--- modify :: MonadState s m => (s -> s) -> m ()
--- (.) :: (b -> c) -> (a -> b) -> a -> c
--- id :: a -> a
-modifyHandlerState = modify . (.) id
+modifyHandlerState :: (HandlerState -> HandlerState) -> Handler ()
+-- modify :: MonadState s m => (s -> s) -> m () modifica l'estat del monad (StateT s m) aplicant la funcio f a l'estat actual (HandlerState)
+-- f :: HandlerState -> HandlerState
+modifyHandlerState = modify -- equivalent a modifyHandlerState f = modify f
 
 
 -- ****************************************************************
@@ -205,7 +208,7 @@ lookupPostParams name = do
             --   snd :: (a, b) -> b
             --   filter :: (a -> Bool) -> [a] -> [a]
             --   map :: (a -> b) -> [a] -> [b]
-            pure $ map snd $ filter ((name ==) . fst) params -- exercici 1
+            pure $ map snd $ filter ((name ==) . fst) params
         Nothing ->
             -- El contingut de la peticio no es un formulari. No hi ha valors.
             pure []

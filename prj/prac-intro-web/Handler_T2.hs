@@ -37,12 +37,18 @@ import           Text.Read (readMaybe)
 -- El context d'un Handler compren:
 --      L'argument Request que permet obtenir informacio sobre la peticio.
 --      L'estat del Handler (argument i resultat de les operacions).
-newtype Handler a = HandlerC (StateT HandlerState (ReaderT W.Request IO) a) -- exericici 2
+newtype Handler a = HandlerC (StateT HandlerState (ReaderT W.Request IO) a)
     deriving (Functor, Applicative, Monad, MonadIO)
 
-runHandler :: Handler a -> W.Request -> HandlerState -> IO (a, HandlerState) -- exericici 2
-runHandler (HandlerC m) r s0 =
-    runReaderT (runStateT m s0) r
+runHandler :: Handler a -> W.Request -> HandlerState -> IO (a, HandlerState)
+-- runReaderT :: ReaderT r m a -> r -> m a
+-- runReaderT :: ReaderT W.Request IO a -> W.Request -> IO a
+-- runStateT :: StateT s m a -> s -> m (a, s)
+-- runStateT :: StateT HandlerState (ReaderT W.Request IO) a -> HandlerState -> ReaderT W.Request IO (a, HandlerState)
+-- m :: IO
+-- r :: W.Request
+-- s :: HandlerState
+runHandler (HandlerC m) r s = runReaderT (runStateT m s) r
 
 
 -- HandlerState compren:
@@ -63,15 +69,16 @@ hsSetSession s (HandlerStateC q _) = HandlerStateC q s
 -- de les funcions exportades.
 
 -- Obte informaciÃ³ de la peticio
-asksRequest :: (W.Request -> a) -> Handler a -- exericici 2
+asksRequest :: (W.Request -> a) -> Handler a
 asksRequest f = HandlerC $ asks f
 
+
 -- Obte informaciÃ³ de l'estat del handler
-getsHandlerState :: (HandlerState -> a) -> Handler a -- exericici 2
+getsHandlerState :: (HandlerState -> a) -> Handler a
 getsHandlerState f = HandlerC $ gets f
 
 -- Modifica l'estat del handler
-modifyHandlerState :: (HandlerState -> HandlerState) -> Handler () -- exericici 2
+modifyHandlerState :: (HandlerState -> HandlerState) -> Handler ()
 modifyHandlerState f = HandlerC $ modify f
 
 -- ****************************************************************
@@ -185,7 +192,7 @@ lookupPostParams name = do
             --   snd :: (a, b) -> b
             --   filter :: (a -> Bool) -> [a] -> [a]
             -- (A completar per l'estudiant)
-            pure $ map snd $ filter ((name ==) . fst) params -- exercici 2
+            pure $ map snd $ filter ((name ==) . fst) params
         Nothing ->
             -- El contingut de la peticio no es un formulari. No hi ha valors.
             pure []
