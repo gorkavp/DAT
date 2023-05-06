@@ -30,12 +30,12 @@ version :: Version
 version = Version [0,0,0,1] []
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 
-bindir     = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\874fd731\\bin"
-libdir     = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\874fd731\\lib\\x86_64-windows-ghc-9.0.2\\prac-prog-fun-0.0.0.1-LduzV01u2I2AYzWoQtnUWy"
-dynlibdir  = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\874fd731\\lib\\x86_64-windows-ghc-9.0.2"
-datadir    = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\874fd731\\share\\x86_64-windows-ghc-9.0.2\\prac-prog-fun-0.0.0.1"
-libexecdir = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\874fd731\\libexec\\x86_64-windows-ghc-9.0.2\\prac-prog-fun-0.0.0.1"
-sysconfdir = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\874fd731\\etc"
+bindir     = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\80fae8d2\\bin"
+libdir     = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\80fae8d2\\lib\\x86_64-windows-ghc-9.0.2\\prac-prog-fun-0.0.0.1-LduzV01u2I2AYzWoQtnUWy"
+dynlibdir  = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\80fae8d2\\lib\\x86_64-windows-ghc-9.0.2"
+datadir    = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\80fae8d2\\share\\x86_64-windows-ghc-9.0.2\\prac-prog-fun-0.0.0.1"
+libexecdir = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\80fae8d2\\libexec\\x86_64-windows-ghc-9.0.2\\prac-prog-fun-0.0.0.1"
+sysconfdir = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\80fae8d2\\etc"
 
 getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: IO FilePath
 getBinDir = catchIO (getEnv "prac_prog_fun_bindir") (\_ -> return bindir)

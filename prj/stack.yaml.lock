@@ -3,7 +3,18 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages: []
+packages:
+- completed:
+    filepath: datfw-0.1.5.0.tar.gz
+    name: datfw
+    pantry-tree:
+      sha256: 7f031864ee5be6f91fafe3a021b0e199b73f3dd90398b8bbdf748bc2196b5095
+      size: 2431
+    sha256: d8157a4fa1f29606cf96429a3d388eba94214eec184a4e5961799b5fa2ee99e3
+    size: 31724
+    version: 0.1.5.0
+  original:
+    filepath: datfw-0.1.5.0.tar.gz
 snapshots:
 - completed:
     sha256: 98f5bee5bf07ff25263d7061e03c34595bfca543b611f9d3da5c95f2a6c8d723
