@@ -59,23 +59,148 @@ getForumR :: ForumId -> HandlerFor ForumsApp Html
 getForumR fid = do
     -- Get requested forum from data-base.
     -- Short-circuit (responds immediately) with a 'Not found' status if forum don't exist
+    -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+    -- getForum :: ForumId -> SqlPersistT (HandlerFor ForumsApp) (Maybe ForumD)
+    -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
+    -- forum :: ForumD
     forum <- runDbAction (getForum fid) >>= maybe notFound pure
+    -- maybeAuth :: HandlerFor ForumsApp (Maybe (UserId, UserD))
+    -- mbuser :: Maybe (UserId, UserD)
     mbuser <- maybeAuth
     -- Other processing (forms, ...)
-    -- ... A completar per l'estudiant
+    -- generateAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
+    -- newTopicForm :: AForm (HandlerFor ForumsApp) NewTopic
+    -- tfomrw :: WidgetFor ForumsApp ()
+    tfomrw <- generateAFormPost newTopicForm
     -- Return HTML content
+    -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
+    -- forumView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> WidgetFor ForumsApp ()
     defaultLayout $ forumView mbuser (fid, forum)
 
+-- funció per crear un nou fòrum sempre i quan l'usuari estigui autenticat
 postForumR :: ForumId -> HandlerFor ForumsApp Html
 postForumR fid = do
-    fail "A completar per l'estudiant"
+    user <- requireAuth
+    (tformr, tformw) <- runAFormPost newTopicForm
+    case tformr of
+        FormSuccess newtopic -> do
+            runDbAction $ addTopic (fst user) fid newtopic
+            redirect (ForumR fid)
+        _ ->
+            defaultLayout $ forumView (Just user) (fid, ForumD "???" "???" "???") tformw
+        
 
-
+-- funció per poder obetnir el tema dins d'un fòrum
 getTopicR :: TopicId -> HandlerFor ForumsApp Html
 getTopicR tid = do
-    fail "A completar per l'estudiant"
+    topic <- runDbAction (getTopic tid) >>= maybe notFound pure
+    mbuser <- maybeAuth
+    posts <- runDbAction (getPosts tid)
+    defaultLayout $ topicView mbuser (tid, topic) posts
 
+-- funció per crear un nou tema dins d'un fòrum
 postTopicR :: TopicId -> HandlerFor ForumsApp Html
 postTopicR tid = do
-    fail "A completar per l'estudiant"
+    FormSuccess newpost <- runAFormPost newPostForm
+    runDbAction $ addPost (fst user) tid newpost
+    redirect (TopicR tid)
+
+-- funció per poder obtenir un post dins d'un tema
+getPostR :: PostId -> HandlerFor ForumsApp Html
+getPostR pid = do
+    post <- runDbAction (getPost pid) >>= maybe notFound pure
+    mbuser <- maybeAuth
+    defaultLayout $ postView mbuser (pid, post)
+
+-- funció per poder editar un post dins d'un tema
+postEditPostR :: PostId -> HandlerFor ForumsApp Html
+postEditPostR pid = do
+    user <- requireAuth
+    (pformr, pformw) <- runAFormPost editPostForm
+    case pformr of
+        FormSuccess newpost -> do
+            runDbAction $ editPost (fst user) pid newpost
+            redirect (PostR pid)
+        _ ->
+            defaultLayou
+
+-- funció per poder editar un tema dins d'un fòrum
+postEditTopicR :: TopicId -> HandlerFor ForumsApp Html
+postEditTopicR tid = do
+    user <- requireAuth
+    (tformr, tformw) <- runAFormPost editTopicForm
+    case tformr of
+        FormSuccess newtopic -> do
+            runDbAction $ editTopic (fst user) tid newtopic
+            redirect (TopicR tid)
+        _ ->
+            defaultLayout
+
+-- funció per poder editar un fòrum
+postEditForumR :: ForumId -> HandlerFor ForumsApp Html
+postEditForumR fid = do
+    user <- requireAuth
+    (fformr, fformw) <- runAFormPost editForumForm
+    case fformr of
+        FormSuccess newforum -> do
+            runDbAction $ editForum (fst user) fid newforum
+            redirect (ForumR fid)
+        _ ->
+            defaultLayout
+
+-- funció per poder eliminar un post dins d'un tema
+postDeletePostR :: PostId -> HandlerFor ForumsApp Html
+postDeletePostR pid = do
+    user <- requireAuth
+    runDbAction $ deletePost (fst user) pid
+    redirect HomeR
+
+-- funció per poder eliminar un tema dins d'un fòrum
+postDeleteTopicR :: TopicId -> HandlerFor ForumsApp Html
+postDeleteTopicR tid = do
+    user <- requireAuth
+    runDbAction $ deleteTopic (fst user) tid
+    redirect HomeR
+
+-- funció per poder eliminar un fòrum
+postDeleteForumR :: ForumId -> HandlerFor ForumsApp Html
+postDeleteForumR fid = do
+    user <- requireAuth
+    runDbAction $ deleteForum (fst user) fid
+    redirect HomeR
+
+-- funció per poder eliminar un usuari
+postDeleteUserR :: UserId -> HandlerFor ForumsApp Html
+postDeleteUserR uid = do
+    user <- requireAuth
+    runDbAction $ deleteUser (fst user) uid
+    redirect HomeR
+
+-- funció per poder editar un usuari
+postEditUserR :: UserId -> HandlerFor ForumsApp Html
+postEditUserR uid = do
+    user <- requireAuth
+    (uformr, uformw) <- runAFormPost editUserForm
+    case uformr of
+        FormSuccess newuser -> do
+            runDbAction $ editUser (fst user) uid newuser
+            redirect (UserR uid)
+        _ ->
+            defaultLayout
+
+-- funció per poder obtenir un usuari
+getUserR :: UserId -> HandlerFor ForumsApp Html
+getUserR uid = do
+    user <- runDbAction (getUser uid) >>= maybe notFound pure
+    mbuser <- maybeAuth
+    defaultLayout $ userView mbuser (uid, user)
+
+-- funció per poder obtenir tots els usuaris
+getUsersR :: HandlerFor ForumsApp Html
+getUsersR = do
+    mbuser <- maybeAuth
+    users <- runDbAction getUsers
+    defaultLayout $ usersView mbuser users
+
+    
 

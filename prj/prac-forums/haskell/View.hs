@@ -55,3 +55,9 @@ forumView mbuser (fid, forum) = do
     topics <- runDbAction $ getTopicList fid
     $(widgetTemplFile $ templatesDir <> "/forum.html")
 
+topicView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> WidgetFor ForumsApp ()
+topicView mbuser (fid, forum) (tid, topic) = do
+    posts <- runDbAction $ getPostList tid
+    $(widgetTemplFile $ templatesDir <> "/topic.html")
+    
+
