@@ -338,6 +338,8 @@ getPost :: PostId -> DbM (Maybe PostD)
 getPost pid = do
     get pid
 
+data NewPost = NewPost { npMessage :: Markdown }
+
 addReply :: ForumId -> TopicId -> UserId -> Markdown -> DbM PostId
 addReply fid tid uid newtext = do
     -- Create the new post
