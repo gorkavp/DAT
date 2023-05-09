@@ -43,6 +43,7 @@ newTopicForm =
 -- newPostForm =
 --     NewPost <$> freq markdownField (withPlaceholder "Introduiu el text del missatge" "Text") Nothing
 
+-- funció que retorna un widget amb el contingut de la pàgina principal (amb els fòrums) sempre i quan l'usuari estigui autenticat
 getHomeR :: HandlerFor ForumsApp Html
 getHomeR = do
     -- Get authenticated user
@@ -52,6 +53,7 @@ getHomeR = do
     -- Return HTML content
     defaultLayout $ homeView mbuser fformw
 
+-- funció per crear un nou fòrum sempre i quan l'usuari estigui autenticat i el formulari sigui vàlid
 postHomeR :: HandlerFor ForumsApp Html
 postHomeR = do
     user <- requireAuth
@@ -63,7 +65,7 @@ postHomeR = do
         _ ->
             defaultLayout $ homeView (Just user) fformw
 
-
+-- funció que retorna un widget amb el contingut d'un fòrum concret (amb els seus temes) sempre i quan l'usuari estigui autenticat
 getForumR :: ForumId -> HandlerFor ForumsApp Html
 getForumR fid = do
     -- Get authenticated user
@@ -86,24 +88,26 @@ getForumR fid = do
     -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
     -- forumView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> WidgetFor ForumsApp ()
     defaultLayout $ forumView mbuser (fid, forum)
+    -- defaultLayout $ forumView tformw
 
--- funció per crear un nou fòrum sempre i quan l'usuari estigui autenticat
+-- funció que crea un nou tema dins d'un fòrum sempre i quan l'usuari estigui autenticat i el tema no existeixi
 postForumR :: ForumId -> HandlerFor ForumsApp Html
 postForumR fid = do
+    -- Get authenticated user
     -- requireAuth :: HandlerFor ForumsApp (UserId, UserD)
     -- user :: (UserId, UserD)
     user <- requireAuth
     -- runAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
-    -- newTopicForm :: AForm (HandlerFor ForumsApp) NewTopic
+    -- newTopicForm :: AForm (HandlerFor ForumsApp) NewForum
     -- (tformr, tformw) :: (FormResult NewTopic, WidgetFor ForumsApp ())
-    (tformr, tformw) <- runAFormPost newTopicForm
+    (tformr, tformw) <- runAFormPost newTopicForm 
     case tformr of
         -- FormSuccess :: a -> FormResult a
         -- newtopic :: NewTopic
         FormSuccess newtopic -> do
             -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
-            -- addTopic :: ForumId -> UserId -> NewTopic -> SqlPersistT (HandlerFor ForumsApp) (TopicId, PostId)
-            runDbAction $ addTopic fid (fst user) newtopic
+            -- addForum:: UserId -> NewForum -> SqlPersistT (HandlerFor ForumsApp) ForumId
+            runDbAction $ addTopic (fst user) fid newtopic
             -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
             -- ForumR :: ForumId -> Route ForumsApp
             redirect (ForumR fid)    
@@ -118,9 +122,10 @@ postForumR fid = do
             defaultLayout $ forumView (Just user) (fid, forum)
         
 
--- funció per poder obetnir el tema dins d'un fòrum
+-- funció per poder obetnir el tema dins d'un fòrum sempre i quan l'usuari estigui autenticat
 getTopicR :: TopicId -> HandlerFor ForumsApp Html
 getTopicR tid = do
+    -- Get authenticated user
     -- maybeAuth :: HandlerFor ForumsApp (Maybe (UserId, UserD))
     -- mbuser :: Maybe (UserId, UserD)
     mbuser <- maybeAuth
@@ -129,17 +134,14 @@ getTopicR tid = do
     -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
     -- topic :: TopicD
     topic <- runDbAction (getTopic tid) >>= maybe notFound pure
-    -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
-    -- newPostForm :: SqlPersistT (HandlerFor ForumsApp) (FormResult NewPost, WidgetFor ForumsApp ())
-    -- post :: (FormResult NewPost, WidgetFor ForumsApp ())
-    -- post <- generateAFormPost newPostForm
     -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
     -- topicView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> WidgetFor ForumsApp ()
-    defaultLayout $ topicView mbuser  (tid, topic)
+    defaultLayout $ topicView mbuser
 
--- funció per crear un nou tema dins d'un fòrum
+-- funció per crear un nou tema dins d'un fòrum sempre i quan l'usuari estigui autenticat i el tema no existeixi
 postTopicR :: TopicId -> HandlerFor ForumsApp Html
 postTopicR tid = do
+    -- Get authenticated user
     -- requireAuth :: HandlerFor ForumsApp (UserId, UserD)
     -- user :: (UserId, UserD)
     user <- requireAuth
@@ -153,9 +155,9 @@ postTopicR tid = do
         FormSuccess newtopic -> do
             -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
             -- addTopic :: ForumId -> UserId -> NewTopic -> SqlPersistT (HandlerFor ForumsApp) (TopicId, PostId)
+            runDbAction $ addTopic tid (fst user) newtopic
             -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
             -- TopicR :: TopicId -> Route ForumsApp
-            runDbAction $ addTopic tid (fst user) newtopic
             redirect (TopicR tid)
         _ -> do
             -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
@@ -164,8 +166,8 @@ postTopicR tid = do
             -- topic :: TopicD
             topic <- runDbAction (getTopic tid) >>= maybe notFound pure
             -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
-            -- topicView :: Maybe (UserId, UserD) -> (TopicId, TopicD) -> [PostD] -> WidgetFor ForumsApp ()
-            defaultLayout $ topicView (Just user) (tid, topic) 
+            -- topicView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> WidgetFor ForumsApp ()
+            defaultLayout $ topicView mbuser 
 
 -- -- funció per poder obtenir un post dins d'un tema
 -- getPostR :: PostId -> HandlerFor ForumsApp Html

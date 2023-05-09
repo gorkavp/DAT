@@ -5,7 +5,7 @@ where
 import           Network.Wai
 import           Network.Wai.Handler.Warp (runEnv)
 
-import           Handler_T2
+import           Handler
 
 import           Data.Text (Text)
 import qualified Data.Text as T
@@ -107,9 +107,7 @@ playString :: String -> GameState -> GameState
     -- playChar x game
     -- playString xs
 -- foldl :: (b -> a -> b) -> b -> [a] -> b
--- playString xs game = foldl (flip playChar) game xs
--- foldr :: (a -> b -> b) -> b -> [a] -> b
-playString xs game = foldr playChar game xs -- utilitzem foldr per a que vagi de dreta a esquerra aplicant playChar a cada un dels caràcters del String
+playString xs game = foldl (flip playChar) game xs
 
 -- funció que a partir d'un text i un estat inicial retorna l'estat final
 playText :: Text -> GameState -> GameState
