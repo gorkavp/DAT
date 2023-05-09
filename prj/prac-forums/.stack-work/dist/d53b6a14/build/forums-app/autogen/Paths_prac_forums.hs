@@ -30,12 +30,12 @@ version :: Version
 version = Version [0,0,0,1] []
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 
-bindir     = "C:\\Users\\Gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\06d9469a\\bin"
-libdir     = "C:\\Users\\Gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\06d9469a\\lib\\x86_64-windows-ghc-9.0.2\\prac-forums-0.0.0.1-1rprr2DZU2NJdAxZdI9G9L-forums-app"
-dynlibdir  = "C:\\Users\\Gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\06d9469a\\lib\\x86_64-windows-ghc-9.0.2"
-datadir    = "C:\\Users\\Gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\06d9469a\\share\\x86_64-windows-ghc-9.0.2\\prac-forums-0.0.0.1"
-libexecdir = "C:\\Users\\Gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\06d9469a\\libexec\\x86_64-windows-ghc-9.0.2\\prac-forums-0.0.0.1"
-sysconfdir = "C:\\Users\\Gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\06d9469a\\etc"
+bindir     = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\80fae8d2\\bin"
+libdir     = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\80fae8d2\\lib\\x86_64-windows-ghc-9.0.2\\prac-forums-0.0.0.1-1rprr2DZU2NJdAxZdI9G9L-forums-app"
+dynlibdir  = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\80fae8d2\\lib\\x86_64-windows-ghc-9.0.2"
+datadir    = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\80fae8d2\\share\\x86_64-windows-ghc-9.0.2\\prac-forums-0.0.0.1"
+libexecdir = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\80fae8d2\\libexec\\x86_64-windows-ghc-9.0.2\\prac-forums-0.0.0.1"
+sysconfdir = "C:\\Users\\gorka\\VisualStudioCodeProjects\\Haskell\\DAT\\prj\\.stack-work\\install\\80fae8d2\\etc"
 
 getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: IO FilePath
 getBinDir = catchIO (getEnv "prac_forums_bindir") (\_ -> return bindir)
