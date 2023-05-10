@@ -83,11 +83,11 @@ getForumR fid = do
     -- generateAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
     -- newTopicForm :: AForm (HandlerFor ForumsApp) NewTopic
     -- tformw :: WidgetFor ForumsApp ()
-    tformww <- generateAFormPost newTopicForm
+    tformw <- generateAFormPost newTopicForm
     -- Return HTML content
     -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
     -- forumView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> WidgetFor ForumsApp ()
-    defaultLayout $ forumView mbuser (fid, forum)
+    defaultLayout $ forumView mbuser (fid, forum) tformw
     -- defaultLayout $ forumView tformw
 
 -- funció que crea un nou tema dins d'un fòrum sempre i quan l'usuari estigui autenticat i el tema no existeixi
