@@ -77,9 +77,35 @@ $if{ isJust mbuser }
 <div class="row">
   <div class="col-sm-2"></div>
   <div class="col-sm-10">
+    <form role="form-group required" method="POST" action="@{ForumR fid}">
+      <label>Qüestió:</label>
+      <input
+        type="text"
+        name="subject"
+        class="form-control"
+        placeholder="Introdueix el títol de la qüestió"
+        required
+        autofocus
+      />
+      <label>Missatge:</label>
+      <textarea
+        name="body"
+        class="form-control"
+        rows="5"
+        placeholder="Introdueix la descripció de la questió"
+        required
+      ></textarea>
+      <button type="submit" class="btn btn-success mt-3">Nova qüestió</button>
+    </form>
+  </div>
+</div>
+$end $if{ isJust mbuser }
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-10">
     <form role="form" method="POST" action="@{ForumR fid}">
-      ^{tformw}
-      <button type="submit" class="btn btn-success">Nou topic</button>
+      ^{fformw}
+      <button type="submit" class="btn btn-success">Nou fòrum</button>
     </form>
   </div>
 </div>

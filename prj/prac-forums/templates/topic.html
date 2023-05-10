@@ -10,7 +10,7 @@
   <div class="panel-footer">
     <p>
       <span class="small">Per: ^{ uidNameWidget (tdUserId topic) }</span>
-      <span class="small">Iniciada: ^{ dateWidget (tdCreated topic) }</span>
+      <span class="small">Iniciada: ^{ dateWidget (tdStarted topic) }</span>
       <span class="small">Posts: #{ tdPostCount topic }</span>
     </p>
   </div>
@@ -28,9 +28,37 @@
     $forall{ (pid, post) <- posts }
     <tr>
       <td>^{ uidNameWidget (pdUserId post) }</td>
-      <td>#{ pdContent post }</td>
-      <td>^{ dateWidget (pdCreated post) }</td>
+      <td>#{ pdMessage post }</td>
+      <td>^{ dateWidget (pdPosted post) }</td>
     </tr>
     $end
   </tbody>
 </table>
+
+$if{ isJust mbuser }
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-10">
+    <form role="form-group required" method="POST" action="@{ForumR fid}">
+      <label>Resposta:</label>
+      <input
+        type="text"
+        name="subject"
+        class="form-control"
+        placeholder="Introdueix el títol de la resposta"
+        required
+        autofocus
+      />
+      <label>Contingut:</label>
+      <textarea
+        name="body"
+        class="form-control"
+        rows="5"
+        placeholder="Introdueix el contingut de la resposta"
+        required
+      ></textarea>
+      <button type="submit" class="btn btn-success mt-3">Nova resposta</button>
+    </form>
+  </div>
+</div>
+$end

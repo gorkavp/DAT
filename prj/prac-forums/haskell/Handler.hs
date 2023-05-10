@@ -87,8 +87,7 @@ getForumR fid = do
     -- Return HTML content
     -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
     -- forumView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> WidgetFor ForumsApp ()
-    defaultLayout $ forumView mbuser (fid, forum) tformw
-    -- defaultLayout $ forumView tformw
+    defaultLayout $ forumView mbuser (fid, forum)
 
 -- funció que crea un nou tema dins d'un fòrum sempre i quan l'usuari estigui autenticat i el tema no existeixi
 postForumR :: ForumId -> HandlerFor ForumsApp Html
