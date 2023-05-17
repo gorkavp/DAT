@@ -173,8 +173,8 @@ postTopicR tid = do
         -- newPost :: NewPost
         FormSuccess newPost -> do
             -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
-            -- addTopic :: ForumId -> UserId -> NewPost -> SqlPersistT (HandlerFor ForumsApp) (TopicId, PostId)
-            runDbAction $ addTopic fid (fst user) newPost
+            -- addReply :: ForumId -> TopicId -> UserId -> Markdown -> SqlPersistT (HandlerFor ForumsApp) PostId
+            runDbAction $ addReply fid tid (fst user) (npMessage newPost)
             -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
             -- TopicR :: TopicId -> Route ForumsApp
             redirect (TopicR tid)
@@ -187,21 +187,6 @@ postTopicR tid = do
             -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
             -- topicView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> WidgetFor ForumsApp () -> WidgetFor ForumsApp
             defaultLayout $ topicView (Just user) (fid, forumD) (tid, topicD) pformw
-
--- -- funció per poder obtenir un post dins d'un tema
--- getPostR :: PostId -> HandlerFor ForumsApp Html
--- getPostR pid = do
---     -- maybeAuth :: HandlerFor ForumsApp (Maybe (UserId, UserD))
---     -- mbuser :: Maybe (UserId, UserD)
---     mbuser <- maybeAuth
---     -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
---     -- getPost :: PostId -> SqlPersistT (HandlerFor ForumsApp) (Maybe PostD)
---     -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
---     -- post :: PostD
---     post <- runDbAction (getPost pid) >>= maybe notFound pure
---     -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
---     -- postView :: Maybe (UserId, UserD) -> (PostId, PostD) -> WidgetFor ForumsApp ()
---     defaultLayout $ postView mbuser (pid, post)
 
 -- -- funció per poder editar un post dins d'un tema
 -- postEditPostR :: PostId -> HandlerFor ForumsApp Html
