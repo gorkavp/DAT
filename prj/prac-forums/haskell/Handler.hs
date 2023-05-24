@@ -80,8 +80,8 @@ getForumR fid = do
     -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
     -- getForum :: ForumId -> SqlPersistT (HandlerFor ForumsApp) (Maybe ForumD)
     -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
-    -- forum :: ForumD
-    forum <- runDbAction (getForum fid) >>= maybe notFound pure
+    -- forumD :: ForumD
+    forumD <- runDbAction (getForum fid) >>= maybe notFound pure
     -- Other processing (forms, ...)
     -- generateAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
     -- newTopicForm :: AForm (HandlerFor ForumsApp) NewTopic
@@ -90,7 +90,7 @@ getForumR fid = do
     -- Return HTML content
     -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
     -- forumView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> WidgetFor ForumsApp () -> WidgetFor ForumsApp
-    defaultLayout $ forumView mbuser (fid, forum) tformw
+    defaultLayout $ forumView mbuser (fid, forumD) tformw
 
 -- funció que crea un nou tema dins d'un fòrum sempre i quan l'usuari estigui autenticat i el tema no existeixi
 postForumR :: ForumId -> HandlerFor ForumsApp Html
@@ -117,11 +117,24 @@ postForumR fid = do
             -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
             -- getForum :: ForumId -> SqlPersistT (HandlerFor ForumsApp) (Maybe ForumD)
             -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
-            -- forum :: ForumD
-            forum <- runDbAction (getForum fid) >>= maybe notFound pure
+            -- forumD :: ForumD
+            forumD <- runDbAction (getForum fid) >>= maybe notFound pure
             -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
             -- forumView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> WidgetFor ForumsApp ()
-            defaultLayout $ forumView (Just user) (fid, forum) tformw
+            defaultLayout $ forumView (Just user) (fid, forumD) tformw
+
+deleteForumR :: ForumId -> HandlerFor ForumsApp Html
+deleteForumR fid = do
+    -- Get authenticated user
+    -- requireAuth :: HandlerFor ForumsApp (UserId, UserD)
+    -- user :: (UserId, UserD)
+    user <- requireAuth
+    -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+    -- deleteForum :: ForumId -> SqlPersistT (HandlerFor ForumsApp) ()
+    runDbAction $ deleteForum fid
+    -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
+    -- HomeR :: Route ForumsApp
+    redirect HomeR
         
 
 -- funció per poder obetnir el tema dins d'un fòrum sempre i quan l'usuari estigui autenticat
@@ -188,59 +201,78 @@ postTopicR tid = do
             -- topicView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> WidgetFor ForumsApp () -> WidgetFor ForumsApp
             defaultLayout $ topicView (Just user) (fid, forumD) (tid, topicD) pformw
 
--- -- funció per poder editar un post dins d'un tema
--- postEditPostR :: PostId -> HandlerFor ForumsApp Html
--- postEditPostR pid = do
---     user <- requireAuth
---     (pformr, pformw) <- runAFormPost editPostForm
---     case pformr of
---         FormSuccess newpost -> do
---             runDbAction $ editPost (fst user) pid newpost
---             redirect (PostR pid)
---         _ ->
---             defaultLayou
+deleteTopicR :: TopicId -> HandlerFor ForumsApp Html
+deleteTopicR tid = do
+    -- Get authenticated user
+    -- requireAuth :: HandlerFor ForumsApp (UserId, UserD)
+    -- user :: (UserId, UserD)
+    user <- requireAuth
+     -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+    -- getTopic :: TopicId -> SqlPersistT (HandlerFor ForumsApp) (Maybe TopicD)
+    -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
+    -- topicD :: TopicD
+    topicD <- runDbAction (getTopic tid) >>= maybe notFound pure
+    -- tdForumId :: TopicD -> ForumId
+    let fid = tdForumId topicD
+    -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+    -- deleteTopic :: ForumId -> TopicId -> SqlPersistT (HandlerFor ForumsApp) ()
+    runDbAction $ deleteTopic fid tid
+    -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
+    -- HomeR :: Route ForumsApp
+    redirect (ForumR fid)
 
--- -- funció per poder editar un tema dins d'un fòrum
--- postEditTopicR :: TopicId -> HandlerFor ForumsApp Html
--- postEditTopicR tid = do
---     user <- requireAuth
---     (tformr, tformw) <- runAFormPost editTopicForm
---     case tformr of
---         FormSuccess newtopic -> do
---             runDbAction $ editTopic (fst user) tid newtopic
---             redirect (TopicR tid)
---         _ ->
---             defaultLayout
+-- getPostR :: PostId -> HandlerFor ForumsApp Html
+-- getPostR pid = do
+--     -- Get authenticated user
+--     -- maybeAuth :: HandlerFor ForumsApp (Maybe (UserId, UserD))
+--     -- mbuser :: Maybe (UserId, UserD)
+--     mbuser <- maybeAuth
+--     -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+--     -- getPost :: PostId -> SqlPersistT (HandlerFor ForumsApp) (Maybe PostD)
+--     -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
+--     -- postD :: PostD
+--     postD <- runDbAction (getPost pid) >>= maybe notFound pure
+--     -- tdTopicId :: PostD -> TopicId
+--     let tid = pdTopicId postD
+--     -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+--     -- getTopic :: TopicId -> SqlPersistT (HandlerFor ForumsApp) (Maybe TopicD)
+--     -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
+--     -- topicD :: TopicD
+--     topicD <- runDbAction (getTopic tid) >>= maybe notFound pure
+--     -- tdForumId :: TopicD -> ForumId
+--     let fid = tdForumId topicD
+--     -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+--     -- getForum :: ForumId -> SqlPersistT (HandlerFor ForumsApp) (Maybe ForumD)
+--     -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
+--     -- forumD :: ForumD
+--     forumD <- runDbAction (getForum fid) >>= maybe notFound pure
+--     -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
+--     -- postView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> (PostId, PostD) -> WidgetFor ForumsApp
+--     defaultLayout $ postView mbuser (fid, forumD) (tid, topicD) (pid, postD)
 
--- -- funció per poder editar un fòrum
--- postEditForumR :: ForumId -> HandlerFor ForumsApp Html
--- postEditForumR fid = do
+-- deletePostR :: PostId -> HandlerFor ForumsApp Html
+-- deleteTopicR pid = do
+--     -- Get authenticated user
+--     -- requireAuth :: HandlerFor ForumsApp (UserId, UserD)
+--     -- user :: (UserId, UserD)
 --     user <- requireAuth
---     (fformr, fformw) <- runAFormPost editForumForm
---     case fformr of
---         FormSuccess newforum -> do
---             runDbAction $ editForum (fst user) fid newforum
---             redirect (ForumR fid)
---         _ ->
---             defaultLayout
-
--- -- funció per poder eliminar un post dins d'un tema
--- postDeletePostR :: PostId -> HandlerFor ForumsApp Html
--- postDeletePostR pid = do
---     user <- requireAuth
---     runDbAction $ deletePost (fst user) pid
---     redirect HomeR
-
--- -- funció per poder eliminar un tema dins d'un fòrum
--- postDeleteTopicR :: TopicId -> HandlerFor ForumsApp Html
--- postDeleteTopicR tid = do
---     user <- requireAuth
---     runDbAction $ deleteTopic (fst user) tid
---     redirect HomeR
-
--- -- funció per poder eliminar un fòrum
--- postDeleteForumR :: ForumId -> HandlerFor ForumsApp Html
--- postDeleteForumR fid = do
---     user <- requireAuth
---     runDbAction $ deleteForum (fst user) fid
---     redirect HomeR
+--     -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+--     -- getPost :: PostId -> SqlPersistT (HandlerFor ForumsApp) (Maybe PostD)
+--     -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
+--     -- postD :: PostD
+--     postD <- runDbAction (getPost pid) >>= maybe notFound pure
+--     -- pdTopicId :: PostD -> TopicId
+--     let tid = pdTopicId postD
+--     -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+--     -- getTopic :: TopicId -> SqlPersistT (HandlerFor ForumsApp) (Maybe TopicD)
+--     -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
+--     -- topicD :: TopicD
+--     topicD <- runDbAction (getTopic tid) >>= maybe notFound pure
+--     -- tdForumId :: TopicD -> ForumId
+--     let fid = tdForumId topicD
+--     -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+--     -- deletePost :: ForumId -> TopicId -> PostId -> SqlPersistT (HandlerFor ForumsApp) ()
+--     runDbAction $ deletePost fid tid pid
+--     -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
+--     -- ForumR :: ForumId -> Route ForumsApp
+--     redirect (TopicR tid)

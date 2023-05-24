@@ -35,15 +35,22 @@ instance Dispatch ForumsApp where
             <||> route ( onStatic ["forums"] <&&> onDynamic ) ForumR
                 [ onMethod1 "GET" getForumR
                 , onMethod1 "POST" postForumR
+                , onMethod1 "DELETE" deleteForumR
                 ]
             <||> route ( onStatic ["topics"] <&&> onDynamic ) TopicR
                 [ onMethod1 "GET" getTopicR
                 , onMethod1 "POST" postTopicR
+                , onMethod1 "DELETE" deleteTopicR
                 ]
+            -- <||> route ( onStatic ["posts"] <&&> onDynamic ) PostR
+            --     [ onMethod1 "GET" getPostR
+            --     , onMethod1 "DELETE" deletePostR
+            --     ]
             <||> route ( onStatic ["login"] ) LoginR
                 [ onMethod "GET" getLoginR
                 , onMethod "POST" postLoginR
                 ]
             <||> route ( onStatic ["logout"] ) LogoutR
                 (onAnyMethod handleLogoutR)
+            
 

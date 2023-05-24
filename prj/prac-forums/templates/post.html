@@ -1,0 +1,27 @@
+<nav class="bg-light mb-3">
+  <a href="@{HomeR}">Home</a> / <a href="@{ForumR fid}">#{ fdTitle forum }</a> /
+  <a href="@{TopicR tid}">#{ tdSubject topic }</a> /
+  <span>#{ pdUserId post }</span>
+</nav>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">#{ pdMessage post }</h3>
+  </div>
+  <div class="panel-footer">
+    <p>
+      <span class="small">Enviat: ^{ dateWidget (pdPosted post) }</span>
+    </p>
+  </div>
+</div>
+
+$if{ isJust mbuser }
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-10">
+    <form role="form" method="DELETE" action="@{PostR tid}">
+      <button type="submit" class="btn btn-danger">Eliminar</button>
+    </form>
+  </div>
+</div>
+$end
