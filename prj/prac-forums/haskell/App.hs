@@ -41,11 +41,13 @@ instance Dispatch ForumsApp where
                 [ onMethod1 "GET" getTopicR
                 , onMethod1 "POST" postTopicR
                 , onMethod1 "DELETE" deleteTopicR
+                -- , onMethod1 "PUT" editTopicR
                 ]
-            -- <||> route ( onStatic ["posts"] <&&> onDynamic ) PostR
-            --     [ onMethod1 "GET" getPostR
-            --     , onMethod1 "DELETE" deletePostR
-            --     ]
+            <||> route ( onStatic ["post"] <&&> onDynamic ) PostR
+                [ onMethod1 "GET" getPostR
+                , onMethod1 "DELETE" deletePostR
+                -- , onMethod1 "PUT" editPostR
+                ]
             <||> route ( onStatic ["login"] ) LoginR
                 [ onMethod "GET" getLoginR
                 , onMethod "POST" postLoginR

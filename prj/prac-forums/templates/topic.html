@@ -28,7 +28,7 @@
     $forall{ (pid, post) <- posts }
     <tr>
       <td>^{ uidNameWidget (pdUserId post) }</td>
-      <td>#{ pdMessage post }</td>
+      <td><a href="@{PostR pid}">#{ pdMessage post }</a></td>
       <td>^{ dateWidget (pdPosted post) }</td>
     </tr>
     $end

@@ -5,7 +5,7 @@ C:\Users\Gorka\AppData\Local\Programs\stack\x86_64-windows\ghc-9.0.2\lib\x86_64-
 ? C:\Users\Gorka\VisualStudioCodeProjects\Haskell\DAT\prj\prac-forums\.stack-work\dist\d53b6a14\build\forums-app\autogen\cabal_macros.h
 : hash: 95996d4f6b0e84d217f6ec5f81231f5a6ba1448cd46c97764f7c78c1bd4fa324
 C:\Users\Gorka\VisualStudioCodeProjects\Haskell\DAT\prj\prac-forums\haskell\App.hs:
-  hash: e5b3fc31560806b228b76f6e69946dfbc755e817dd3b15eb5554ee5a6bdba1c6
+  hash: a38fbff6a0be0201787f468928890b5f217f5e7b7a3f1d6c9c4008d2d4757f76
 C:\Users\Gorka\VisualStudioCodeProjects\Haskell\DAT\prj\prac-forums\haskell\AuthHandler.hs:
   hash: df5e98bfabd10adefd8f9222e21275806ee46db80cc05be3fc835abaab8c96e2
 C:\Users\Gorka\VisualStudioCodeProjects\Haskell\DAT\prj\prac-forums\haskell\Config.hs:
@@ -13,22 +13,24 @@ C:\Users\Gorka\VisualStudioCodeProjects\Haskell\DAT\prj\prac-forums\haskell\Conf
 C:\Users\Gorka\VisualStudioCodeProjects\Haskell\DAT\prj\prac-forums\haskell\Db.hs:
   hash: c8117c540b67283a670175d599fa028e87451229376997032207bd4a6d21602e
 C:\Users\Gorka\VisualStudioCodeProjects\Haskell\DAT\prj\prac-forums\haskell\Found.hs:
-  hash: c41a4d6a3878055d88141d9d3bd90bbd763e8242915bcb91d0e7ffb3d7bae90f
+  hash: 1a059f8692dfbda0c4501698c968cb0f1a34c69da626f8f3aaa4f766fe452d97
 C:\Users\Gorka\VisualStudioCodeProjects\Haskell\DAT\prj\prac-forums\haskell\Handler.hs:
-  hash: 712066cae7aee8074d889969d4ebfe507c7bef78a644d74ea355820645fcf6bf
+  hash: a33e043da93b88fd3a9b668d31e4e45af674097ccd03ba647d5c0fbd36a5832f
 C:\Users\Gorka\VisualStudioCodeProjects\Haskell\DAT\prj\prac-forums\haskell\Main.hs:
   hash: 1fa6927266c80629b777d9659614fbcc388ae91523798955101893b4c780a7fd
 C:\Users\Gorka\VisualStudioCodeProjects\Haskell\DAT\prj\prac-forums\haskell\Model.hs:
   hash: d2fff07f4d944f26b4182a20a5a6116f2ca5746637c409eceff5e5ffe97783df
 C:\Users\Gorka\VisualStudioCodeProjects\Haskell\DAT\prj\prac-forums\haskell\View.hs:
-  hash: 335d268faf565b0ff8bf067ac2d282d40e1ed74e3cd048405bc8b4e5470846e0
+  hash: 491090d36d2a72f3e7920ab092e5cbaea2765f8fd4663eed40718f6196197381
 C:\Users\Gorka\VisualStudioCodeProjects\Haskell\DAT\prj\prac-forums\prac-forums.cabal:
   hash: 9978731b16feea8b1f8ba6d25e80c8b209bfce6fb309f62127b1e41bc47eeb6e
 C:\Users\Gorka\VisualStudioCodeProjects\Haskell\DAT\prj\prac-forums\templates\default-layout.html:
   hash: 456ae54ac146a4765ab1e770fff28774792c04f306651ec29286d8d6c4bd583a
 C:\Users\Gorka\VisualStudioCodeProjects\Haskell\DAT\prj\prac-forums\templates\forum.html:
-  hash: db3d88332cddddbaa7dd9d8f0c5b4c8ed1c82b15d5dfbb80b5894e54b352dcdc
+  hash: 26a2ced39b88fbd48918951605fd4ff2e112b0067f10ee428a2b3bb3c6225243
 C:\Users\Gorka\VisualStudioCodeProjects\Haskell\DAT\prj\prac-forums\templates\home.html:
   hash: 0bdd6eea0ffc30b1694ead7dcbf22ecc74edc6097f4b8c58bee70e64e8cfe0cb
+C:\Users\Gorka\VisualStudioCodeProjects\Haskell\DAT\prj\prac-forums\templates\post.html:
+  hash: 060c3b257d194733ad6f4596319fffa964b08cb0c3d7a542c601c0ebe388499f
 C:\Users\Gorka\VisualStudioCodeProjects\Haskell\DAT\prj\prac-forums\templates\topic.html:
-  hash: 498968fd27eda0354083479c494f507473b9214a88e38801d3c3eaf54997e7b6
+  hash: ad9b67c06f5b1b19c0c552a6d65f2871d8579823fa5ef18ef032376877fc7f87

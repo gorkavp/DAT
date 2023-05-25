@@ -1,7 +1,6 @@
 <nav class="bg-light mb-3">
   <a href="@{HomeR}">Home</a> / <a href="@{ForumR fid}">#{ fdTitle forum }</a> /
-  <a href="@{TopicR tid}">#{ tdSubject topic }</a> /
-  <span>#{ pdUserId post }</span>
+  <a href="@{TopicR tid}">#{ tdSubject topic }</a>
 </nav>
 
 <div class="panel panel-default">
@@ -17,11 +16,20 @@
 
 $if{ isJust mbuser }
 <div class="row">
-  <div class="col-sm-2"></div>
-  <div class="col-sm-10">
-    <form role="form" method="DELETE" action="@{PostR tid}">
-      <button type="submit" class="btn btn-danger">Eliminar</button>
-    </form>
+  <div class="col-sm-12 text-left mt-3">
+    <button type="button" class="btn btn-danger" onClick="deletePost()">
+      Eliminar resposta
+    </button>
   </div>
 </div>
 $end
+
+<script type="text/javascript">
+  function deletePost() {
+    if (confirm("Segur que vols eliminar aquesta resposta?")) {
+      fetch("@{PostR pid}", { method: "DELETE" }).then(function (response) {
+        window.location.href = "@{TopicR tid}";
+      });
+    }
+  }
+</script>

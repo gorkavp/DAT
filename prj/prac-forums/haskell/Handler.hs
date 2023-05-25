@@ -32,19 +32,25 @@ markdownField = checkMap
 newForumForm :: AForm (HandlerFor ForumsApp) NewForum
 newForumForm =
     -- NewForum :: Text -> Markdown -> NewForum
-    NewForum <$> freq textField (withPlaceholder "Introduiu el títol del fòrum" "Titol") Nothing
-             <*> freq markdownField (withPlaceholder "Introduiu la descripció del fòrum" "Descripció") Nothing
+    NewForum <$> freq textField (withPlaceholder "Introduïu el títol del fòrum" "Titol") Nothing
+             <*> freq markdownField (withPlaceholder "Introduïu la descripció del fòrum" "Descripció") Nothing
 
 newTopicForm :: AForm (HandlerFor ForumsApp) NewTopic
 newTopicForm =
     -- NewTopic :: Text -> Markdown -> NewTopic
-    NewTopic <$> freq textField (withPlaceholder "Introduiu el títol del tema" "Titol") Nothing
-             <*> freq markdownField (withPlaceholder "Introduiu el text del tema" "Text") Nothing
+    NewTopic <$> freq textField (withPlaceholder "Introduïu el títol de la qüestió" "Titol") Nothing
+             <*> freq markdownField (withPlaceholder "Introduïu la descripció de la qüestió" "Text") Nothing
 
 newPostForm :: AForm (HandlerFor ForumsApp) NewPost
 newPostForm =
     -- NewPost :: Markdown -> NewPost
-    NewPost <$> freq markdownField (withPlaceholder "Introduiu el text del missatge" "Text") Nothing
+    NewPost <$> freq markdownField (withPlaceholder "Introduïu el text de la resposta" "Text") Nothing
+
+editForumForm :: AForm (HandlerFor ForumsApp) NewForum
+editForumForm =
+    -- NewForum :: Text -> Markdown -> NewForum
+    NewForum <$> freq textField (withPlaceholder "Introduïu el títol del fòrum" "Titol") Nothing
+             <*> freq markdownField (withPlaceholder "Introduïu la descripció del fòrum" "Descripció") Nothing
 
 -- funció que retorna un widget amb el contingut de la pàgina principal (amb els fòrums) sempre i quan l'usuari estigui autenticat
 getHomeR :: HandlerFor ForumsApp Html
@@ -82,15 +88,18 @@ getForumR fid = do
     -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
     -- forumD :: ForumD
     forumD <- runDbAction (getForum fid) >>= maybe notFound pure
-    -- Other processing (forms, ...)
     -- generateAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
     -- newTopicForm :: AForm (HandlerFor ForumsApp) NewTopic
     -- tformw :: WidgetFor ForumsApp ()
     tformw <- generateAFormPost newTopicForm
+    -- generateAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
+    -- editForumForm :: AForm (HandlerFor ForumsApp) NewForum
+    -- fformw :: WidgetFor ForumsApp ()
+    fformw <- generateAFormPost editForumForm
     -- Return HTML content
     -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
-    -- forumView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> WidgetFor ForumsApp () -> WidgetFor ForumsApp
-    defaultLayout $ forumView mbuser (fid, forumD) tformw
+    -- forumView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> WidgetFor ForumsApp () -> WidgetFor ForumsApp () -> WidgetFor ForumsApp
+    defaultLayout $ forumView mbuser (fid, forumD) tformw fformw
 
 -- funció que crea un nou tema dins d'un fòrum sempre i quan l'usuari estigui autenticat i el tema no existeixi
 postForumR :: ForumId -> HandlerFor ForumsApp Html
@@ -114,14 +123,9 @@ postForumR fid = do
             -- ForumR :: ForumId -> Route ForumsApp
             redirect (ForumR fid)    
         _ -> do
-            -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
-            -- getForum :: ForumId -> SqlPersistT (HandlerFor ForumsApp) (Maybe ForumD)
-            -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
-            -- forumD :: ForumD
-            forumD <- runDbAction (getForum fid) >>= maybe notFound pure
-            -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
-            -- forumView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> WidgetFor ForumsApp ()
-            defaultLayout $ forumView (Just user) (fid, forumD) tformw
+            -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
+            -- ForumR :: ForumId -> Route ForumsApp
+            redirect (ForumR fid) 
 
 deleteForumR :: ForumId -> HandlerFor ForumsApp Html
 deleteForumR fid = do
@@ -135,6 +139,31 @@ deleteForumR fid = do
     -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
     -- HomeR :: Route ForumsApp
     redirect HomeR
+
+editForumR :: ForumId -> HandlerFor ForumsApp Html
+editForumR fid = do
+    -- Get authenticated user
+    -- requireAuth :: HandlerFor ForumsApp (UserId, UserD)
+    -- user :: (UserId, UserD)
+    user <- requireAuth
+    -- runAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
+    -- editForumForm :: AForm (HandlerFor ForumsApp) EditForum
+    -- (fformr, fformw) :: (FormResult EditForum, WidgetFor ForumsApp ())
+    (fformr, fformw) <- runAFormPost editForumForm
+    case fformr of
+        -- FormSuccess :: a -> FormResult a
+        -- editForum :: EditForum
+        FormSuccess newForum -> do
+            -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+            -- editForum :: ForumId -> Text -> Markdown -> SqlPersistT (HandlerFor ForumsApp) ()
+            runDbAction $ editForum fid (nfTitle newForum) (nfDescription newForum)
+            -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
+            -- ForumR :: ForumId -> Route ForumsApp
+            redirect (ForumR fid)
+        _ ->
+            -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
+            -- ForumR :: ForumId -> Route ForumsApp
+            redirect (ForumR fid)
         
 
 -- funció per poder obetnir el tema dins d'un fòrum sempre i quan l'usuari estigui autenticat
@@ -170,10 +199,6 @@ postTopicR tid = do
     -- requireAuth :: HandlerFor ForumsApp (UserId, UserD)
     -- user :: (UserId, UserD)
     user <- requireAuth
-    -- runAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
-    -- newPostForm :: AForm (HandlerFor ForumsApp) NewPost
-    -- (pformr, pformw) :: (FormResult NewPost, WidgetFor ForumsApp ())
-    (pformr, pformw) <- runAFormPost newPostForm
     -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
     -- getTopic :: TopicId -> SqlPersistT (HandlerFor ForumsApp) (Maybe TopicD)
     -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
@@ -181,6 +206,10 @@ postTopicR tid = do
     topicD <- runDbAction (getTopic tid) >>= maybe notFound pure
     -- tdForumId :: TopicD -> ForumId
     let fid = tdForumId topicD
+    -- runAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
+    -- newPostForm :: AForm (HandlerFor ForumsApp) NewPost
+    -- (pformr, pformw) :: (FormResult NewPost, WidgetFor ForumsApp ())
+    (pformr, pformw) <- runAFormPost newPostForm
     case pformr of
         -- FormSuccess :: a -> FormResult a
         -- newPost :: NewPost
@@ -192,14 +221,9 @@ postTopicR tid = do
             -- TopicR :: TopicId -> Route ForumsApp
             redirect (TopicR tid)
         _ -> do
-            -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
-            -- getForum :: ForumId -> SqlPersistT (HandlerFor ForumsApp) (Maybe ForumD)
-            -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
-            -- forumD :: ForumD
-            forumD <- runDbAction (getForum fid) >>= maybe notFound pure
-            -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
-            -- topicView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> WidgetFor ForumsApp () -> WidgetFor ForumsApp
-            defaultLayout $ topicView (Just user) (fid, forumD) (tid, topicD) pformw
+            -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
+            -- TopicR :: TopicId -> Route ForumsApp
+            redirect (TopicR tid)
 
 deleteTopicR :: TopicId -> HandlerFor ForumsApp Html
 deleteTopicR tid = do
@@ -218,61 +242,61 @@ deleteTopicR tid = do
     -- deleteTopic :: ForumId -> TopicId -> SqlPersistT (HandlerFor ForumsApp) ()
     runDbAction $ deleteTopic fid tid
     -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
-    -- HomeR :: Route ForumsApp
+    -- ForumR :: ForumId -> Route ForumsApp
     redirect (ForumR fid)
 
--- getPostR :: PostId -> HandlerFor ForumsApp Html
--- getPostR pid = do
---     -- Get authenticated user
---     -- maybeAuth :: HandlerFor ForumsApp (Maybe (UserId, UserD))
---     -- mbuser :: Maybe (UserId, UserD)
---     mbuser <- maybeAuth
---     -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
---     -- getPost :: PostId -> SqlPersistT (HandlerFor ForumsApp) (Maybe PostD)
---     -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
---     -- postD :: PostD
---     postD <- runDbAction (getPost pid) >>= maybe notFound pure
---     -- tdTopicId :: PostD -> TopicId
---     let tid = pdTopicId postD
---     -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
---     -- getTopic :: TopicId -> SqlPersistT (HandlerFor ForumsApp) (Maybe TopicD)
---     -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
---     -- topicD :: TopicD
---     topicD <- runDbAction (getTopic tid) >>= maybe notFound pure
---     -- tdForumId :: TopicD -> ForumId
---     let fid = tdForumId topicD
---     -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
---     -- getForum :: ForumId -> SqlPersistT (HandlerFor ForumsApp) (Maybe ForumD)
---     -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
---     -- forumD :: ForumD
---     forumD <- runDbAction (getForum fid) >>= maybe notFound pure
---     -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
---     -- postView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> (PostId, PostD) -> WidgetFor ForumsApp
---     defaultLayout $ postView mbuser (fid, forumD) (tid, topicD) (pid, postD)
+getPostR :: PostId -> HandlerFor ForumsApp Html
+getPostR pid = do
+    -- Get authenticated user
+    -- maybeAuth :: HandlerFor ForumsApp (Maybe (UserId, UserD))
+    -- mbuser :: Maybe (UserId, UserD)
+    mbuser <- maybeAuth
+    -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+    -- getPost :: PostId -> SqlPersistT (HandlerFor ForumsApp) (Maybe PostD)
+    -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
+    -- postD :: PostD
+    postD <- runDbAction (getPost pid) >>= maybe notFound pure
+    -- tdTopicId :: PostD -> TopicId
+    let tid = pdTopicId postD
+    -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+    -- getTopic :: TopicId -> SqlPersistT (HandlerFor ForumsApp) (Maybe TopicD)
+    -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
+    -- topicD :: TopicD
+    topicD <- runDbAction (getTopic tid) >>= maybe notFound pure
+    -- tdForumId :: TopicD -> ForumId
+    let fid = tdForumId topicD
+    -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+    -- getForum :: ForumId -> SqlPersistT (HandlerFor ForumsApp) (Maybe ForumD)
+    -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
+    -- forumD :: ForumD
+    forumD <- runDbAction (getForum fid) >>= maybe notFound pure
+    -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
+    -- postView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> (PostId, PostD) -> WidgetFor ForumsApp
+    defaultLayout $ postView mbuser (fid, forumD) (tid, topicD) (pid, postD)
 
--- deletePostR :: PostId -> HandlerFor ForumsApp Html
--- deleteTopicR pid = do
---     -- Get authenticated user
---     -- requireAuth :: HandlerFor ForumsApp (UserId, UserD)
---     -- user :: (UserId, UserD)
---     user <- requireAuth
---     -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
---     -- getPost :: PostId -> SqlPersistT (HandlerFor ForumsApp) (Maybe PostD)
---     -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
---     -- postD :: PostD
---     postD <- runDbAction (getPost pid) >>= maybe notFound pure
---     -- pdTopicId :: PostD -> TopicId
---     let tid = pdTopicId postD
---     -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
---     -- getTopic :: TopicId -> SqlPersistT (HandlerFor ForumsApp) (Maybe TopicD)
---     -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
---     -- topicD :: TopicD
---     topicD <- runDbAction (getTopic tid) >>= maybe notFound pure
---     -- tdForumId :: TopicD -> ForumId
---     let fid = tdForumId topicD
---     -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
---     -- deletePost :: ForumId -> TopicId -> PostId -> SqlPersistT (HandlerFor ForumsApp) ()
---     runDbAction $ deletePost fid tid pid
---     -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
---     -- ForumR :: ForumId -> Route ForumsApp
---     redirect (TopicR tid)
+deletePostR :: PostId -> HandlerFor ForumsApp Html
+deletePostR pid = do
+    -- Get authenticated user
+    -- requireAuth :: HandlerFor ForumsApp (UserId, UserD)
+    -- user :: (UserId, UserD)
+    user <- requireAuth
+    -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+    -- getPost :: PostId -> SqlPersistT (HandlerFor ForumsApp) (Maybe PostD)
+    -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
+    -- postD :: PostD
+    postD <- runDbAction (getPost pid) >>= maybe notFound pure
+    -- pdTopicId :: PostD -> TopicId
+    let tid = pdTopicId postD
+    -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+    -- getTopic :: TopicId -> SqlPersistT (HandlerFor ForumsApp) (Maybe TopicD)
+    -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
+    -- topicD :: TopicD
+    topicD <- runDbAction (getTopic tid) >>= maybe notFound pure
+    -- tdForumId :: TopicD -> ForumId
+    let fid = tdForumId topicD
+    -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+    -- deletePost :: ForumId -> TopicId -> PostId -> SqlPersistT (HandlerFor ForumsApp) ()
+    runDbAction $ deletePost fid tid pid
+    -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
+    -- TopicR :: TopicId -> Route ForumsApp
+    redirect (TopicR tid)

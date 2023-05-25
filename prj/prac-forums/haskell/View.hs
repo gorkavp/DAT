@@ -50,8 +50,8 @@ homeView mbuser fformw = do
     forums <- runDbAction getForumList
     $(widgetTemplFile $ templatesDir <> "/home.html")
 
-forumView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> WidgetFor ForumsApp () -> Widget ForumsApp
-forumView mbuser (fid, forum) tformw = do
+forumView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> WidgetFor ForumsApp () -> Widget ForumsApp -> Widget ForumsApp
+forumView mbuser (fid, forum) tformw fformw = do
     topics <- runDbAction $ getTopicList fid
     $(widgetTemplFile $ templatesDir <> "/forum.html")
 
@@ -60,8 +60,8 @@ topicView mbuser (fid, forum) (tid, topic) pformw = do
     posts <- runDbAction $ getPostList tid
     $(widgetTemplFile $ templatesDir <> "/topic.html")
 
--- postView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> (PostId, PostD) -> Widget ForumsApp
--- postView mbuser (fid, forum) (tid, topic) (pid, post) = do
---     $(widgetTemplFile $ templatesDir <> "/post.html")
+postView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> (PostId, PostD) -> Widget ForumsApp
+postView mbuser (fid, forum) (tid, topic) (pid, post) = do
+    $(widgetTemplFile $ templatesDir <> "/post.html")
     
 
