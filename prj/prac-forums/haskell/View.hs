@@ -55,13 +55,13 @@ forumView mbuser (fid, forum) tformw fformw = do
     topics <- runDbAction $ getTopicList fid
     $(widgetTemplFile $ templatesDir <> "/forum.html")
 
-topicView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> WidgetFor ForumsApp () -> Widget ForumsApp
-topicView mbuser (fid, forum) (tid, topic) pformw = do
+topicView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> WidgetFor ForumsApp () -> Widget ForumsApp -> Widget ForumsApp
+topicView mbuser (fid, forum) (tid, topic) pformw tformw = do
     posts <- runDbAction $ getPostList tid
     $(widgetTemplFile $ templatesDir <> "/topic.html")
 
-postView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> (PostId, PostD) -> Widget ForumsApp
-postView mbuser (fid, forum) (tid, topic) (pid, post) = do
+postView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> (PostId, PostD) -> Widget ForumsApp -> Widget ForumsApp
+postView mbuser (fid, forum) (tid, topic) (pid, post) pformw = do
     $(widgetTemplFile $ templatesDir <> "/post.html")
     
 

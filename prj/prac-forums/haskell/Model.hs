@@ -305,7 +305,14 @@ deleteTopic fid tid = do
     update fid $ \ forum -> forum{ fdTopicCount = fdTopicCount forum - 1 }
     Db.delete tid
 
-
+editTopic :: TopicId -> Text -> Markdown -> DbM ()
+editTopic tid subject message = do
+    update tid $ \ topic -> topic{ tdSubject = subject }
+    topicD <- getTopic tid
+    posts <- getPostList tid
+    case posts of
+        [] -> addReply (tdForumId topicD) tid (tdUserId topicD) message
+        (p:_) -> editPost (fst p) message
 -- ---------------------------------------------------------------
 -- Table: PostD
 
@@ -370,3 +377,7 @@ deletePost fid tid pid = do
                         }
     Db.delete pid
 
+editPost :: PostId -> Markdown -> DbM ()
+editPost pid message =
+    -- update :: PostId -> (PostD -> PostD) -> DbM ()
+    update pid $ \ post -> post{ pdMessage = message }

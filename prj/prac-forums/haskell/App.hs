@@ -35,18 +35,31 @@ instance Dispatch ForumsApp where
             <||> route ( onStatic ["forums"] <&&> onDynamic ) ForumR
                 [ onMethod1 "GET" getForumR
                 , onMethod1 "POST" postForumR
-                , onMethod1 "DELETE" deleteForumR
+                ]
+            <||> route ( onStatic ["forumsedit"] <&&> onDynamic ) ForumR2
+                [ onMethod1 "POST" editForumR
+                ]
+            <||> route ( onStatic ["forumsdelete"] <&&> onDynamic ) ForumR3
+                [ onMethod1 "POST" deleteForumR
                 ]
             <||> route ( onStatic ["topics"] <&&> onDynamic ) TopicR
                 [ onMethod1 "GET" getTopicR
                 , onMethod1 "POST" postTopicR
-                , onMethod1 "DELETE" deleteTopicR
-                -- , onMethod1 "PUT" editTopicR
+                ]
+            <||> route ( onStatic ["topicsedit"] <&&> onDynamic ) TopicR2
+                [ onMethod1 "POST" editTopicR
+                ]
+            <||> route ( onStatic ["topicsdelete"] <&&> onDynamic ) TopicR3
+                [ onMethod1 "POST" deleteTopicR
                 ]
             <||> route ( onStatic ["post"] <&&> onDynamic ) PostR
                 [ onMethod1 "GET" getPostR
-                , onMethod1 "DELETE" deletePostR
-                -- , onMethod1 "PUT" editPostR
+                ]
+            -- <||> route ( onStatic ["postedit"] <&&> onDynamic ) PostR2
+            --     [ onMethod1 "POST" editPostR
+            --     ]
+            <||> route ( onStatic ["postdelete"] <&&> onDynamic ) PostR3
+                [ onMethod1 "POST" deletePostR
                 ]
             <||> route ( onStatic ["login"] ) LoginR
                 [ onMethod "GET" getLoginR

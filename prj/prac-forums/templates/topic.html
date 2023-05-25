@@ -43,20 +43,16 @@ $if{ isJust mbuser }
       <button type="submit" class="btn btn-success">Nova resposta</button>
     </form>
   </div>
-  <div class="col-sm-12 text-left mt-3">
-    <button type="button" class="btn btn-danger" onClick="deleteTopic()">
-      Eliminar qüestió
-    </button>
+  <div class="col-sm-12 mt-3">
+    <form role="form" method="POST" action="@{TopicR2 tid}">
+      ^{tformw}
+      <button type="submit" class="btn btn-success">Editar qüestió</button>
+    </form>
+  </div>
+  <div class="col-sm-12 mt-3">
+    <form role="form" method="POST" action="@{TopicR3 tid}">
+      <button type="submit" class="btn btn-danger">Eliminar qüestió</button>
+    </form>
   </div>
 </div>
 $end
-
-<script type="text/javascript">
-  function deleteTopic() {
-    if (confirm("Segur que vols eliminar aquesta qüestió?")) {
-      fetch("@{TopicR tid}", { method: "DELETE" }).then(function (response) {
-        window.location.href = "@{ForumR fid}";
-      });
-    }
-  }
-</script>

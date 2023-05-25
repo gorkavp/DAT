@@ -27,13 +27,21 @@ data ForumsApp = ForumsApp { forumsDb :: Connection }
 
 instance RenderRoute ForumsApp where
     data Route ForumsApp =
-                  HomeR | ForumR ForumId | TopicR TopicId
-                | LoginR | LogoutR | PostR PostId
+                  HomeR | ForumR ForumId |  ForumR2 ForumId | ForumR3 ForumId
+                  | TopicR TopicId | TopicR2 TopicId | TopicR3 TopicId
+                  | PostR PostId | PostR2 PostId | PostR3 PostId
+                  | LoginR | LogoutR
 
     renderRoute HomeR   = ([], [])
     renderRoute (ForumR tid) = (["forums",toPathPiece tid], [])
+    renderRoute (ForumR2 tid) = (["forumsedit",toPathPiece tid], [])
+    renderRoute (ForumR3 tid) = (["forumsdelete",toPathPiece tid], [])
     renderRoute (TopicR qid) = (["topics",toPathPiece qid], [])
+    renderRoute (TopicR2 qid) = (["topicsedit",toPathPiece qid], [])
+    renderRoute (TopicR3 qid) = (["topicsdelete",toPathPiece qid], [])
     renderRoute (PostR pid) = (["post",toPathPiece pid], [])
+    renderRoute (PostR2 pid) = (["postedit",toPathPiece pid], [])
+    renderRoute (PostR3 pid) = (["postdelete",toPathPiece pid], [])
     renderRoute LoginR  = (["login"], [])
     renderRoute LogoutR = (["logout"], [])
 

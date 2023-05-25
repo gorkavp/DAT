@@ -16,20 +16,16 @@
 
 $if{ isJust mbuser }
 <div class="row">
-  <div class="col-sm-12 text-left mt-3">
-    <button type="button" class="btn btn-danger" onClick="deletePost()">
-      Eliminar resposta
-    </button>
+  <div class="col-sm-12 mt-3">
+    <form role="form" method="POST" action="@{PostR2 pid}">
+      ^{pformw}
+      <button type="submit" class="btn btn-success">Editar post</button>
+    </form>
+  </div>
+  <div class="col-sm-12 mt-3">
+    <form role="form" method="POST" action="@{PostR3 pid}">
+      <button type="submit" class="btn btn-danger">Eliminar post</button>
+    </form>
   </div>
 </div>
 $end
-
-<script type="text/javascript">
-  function deletePost() {
-    if (confirm("Segur que vols eliminar aquesta resposta?")) {
-      fetch("@{PostR pid}", { method: "DELETE" }).then(function (response) {
-        window.location.href = "@{TopicR tid}";
-      });
-    }
-  }
-</script>

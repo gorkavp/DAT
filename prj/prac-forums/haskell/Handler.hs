@@ -46,11 +46,29 @@ newPostForm =
     -- NewPost :: Markdown -> NewPost
     NewPost <$> freq markdownField (withPlaceholder "Introduïu el text de la resposta" "Text") Nothing
 
-editForumForm :: AForm (HandlerFor ForumsApp) NewForum
-editForumForm =
+editForumForm :: ForumD -> AForm (HandlerFor ForumsApp) NewForum
+editForumForm forumD =
     -- NewForum :: Text -> Markdown -> NewForum
-    NewForum <$> freq textField (withPlaceholder "Introduïu el títol del fòrum" "Titol") Nothing
-             <*> freq markdownField (withPlaceholder "Introduïu la descripció del fòrum" "Descripció") Nothing
+    NewForum <$> freq textField (withPlaceholder "Introduïu el títol del fòrum" "Titol") (Just (fdTitle forumD))
+             <*> freq markdownField (withPlaceholder "Introduïu la descripció del fòrum" "Descripció") (Just (fdDescription forumD))
+
+editTopicForm :: TopicD -> PostD -> AForm (HandlerFor ForumsApp) NewTopic
+editTopicForm topicD postD =
+    -- NewTopic :: Text -> Markdown -> NewTopic
+    NewTopic <$> freq textField (withPlaceholder "Introduïu el títol de la qüestió" "Titol") (Just (tdSubject topicD))
+                <*> freq markdownField (withPlaceholder "Introduïu la descripció de la qüestió" "Text") (Just (pdMessage postD))
+
+editTopicForm2 :: TopicD -> AForm (HandlerFor ForumsApp) NewTopic
+editTopicForm2 topicD =
+    -- NewTopic :: Text -> Markdown -> NewTopic
+    NewTopic <$> freq textField (withPlaceholder "Introduïu el títol de la qüestió" "Titol") (Just (tdSubject topicD))
+                <*> freq markdownField (withPlaceholder "Introduïu la descripció de la qüestió" "Text") Nothing
+
+editPostForm :: PostD -> AForm (HandlerFor ForumsApp) NewPost
+editPostForm postD =
+    -- NewPost :: Markdown -> NewPost
+    NewPost <$> freq markdownField (withPlaceholder "Introduïu el text de la resposta" "Text") (Just (pdMessage postD))
+
 
 -- funció que retorna un widget amb el contingut de la pàgina principal (amb els fòrums) sempre i quan l'usuari estigui autenticat
 getHomeR :: HandlerFor ForumsApp Html
@@ -93,12 +111,12 @@ getForumR fid = do
     -- tformw :: WidgetFor ForumsApp ()
     tformw <- generateAFormPost newTopicForm
     -- generateAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
-    -- editForumForm :: AForm (HandlerFor ForumsApp) NewForum
+    -- editForumForm :: ForumD -> AForm (HandlerFor ForumsApp) NewForum
     -- fformw :: WidgetFor ForumsApp ()
-    fformw <- generateAFormPost editForumForm
+    fformw <- generateAFormPost (editForumForm forumD)
     -- Return HTML content
     -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
-    -- forumView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> WidgetFor ForumsApp () -> WidgetFor ForumsApp () -> WidgetFor ForumsApp
+    -- forumView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> WidgetFor ForumsApp () -> WidgetFor ForumsApp -> WidgetFor ForumsApp
     defaultLayout $ forumView mbuser (fid, forumD) tformw fformw
 
 -- funció que crea un nou tema dins d'un fòrum sempre i quan l'usuari estigui autenticat i el tema no existeixi
@@ -146,10 +164,15 @@ editForumR fid = do
     -- requireAuth :: HandlerFor ForumsApp (UserId, UserD)
     -- user :: (UserId, UserD)
     user <- requireAuth
+    -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+    -- getForum :: ForumId -> SqlPersistT (HandlerFor ForumsApp) (Maybe ForumD)
+    -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
+    -- forumD :: ForumD
+    forumD <- runDbAction (getForum fid) >>= maybe notFound pure
     -- runAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
     -- editForumForm :: AForm (HandlerFor ForumsApp) EditForum
     -- (fformr, fformw) :: (FormResult EditForum, WidgetFor ForumsApp ())
-    (fformr, fformw) <- runAFormPost editForumForm
+    (fformr, fformw) <- runAFormPost (editForumForm forumD)
     case fformr of
         -- FormSuccess :: a -> FormResult a
         -- editForum :: EditForum
@@ -188,9 +211,24 @@ getTopicR tid = do
     -- generateAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
     -- newPostForm :: AForm (HandlerFor ForumsApp) NewPost
     pformw <- generateAFormPost newPostForm
-    -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
-    -- topicView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> WidgetFor ForumsApp () -> WidgetFor ForumsApp
-    defaultLayout $ topicView mbuser (fid, forumD) (tid, topicD) pformw
+    -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+    -- getPostList :: TopicId -> SqlPersistT (HandlerFor ForumsApp) [PostD]
+    -- posts :: [(PostId, PostD)]
+    posts <- runDbAction $ getPostList tid
+    case posts of
+            [] -> do
+                tformw <- generateAFormPost (editTopicForm2 topicD)
+                -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
+                -- topicView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> WidgetFor ForumsApp () -> WidgetFor ForumsApp -> WidgetFor ForumsApp
+                defaultLayout $ topicView mbuser (fid, forumD) (tid, topicD) pformw tformw
+            (p:_) -> do
+                -- generateAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
+                -- editTopicForm :: AForm (HandlerFor ForumsApp) EditTopic
+                -- tformw :: WidgetFor ForumsApp ()
+                tformw <- generateAFormPost (editTopicForm topicD $ snd p)
+                -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
+                -- topicView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> WidgetFor ForumsApp () -> WidgetFor ForumsApp -> WidgetFor ForumsApp
+                defaultLayout $ topicView mbuser (fid, forumD) (tid, topicD) pformw tformw
 
 -- funció per crear un nou post dins d'un tema sempre i quan l'usuari estigui autenticat i el formulari sigui vàlid
 postTopicR :: TopicId -> HandlerFor ForumsApp Html
@@ -245,6 +283,42 @@ deleteTopicR tid = do
     -- ForumR :: ForumId -> Route ForumsApp
     redirect (ForumR fid)
 
+editTopicR :: TopicId -> HandlerFor ForumsApp Html
+editTopicR tid = do
+    -- Get authenticated user
+    -- requireAuth :: HandlerFor ForumsApp (UserId, UserD)
+    -- user :: (UserId, UserD)
+    user <- requireAuth
+    -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+    -- getTopic :: TopicId -> SqlPersistT (HandlerFor ForumsApp) (Maybe TopicD)
+    -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
+    -- topicD :: TopicD
+    topicD <- runDbAction (getTopic tid) >>= maybe notFound pure
+    -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+    -- getPostList :: TopicId -> SqlPersistT (HandlerFor ForumsApp) [PostD]
+    -- posts :: [(PostId, PostD)]
+    posts <- runDbAction $ getPostList tid
+    let firstPostD = case posts of
+                  (p:_) -> snd p -- Extract the second element (PostD) from the tuple
+    -- runAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
+    -- editTopicForm :: AForm (HandlerFor ForumsApp) EditTopic
+    -- (tformr, tformw) :: (FormResult EditTopic, WidgetFor ForumsApp ())
+    (tformr, tformw) <- runAFormPost (editTopicForm topicD firstPostD)
+    case tformr of
+        -- FormSuccess :: a -> FormResult a
+        -- editTopic :: EditTopic
+        FormSuccess newTopic -> do
+            -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+            -- editTopic :: TopicId -> Text -> SqlPersistT (HandlerFor ForumsApp) ()
+            runDbAction $ editTopic tid (ntSubject newTopic) (ntMessage newTopic)
+            -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
+            -- TopicR :: TopicId -> Route ForumsApp
+            redirect (TopicR tid)
+        _ -> do
+            -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
+            -- TopicR :: TopicId -> Route ForumsApp
+            redirect (TopicR tid)
+
 getPostR :: PostId -> HandlerFor ForumsApp Html
 getPostR pid = do
     -- Get authenticated user
@@ -270,9 +344,13 @@ getPostR pid = do
     -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
     -- forumD :: ForumD
     forumD <- runDbAction (getForum fid) >>= maybe notFound pure
+    -- generateAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
+    -- editPostForm :: AForm (HandlerFor ForumsApp) EditPost
+    -- pformw :: WidgetFor ForumsApp ()
+    pformw <- generateAFormPost (editPostForm postD)
     -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
     -- postView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> (PostId, PostD) -> WidgetFor ForumsApp
-    defaultLayout $ postView mbuser (fid, forumD) (tid, topicD) (pid, postD)
+    defaultLayout $ postView mbuser (fid, forumD) (tid, topicD) (pid, postD) pformw
 
 deletePostR :: PostId -> HandlerFor ForumsApp Html
 deletePostR pid = do
