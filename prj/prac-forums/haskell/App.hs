@@ -55,9 +55,9 @@ instance Dispatch ForumsApp where
             <||> route ( onStatic ["post"] <&&> onDynamic ) PostR
                 [ onMethod1 "GET" getPostR
                 ]
-            -- <||> route ( onStatic ["postedit"] <&&> onDynamic ) PostR2
-            --     [ onMethod1 "POST" editPostR
-            --     ]
+            <||> route ( onStatic ["postedit"] <&&> onDynamic ) PostR2
+                [ onMethod1 "POST" editPostR
+                ]
             <||> route ( onStatic ["postdelete"] <&&> onDynamic ) PostR3
                 [ onMethod1 "POST" deletePostR
                 ]

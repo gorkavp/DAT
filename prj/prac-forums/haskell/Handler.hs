@@ -298,26 +298,45 @@ editTopicR tid = do
     -- getPostList :: TopicId -> SqlPersistT (HandlerFor ForumsApp) [PostD]
     -- posts :: [(PostId, PostD)]
     posts <- runDbAction $ getPostList tid
-    let firstPostD = case posts of
-                  (p:_) -> snd p -- Extract the second element (PostD) from the tuple
-    -- runAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
-    -- editTopicForm :: AForm (HandlerFor ForumsApp) EditTopic
-    -- (tformr, tformw) :: (FormResult EditTopic, WidgetFor ForumsApp ())
-    (tformr, tformw) <- runAFormPost (editTopicForm topicD firstPostD)
-    case tformr of
-        -- FormSuccess :: a -> FormResult a
-        -- editTopic :: EditTopic
-        FormSuccess newTopic -> do
-            -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
-            -- editTopic :: TopicId -> Text -> SqlPersistT (HandlerFor ForumsApp) ()
-            runDbAction $ editTopic tid (ntSubject newTopic) (ntMessage newTopic)
-            -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
-            -- TopicR :: TopicId -> Route ForumsApp
-            redirect (TopicR tid)
-        _ -> do
-            -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
-            -- TopicR :: TopicId -> Route ForumsApp
-            redirect (TopicR tid)
+    case posts of
+        [] -> do
+            -- runAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
+            -- editTopicForm2 :: AForm (HandlerFor ForumsApp) EditTopic
+            -- (tformr, tformw) :: (FormResult EditTopic, WidgetFor ForumsApp ())
+            (tformr, tformw) <- runAFormPost (editTopicForm2 topicD)
+            case tformr of
+                -- FormSuccess :: a -> FormResult a
+                -- editTopic :: EditTopic
+                FormSuccess newTopic -> do
+                    -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+                    -- addReply :: ForumId -> TopicId -> UserId -> Markdown -> SqlPersistT (HandlerFor ForumsApp) PostId
+                    runDbAction $ addReply (tdForumId topicD) tid (fst user) (ntMessage newTopic)
+                    -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
+                    -- TopicR :: TopicId -> Route ForumsApp
+                    redirect (TopicR tid)
+                _ -> do
+                    -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
+                    -- topicView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> WidgetFor ForumsApp () -> WidgetFor ForumsApp -> WidgetFor ForumsApp
+                    redirect (TopicR tid)
+        (p:_) -> do
+            -- runAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
+            -- editTopicForm :: AForm (HandlerFor ForumsApp) EditTopic
+            -- (tformr, tformw) :: (FormResult EditTopic, WidgetFor ForumsApp ())
+            (tformr, tformw) <- runAFormPost (editTopicForm topicD $ snd p)
+            case tformr of
+                -- FormSuccess :: a -> FormResult a
+                -- editTopic :: EditTopic
+                FormSuccess newTopic -> do
+                    -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+                    -- editTopic :: TopicId -> Text -> SqlPersistT (HandlerFor ForumsApp) ()
+                    runDbAction $ editTopic tid (ntSubject newTopic) (ntMessage newTopic)
+                    -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
+                    -- TopicR :: TopicId -> Route ForumsApp
+                    redirect (TopicR tid)
+                _ -> do
+                    -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
+                    -- TopicR :: TopicId -> Route ForumsApp
+                    redirect (TopicR tid)
 
 getPostR :: PostId -> HandlerFor ForumsApp Html
 getPostR pid = do
@@ -378,3 +397,33 @@ deletePostR pid = do
     -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
     -- TopicR :: TopicId -> Route ForumsApp
     redirect (TopicR tid)
+
+editPostR :: PostId -> HandlerFor ForumsApp Html
+editPostR pid = do
+    -- Get authenticated user
+    -- requireAuth :: HandlerFor ForumsApp (UserId, UserD)
+    -- user :: (UserId, UserD)
+    user <- requireAuth
+    -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+    -- getPost :: PostId -> SqlPersistT (HandlerFor ForumsApp) (Maybe PostD)
+    -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
+    -- postD :: PostD
+    postD <- runDbAction (getPost pid) >>= maybe notFound pure
+    -- runAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
+    -- editPostForm2 :: AForm (HandlerFor ForumsApp) EditPost
+    -- (pformr, pformw) :: (FormResult EditPost, WidgetFor ForumsApp ())
+    (pformr, pformw) <- runAFormPost (editPostForm postD)
+    case pformr of
+        -- FormSuccess :: a -> FormResult a
+        -- editPost :: EditPost
+        FormSuccess newPost -> do
+            -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+            -- editPost :: PostId -> Markdown -> SqlPersistT (HandlerFor ForumsApp) ()
+            runDbAction $ editPost pid (npMessage newPost)
+            -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
+            -- PostR :: PostId -> Route ForumsApp
+            redirect (PostR pid)
+        _ -> do
+            -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
+            -- PostR :: PostId -> Route ForumsApp
+            redirect (PostR pid)

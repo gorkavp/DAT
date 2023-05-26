@@ -308,10 +308,9 @@ deleteTopic fid tid = do
 editTopic :: TopicId -> Text -> Markdown -> DbM ()
 editTopic tid subject message = do
     update tid $ \ topic -> topic{ tdSubject = subject }
-    topicD <- getTopic tid
     posts <- getPostList tid
     case posts of
-        [] -> addReply (tdForumId topicD) tid (tdUserId topicD) message
+        [] -> pure ()
         (p:_) -> editPost (fst p) message
 -- ---------------------------------------------------------------
 -- Table: PostD
