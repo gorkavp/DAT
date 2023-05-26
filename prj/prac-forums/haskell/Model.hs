@@ -130,6 +130,8 @@ getUserByName name = do
         u : _ -> pure $ Just u
         [] -> pure Nothing
 
+data NewUser = NewUser { nuName :: Text , nuPassword :: Text , nuConfirm :: Text }
+
 loginUser :: Text -> DbM (Maybe UserId)
 loginUser name = do
     mbu <- getUserByName name
@@ -146,6 +148,15 @@ loginUser name = do
         protectPass :: PasswordHash -> IO PasswordHash
         protectPass (PHashClear t) = pHashBCrypt t
         protectPass p              = pure p
+
+changeUserName :: UserId -> Text -> DbM ()
+changeUserName uid name = do
+    mbu <- getUser uid
+    case mbu of
+        Just u -> do
+            set uid u{ udName = name }
+        Nothing ->
+            fail $ "User with id " <> show uid <> " don't exist"
 
 changeUserPassword :: UserId -> Text -> DbM ()
 changeUserPassword uid pw = do

@@ -63,5 +63,9 @@ topicView mbuser (fid, forum) (tid, topic) pformw tformw = do
 postView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> (PostId, PostD) -> Widget ForumsApp -> Widget ForumsApp
 postView mbuser (fid, forum) (tid, topic) (pid, post) pformw = do
     $(widgetTemplFile $ templatesDir <> "/post.html")
+
+userView :: Maybe (UserId, UserD) -> Widget ForumsApp -> Widget ForumsApp
+userView mbuser uformw = do
+    $(widgetTemplFile $ templatesDir <> "/user.html")
     
 

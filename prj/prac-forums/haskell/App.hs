@@ -61,11 +61,14 @@ instance Dispatch ForumsApp where
             <||> route ( onStatic ["postdelete"] <&&> onDynamic ) PostR3
                 [ onMethod1 "POST" deletePostR
                 ]
+            <||> route ( onStatic ["user"] ) UserR
+                [ onMethod "GET" getUserR
+                , onMethod "POST" postUserR
+                ]
             <||> route ( onStatic ["login"] ) LoginR
                 [ onMethod "GET" getLoginR
                 , onMethod "POST" postLoginR
                 ]
             <||> route ( onStatic ["logout"] ) LogoutR
-                (onAnyMethod handleLogoutR)
-            
+                (onAnyMethod handleLogoutR)   
 

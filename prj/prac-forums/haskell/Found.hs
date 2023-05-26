@@ -30,7 +30,7 @@ instance RenderRoute ForumsApp where
                   HomeR | ForumR ForumId |  ForumR2 ForumId | ForumR3 ForumId
                   | TopicR TopicId | TopicR2 TopicId | TopicR3 TopicId
                   | PostR PostId | PostR2 PostId | PostR3 PostId
-                  | LoginR | LogoutR
+                  | LoginR | LogoutR | UserR
 
     renderRoute HomeR   = ([], [])
     renderRoute (ForumR tid) = (["forums",toPathPiece tid], [])
@@ -44,6 +44,7 @@ instance RenderRoute ForumsApp where
     renderRoute (PostR3 pid) = (["postdelete",toPathPiece pid], [])
     renderRoute LoginR  = (["login"], [])
     renderRoute LogoutR = (["logout"], [])
+    renderRoute UserR = (["user"], [])
 
 -- Nota: Els tipus ForumId, TopicId i PostId són alias de 'Key ...' (veieu el model)
 instance PathPiece (Key a) where

@@ -46,6 +46,13 @@ newPostForm =
     -- NewPost :: Markdown -> NewPost
     NewPost <$> freq markdownField (withPlaceholder "Introduïu el text de la resposta" "Text") Nothing
 
+newUserForm :: UserD -> AForm (HandlerFor ForumsApp) NewUser
+newUserForm userD =
+    -- NewUser :: Text -> Text -> Text -> NewUser
+    NewUser <$> freq textField (withPlaceholder "Introduïu el nom d'usuari" "Nom d'usuari") (Just (udName userD))
+            <*> freq passwordField (withPlaceholder "Introduïu la contrasenya" "Contrasenya") Nothing
+            <*> freq passwordField (withPlaceholder "Introduïu la contrasenya (repetició)" "Confirmar contrasenya") Nothing
+
 editForumForm :: ForumD -> AForm (HandlerFor ForumsApp) NewForum
 editForumForm forumD =
     -- NewForum :: Text -> Markdown -> NewForum
@@ -427,3 +434,55 @@ editPostR pid = do
             -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
             -- PostR :: PostId -> Route ForumsApp
             redirect (PostR pid)
+
+getUserR :: HandlerFor ForumsApp Html
+getUserR = do
+    -- Get authenticated user
+    -- requireAuth :: HandlerFor ForumsApp (UserId, UserD)
+    -- user :: (UserId, UserD)
+    user <- requireAuth
+    -- generateAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
+    -- newUserForm :: AForm (HandlerFor ForumsApp) NewUser
+    -- (uformr, uformw) :: (FormResult NewUser, WidgetFor ForumsApp ())
+    uformw <- generateAFormPost (newUserForm $ snd user)
+    -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
+    -- userView :: Maybe (UserId, UserD) -> (UserId, UserD) -> WidgetFor ForumsApp -> WidgetFor ForumsApp
+    defaultLayout $ userView (Just user) uformw
+
+postUserR :: HandlerFor ForumsApp Html
+postUserR = do
+    -- Get authenticated user
+    -- requireAuth :: HandlerFor ForumsApp (UserId, UserD)
+    -- user :: (UserId, UserD)
+    user <- requireAuth
+    -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+    -- getUser :: UserId -> SqlPersistT (HandlerFor ForumsApp) (Maybe UserD)
+    -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
+    -- userD :: UserD
+    userD <- runDbAction (getUser $ fst user) >>= maybe notFound pure
+    -- runAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
+    -- newUserForm :: AForm (HandlerFor ForumsApp) NewUser
+    -- (uformr, uformw) :: (FormResult NewUser, WidgetFor ForumsApp ())
+    (uformr, uformw) <- runAFormPost (newUserForm userD)
+    case uformr of
+        -- FormSuccess :: a -> FormResult a
+        -- newUser :: NewUser
+        FormSuccess newUser -> do
+            -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
+            -- changeUserName :: UserId -> Text -> SqlPersistT (HandlerFor ForumsApp) ()
+            -- changeUserPassword :: UserId -> Text -> SqlPersistT (HandlerFor ForumsApp) ()
+            runDbAction $ changeUserName (fst user) (nuName newUser)
+            if nuPassword newUser == nuConfirm newUser
+                then do
+                runDbAction $ changeUserPassword (fst user) (nuPassword newUser)
+                -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
+                -- TopicR :: TopicId -> Route ForumsApp
+                redirect HomeR
+            else do
+                -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
+                -- TopicR :: TopicId -> Route ForumsApp
+                redirect HomeR
+        _ -> do
+            -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
+            -- TopicR :: TopicId -> Route ForumsApp
+            redirect HomeR
