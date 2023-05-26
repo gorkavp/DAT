@@ -29,23 +29,27 @@ markdownField = checkMap
 
 ---------------------------------------------------------------------
 
+-- Formulari per a crear un nou fòrum
 newForumForm :: AForm (HandlerFor ForumsApp) NewForum
 newForumForm =
     -- NewForum :: Text -> Markdown -> NewForum
     NewForum <$> freq textField (withPlaceholder "Introduïu el títol del fòrum" "Titol") Nothing
              <*> freq markdownField (withPlaceholder "Introduïu la descripció del fòrum" "Descripció") Nothing
 
+-- Formulari per a crear una nova qüestió
 newTopicForm :: AForm (HandlerFor ForumsApp) NewTopic
 newTopicForm =
     -- NewTopic :: Text -> Markdown -> NewTopic
     NewTopic <$> freq textField (withPlaceholder "Introduïu el títol de la qüestió" "Titol") Nothing
              <*> freq markdownField (withPlaceholder "Introduïu la descripció de la qüestió" "Text") Nothing
 
+-- Formulari per a crear una nova resposta
 newPostForm :: AForm (HandlerFor ForumsApp) NewPost
 newPostForm =
     -- NewPost :: Markdown -> NewPost
     NewPost <$> freq markdownField (withPlaceholder "Introduïu el text de la resposta" "Text") Nothing
 
+-- Formulari per canviar el nom d'usuari i la contrasenya
 newUserForm :: UserD -> AForm (HandlerFor ForumsApp) NewUser
 newUserForm userD =
     -- NewUser :: Text -> Text -> Text -> NewUser
@@ -53,31 +57,35 @@ newUserForm userD =
             <*> freq passwordField (withPlaceholder "Introduïu la contrasenya" "Contrasenya") Nothing
             <*> freq passwordField (withPlaceholder "Introduïu la contrasenya (repetició)" "Confirmar contrasenya") Nothing
 
+-- Formulari per canviar el títol i la descripció d'un fòrum
 editForumForm :: ForumD -> AForm (HandlerFor ForumsApp) NewForum
 editForumForm forumD =
     -- NewForum :: Text -> Markdown -> NewForum
     NewForum <$> freq textField (withPlaceholder "Introduïu el títol del fòrum" "Titol") (Just (fdTitle forumD))
              <*> freq markdownField (withPlaceholder "Introduïu la descripció del fòrum" "Descripció") (Just (fdDescription forumD))
 
+-- Formulari per canviar el títol i la descripció d'una qüestió (primer post)
 editTopicForm :: TopicD -> PostD -> AForm (HandlerFor ForumsApp) NewTopic
 editTopicForm topicD postD =
     -- NewTopic :: Text -> Markdown -> NewTopic
     NewTopic <$> freq textField (withPlaceholder "Introduïu el títol de la qüestió" "Titol") (Just (tdSubject topicD))
                 <*> freq markdownField (withPlaceholder "Introduïu la descripció de la qüestió" "Text") (Just (pdMessage postD))
 
+-- Formulari per canviar el títol i afegir una descripció a una qüestió (primer post)
 editTopicForm2 :: TopicD -> AForm (HandlerFor ForumsApp) NewTopic
 editTopicForm2 topicD =
     -- NewTopic :: Text -> Markdown -> NewTopic
     NewTopic <$> freq textField (withPlaceholder "Introduïu el títol de la qüestió" "Titol") (Just (tdSubject topicD))
                 <*> freq markdownField (withPlaceholder "Introduïu la descripció de la qüestió" "Text") Nothing
 
+-- Formulari per canviar el text d'una resposta (post)
 editPostForm :: PostD -> AForm (HandlerFor ForumsApp) NewPost
 editPostForm postD =
     -- NewPost :: Markdown -> NewPost
     NewPost <$> freq markdownField (withPlaceholder "Introduïu el text de la resposta" "Text") (Just (pdMessage postD))
 
 
--- funció que retorna un widget amb el contingut de la pàgina principal (amb els fòrums) sempre i quan l'usuari estigui autenticat
+-- funció que gestiona els HTTP GET de la pàgina principal (home) de l'aplicació
 getHomeR :: HandlerFor ForumsApp Html
 getHomeR = do
     -- Get authenticated user
@@ -87,7 +95,7 @@ getHomeR = do
     -- Return HTML content
     defaultLayout $ homeView mbuser fformw
 
--- funció per crear un nou fòrum sempre i quan l'usuari estigui autenticat i el formulari sigui vàlid
+-- funció que gestiona els HTTP POST de la pàgina principal (home) de l'aplicació per a crear un nou fòrum
 postHomeR :: HandlerFor ForumsApp Html
 postHomeR = do
     user <- requireAuth
@@ -99,7 +107,7 @@ postHomeR = do
         _ ->
             defaultLayout $ homeView (Just user) fformw
 
--- funció que retorna un widget amb el contingut d'un fòrum concret (amb els seus temes) sempre i quan l'usuari estigui autenticat
+-- funció que gestiona els HTTP GET de la pàgina d'un fòrum
 getForumR :: ForumId -> HandlerFor ForumsApp Html
 getForumR fid = do
     -- Get authenticated user
@@ -108,25 +116,22 @@ getForumR fid = do
     mbuser <- maybeAuth
     -- Get requested forum from data-base.
     -- Short-circuit (responds immediately) with a 'Not found' status if forum don't exist
-    -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
-    -- getForum :: ForumId -> SqlPersistT (HandlerFor ForumsApp) (Maybe ForumD)
-    -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
+    -- runDbAction :: DbM a -> HandlerFor ForumsApp a
+    -- getForum fid :: DbM (Maybe ForumD)
     -- forumD :: ForumD
-    forumD <- runDbAction (getForum fid) >>= maybe notFound pure
-    -- generateAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
-    -- newTopicForm :: AForm (HandlerFor ForumsApp) NewTopic
+    forumD <- runDbAction (getForum fid) >>= maybe notFound pure -- obtenim la dada forumD fent una comana a la base de dades
+    -- generateAFormPost NewTopicForm :: HandlerFor ForumsApp (FormResult NewTopic, WidgetFor ForumsApp ())
     -- tformw :: WidgetFor ForumsApp ()
-    tformw <- generateAFormPost newTopicForm
-    -- generateAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
-    -- editForumForm :: ForumD -> AForm (HandlerFor ForumsApp) NewForum
+    tformw <- generateAFormPost newTopicForm -- generem el formulari per crear un nou tema
+    -- generateAFormPost (editForumForm forumD) :: HandlerFor ForumsApp (FormResult NewForum, WidgetFor ForumsApp ())
     -- fformw :: WidgetFor ForumsApp ()
-    fformw <- generateAFormPost (editForumForm forumD)
+    fformw <- generateAFormPost (editForumForm forumD) -- generem el formulari per editar el fòrum
     -- Return HTML content
     -- defaultLayout :: WidgetFor ForumsApp () -> HandlerFor ForumsApp Html
     -- forumView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> WidgetFor ForumsApp () -> WidgetFor ForumsApp -> WidgetFor ForumsApp
-    defaultLayout $ forumView mbuser (fid, forumD) tformw fformw
+    defaultLayout $ forumView mbuser (fid, forumD) tformw fformw -- generem la vista de la pàgina del fòrum
 
--- funció que crea un nou tema dins d'un fòrum sempre i quan l'usuari estigui autenticat i el tema no existeixi
+-- funció que gestiona els HTTP POST de la pàgina d'un fòrum per a crear un nou tema (topic)
 postForumR :: ForumId -> HandlerFor ForumsApp Html
 postForumR fid = do
     -- Get authenticated user
@@ -136,73 +141,79 @@ postForumR fid = do
     -- runAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
     -- newTopicForm :: AForm (HandlerFor ForumsApp) NewTopic
     -- (tformr, tformw) :: (FormResult NewTopic, WidgetFor ForumsApp ())
-    (tformr, tformw) <- runAFormPost newTopicForm 
-    case tformr of
+    (tformr, tformw) <- runAFormPost newTopicForm -- obtenim el formulari per crear un nou tema
+    case tformr of -- analitzem el resultat del formulari
         -- FormSuccess :: a -> FormResult a
         -- newTopic :: NewTopic
-        FormSuccess newTopic -> do
-            -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
-            -- addTopic :: ForumId -> UserId -> NewTopic -> SqlPersistT (HandlerFor ForumsApp) TopicId
-            runDbAction $ addTopic fid (fst user) newTopic
+        FormSuccess newTopic -> do -- si el formulari és correcte
+            -- runDbAction :: DbM a -> HandlerFor ForumsApp a
+            -- addTopic :: ForumId -> UserId -> NewTopic -> DbM (TopicId, TopicD)
+            runDbAction $ addTopic fid (fst user) newTopic -- afegim el tema a la base de dades
             -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
             -- ForumR :: ForumId -> Route ForumsApp
-            redirect (ForumR fid)    
-        _ -> do
-            -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
-            -- ForumR :: ForumId -> Route ForumsApp
-            redirect (ForumR fid) 
+            redirect (ForumR fid) -- redirigim a la pàgina del fòrum    
+        _ -> do -- si el formulari és incorrecte
+            -- runDbAction :: DbM a -> HandlerFor ForumsApp a
+            -- getForum fid :: DbM (Maybe ForumD)
+            -- forumD :: ForumD
+            forumD <- runDbAction (getForum fid) >>= maybe notFound pure -- obtenim la dada forumD fent una comana a la base de dades
+            -- generateAFormPost (editForumForm forumD) :: HandlerFor ForumsApp (FormResult NewForum, WidgetFor ForumsApp ())
+            -- fformw :: WidgetFor ForumsApp ()
+            fformw <- generateAFormPost (editForumForm forumD) -- generem el formulari per editar el fòrum
+            -- foruView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> WidgetFor ForumsApp () -> WidgetFor ForumsApp -> WidgetFor ForumsApp
+            defaultLayout $ forumView (Just user) (fid, forumD) tformw fformw -- generem la vista de la pàgina del fòrum
 
+-- funció que gestiona els HTTP POST de la pàgina d'un fòrum per a eliminar un fòrum
 deleteForumR :: ForumId -> HandlerFor ForumsApp Html
 deleteForumR fid = do
-    -- Get authenticated user
     -- requireAuth :: HandlerFor ForumsApp (UserId, UserD)
     -- user :: (UserId, UserD)
-    user <- requireAuth
-    -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
-    -- deleteForum :: ForumId -> SqlPersistT (HandlerFor ForumsApp) ()
-    runDbAction $ deleteForum fid
+    user <- requireAuth -- obtenim l'usuari autenticat
+    -- runDbAction :: DbM a -> HandlerFor ForumsApp a
+    -- deleteForum :: ForumId -> DbM ()
+    runDbAction $ deleteForum fid -- eliminem el fòrum de la base de dades
     -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
     -- HomeR :: Route ForumsApp
-    redirect HomeR
+    redirect HomeR -- redirigim a la pàgina principal (home)
 
+-- funció que gestiona els HTTP GET de la pàgina d'un fòrum per a editar un fòrum
 editForumR :: ForumId -> HandlerFor ForumsApp Html
 editForumR fid = do
-    -- Get authenticated user
     -- requireAuth :: HandlerFor ForumsApp (UserId, UserD)
     -- user :: (UserId, UserD)
-    user <- requireAuth
-    -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
-    -- getForum :: ForumId -> SqlPersistT (HandlerFor ForumsApp) (Maybe ForumD)
-    -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a
+    user <- requireAuth -- obtenim l'usuari autenticat
+    -- runDbAction :: DbM a -> HandlerFor ForumsApp a
+    -- getForum :: ForumId -> DbM (Maybe ForumD)
     -- forumD :: ForumD
-    forumD <- runDbAction (getForum fid) >>= maybe notFound pure
+    forumD <- runDbAction (getForum fid) >>= maybe notFound pure -- obtenim la dada forumD fent una comana a la base de dades
     -- runAFormPost :: AForm (HandlerFor ForumsApp) a -> HandlerFor ForumsApp (FormResult a, WidgetFor ForumsApp ())
     -- editForumForm :: AForm (HandlerFor ForumsApp) EditForum
     -- (fformr, fformw) :: (FormResult EditForum, WidgetFor ForumsApp ())
-    (fformr, fformw) <- runAFormPost (editForumForm forumD)
-    case fformr of
+    (fformr, fformw) <- runAFormPost (editForumForm forumD) -- obtenim el formulari per editar el fòrum
+    case fformr of -- analitzem el resultat del formulari
         -- FormSuccess :: a -> FormResult a
         -- editForum :: EditForum
-        FormSuccess newForum -> do
-            -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
-            -- editForum :: ForumId -> Text -> Markdown -> SqlPersistT (HandlerFor ForumsApp) ()
-            runDbAction $ editForum fid (nfTitle newForum) (nfDescription newForum)
+        FormSuccess newForum -> do -- si el formulari és correcte
+            -- runDbAction :: DbM a -> HandlerFor ForumsApp a
+            -- editForum :: ForumId -> Text -> Markdown -> DbM ()
+            runDbAction $ editForum fid (nfTitle newForum) (nfDescription newForum) -- editem el fòrum a la base de dades
             -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
             -- ForumR :: ForumId -> Route ForumsApp
-            redirect (ForumR fid)
-        _ ->
-            -- redirect :: Route ForumsApp -> HandlerFor ForumsApp a
-            -- ForumR :: ForumId -> Route ForumsApp
-            redirect (ForumR fid)
+            redirect (ForumR fid) -- redirigim a la pàgina del fòrum
+        _ -> do -- si el formulari és incorrecte
+            -- generateAFormPost NewTopicForm :: HandlerFor ForumsApp (FormResult NewTopic, WidgetFor ForumsApp ())
+            -- tformw :: WidgetFor ForumsApp ()
+            tformw <- generateAFormPost newTopicForm -- generem el formulari per crear un nou tema
+            -- foruView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> WidgetFor ForumsApp () -> WidgetFor ForumsApp -> WidgetFor ForumsApp
+            defaultLayout $ forumView (Just user) (fid, forumD) tformw fformw -- generem la vista de la pàgina del fòrum
         
 
--- funció per poder obetnir el tema dins d'un fòrum sempre i quan l'usuari estigui autenticat
+-- funció gestiona els HTTP GET de la pagina d'una qüestió d'un fòrum (topic)
 getTopicR :: TopicId -> HandlerFor ForumsApp Html
 getTopicR tid = do
-    -- Get authenticated user
     -- maybeAuth :: HandlerFor ForumsApp (Maybe (UserId, UserD))
     -- mbuser :: Maybe (UserId, UserD)
-    mbuser <- maybeAuth
+    mbuser <- maybeAuth -- obtenim l'usuari autenticat
     -- runDbAction :: SqlPersistT (HandlerFor ForumsApp) a -> HandlerFor ForumsApp a
     -- getTopic :: TopicId -> SqlPersistT (HandlerFor ForumsApp) (Maybe TopicD)
     -- maybe notFound pure :: Maybe a -> HandlerFor ForumsApp a

@@ -45,25 +45,30 @@ pidPostedWidget pid = do
 -- Views
 -- ---------------------------------------------------------------
 
+-- vista de la página principal (home.html)
 homeView :: Maybe (UserId, UserD) -> Widget ForumsApp -> Widget ForumsApp
 homeView mbuser fformw = do
     forums <- runDbAction getForumList
     $(widgetTemplFile $ templatesDir <> "/home.html")
 
+-- vista de un fòrum (forum.html)
 forumView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> WidgetFor ForumsApp () -> Widget ForumsApp -> Widget ForumsApp
 forumView mbuser (fid, forum) tformw fformw = do
     topics <- runDbAction $ getTopicList fid
     $(widgetTemplFile $ templatesDir <> "/forum.html")
 
+-- vista de una qüestió (topic.html)
 topicView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> WidgetFor ForumsApp () -> Widget ForumsApp -> Widget ForumsApp
 topicView mbuser (fid, forum) (tid, topic) pformw tformw = do
     posts <- runDbAction $ getPostList tid
     $(widgetTemplFile $ templatesDir <> "/topic.html")
 
+-- vista de una resposta (post.html)
 postView :: Maybe (UserId, UserD) -> (ForumId, ForumD) -> (TopicId, TopicD) -> (PostId, PostD) -> Widget ForumsApp -> Widget ForumsApp
 postView mbuser (fid, forum) (tid, topic) (pid, post) pformw = do
     $(widgetTemplFile $ templatesDir <> "/post.html")
 
+-- vista de la pàgina del canvi de nom d'usuari i contrasenya (user.html)
 userView :: Maybe (UserId, UserD) -> Widget ForumsApp -> Widget ForumsApp
 userView mbuser uformw = do
     $(widgetTemplFile $ templatesDir <> "/user.html")

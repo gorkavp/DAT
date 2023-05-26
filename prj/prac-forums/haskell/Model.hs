@@ -321,8 +321,8 @@ editTopic tid subject message = do
     update tid $ \ topic -> topic{ tdSubject = subject }
     posts <- getPostList tid
     case posts of
-        [] -> pure ()
-        (p:_) -> editPost (fst p) message
+        [] -> pure () -- si no hi ha posts, no cal fer res mes
+        (p:_) -> editPost (fst p) message -- si hi ha posts, edita el primer que es la descripcio del topic
 -- ---------------------------------------------------------------
 -- Table: PostD
 
